@@ -11,7 +11,7 @@ class_name Unit
 @export var debug_label: Label ## Optional. Debug unit states
 @export var state_machine: StateMachine ## StateMachine controls unit states and actions.
 @export var producer_component: ProducerComponent ## Optional. Producer component which creates units.
-@export var scanner_component: ScannerComponent ## Required for units to be able to scan for enemies/targets.
+@export var unit_finder_component: UnitFinderComponent ## Required for units to be able to scan for enemies/targets.
 @export var control_grid_component: ControlGridComponent ## For Units that have special actions that need to be displayed on the control grid.
 @export var unit_animation : UnitAnimationComponent ## Unit Animation Holder
 @export var health_bar_component : HealthBarComponent ## Healthbar
@@ -33,15 +33,13 @@ func _ready():
 	
 	
 	
-	if scanner_component:
-		scanner_component.get_node("ScanArea").shape.set_radius(unit_stats.attack_range+200)
 	#Errors for missing references
 	if not state_machine:
 		printerr("StateMachine not found for " + name)
 	if not unit_animation:
 		printerr("Sprite/UnitAnimation not found for " + name)
-	if not scanner_component:
-		printerr("ScannerComponent not found for " + name + " if this is not intentional, check that it has been assigned in the Inspector")
+	if not unit_finder_component:
+		printerr("UnitFinderComponent not found for " + name + " if this is not intentional, check that it has been assigned in the Inspector")
 
 	## Signal Connections
 	unit_stats.health_changed.connect(on_health_changed)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://psx5uxaxdqaa"]
+[gd_scene load_steps=7 format=3 uid="uid://psx5uxaxdqaa"]
 
 [ext_resource type="Script" path="res://Game/Levels/world.gd" id="1_5fqmg"]
 [ext_resource type="PackedScene" uid="uid://bvs5n5csnq30g" path="res://Units/Buildings/building.tscn" id="3_xjl0l"]
 [ext_resource type="Script" path="res://Game/ui.gd" id="6_7b22a"]
 [ext_resource type="Script" path="res://Game/Levels/rts_camera.gd" id="6_ns7qt"]
+[ext_resource type="PackedScene" uid="uid://jrtbbjksqh87" path="res://Units/Units/Archer/unit_red_archer.tscn" id="6_yk2fn"]
 [ext_resource type="PackedScene" uid="uid://pnxv4vnimohn" path="res://Resources/Items/item_pickup.tscn" id="7_eecuj"]
 
 [node name="Level" type="Node2D"]
@@ -12,7 +13,7 @@ script = ExtResource("1_5fqmg")
 selection_feather = 75
 
 [node name="Building" parent="." instance=ExtResource("3_xjl0l")]
-position = Vector2(-2290, 2402)
+position = Vector2(513, 568)
 
 [node name="Building2" parent="." instance=ExtResource("3_xjl0l")]
 position = Vector2(199, 570)
@@ -56,3 +57,9 @@ threshold = 75
 [node name="ItemPickup" parent="." instance=ExtResource("7_eecuj")]
 position = Vector2(133, 184)
 adds_gold = 200
+
+[node name="RedArcher" parent="." instance=ExtResource("6_yk2fn")]
+position = Vector2(1049, 54)
+
+[node name="RedArcher2" parent="." instance=ExtResource("6_yk2fn")]
+position = Vector2(915, 47)

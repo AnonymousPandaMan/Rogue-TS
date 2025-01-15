@@ -89,7 +89,7 @@ unicode = 101
 [sub_resource type="Shortcut" id="Shortcut_u47iy"]
 events = [SubResource("InputEventKey_542qt")]
 
-[node name="Building" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "producer_component", "scanner_component", "control_grid_component", "unit_animation", "health_bar_component")]
+[node name="Building" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "producer_component", "control_grid_component", "unit_animation", "health_bar_component")]
 editor_description = "Always have unit nestled under \"World\" or \"Level\""
 motion_mode = 1
 safe_margin = 1.0
@@ -97,7 +97,6 @@ script = ExtResource("1_ffggy")
 unit_stats_resource = ExtResource("2_l18hg")
 debug_label = NodePath("DebugLabel")
 producer_component = NodePath("ProducerComponent")
-scanner_component = NodePath("ScannerComponent")
 control_grid_component = NodePath("ControlGridComponent")
 unit_animation = NodePath("UnitAnimation")
 health_bar_component = NodePath("HealthBarComponent")
@@ -250,6 +249,10 @@ visible = false
 
 [node name="UnitAnimation" parent="." instance=ExtResource("16_20724")]
 visible = false
+
+[node name="UnitSprite" parent="UnitAnimation" index="0"]
+scale = Vector2(1, 1)
+frame = 1
 
 [node name="HealthBarComponent" parent="." instance=ExtResource("20_yopf0")]
 offset_left = -22.0

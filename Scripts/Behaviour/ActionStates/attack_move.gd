@@ -16,9 +16,11 @@ func physics_update(_delta: float) -> void:
 	unit.move_and_slide()
 	var enemy_array = unit.enemy(unit.unit_stats.allegiance)
 	for enemy in enemy_array:
-		attack_move_target_unit = unit.scanner_component.get_closest_unit_in_range(enemy)
+		attack_move_target_unit = unit.unit_finder_component.get_closest_unit(enemy)
 		if attack_move_target_unit:
-			finished.emit(MOVETOATTACK,{"AttackMoveTargetPosition" : attack_move_target_position,"AttackTarget" : attack_move_target_unit})
+			var target_range = unit.unit_stats.attack_range + 200
+			if attack_move_target_unit.position.distance_to(unit.position) < target_range:
+				finished.emit(MOVETOATTACK,{"AttackMoveTargetPosition" : attack_move_target_position,"AttackTarget" : attack_move_target_unit})
 	if unit.position.distance_to(attack_move_target_position) >= 10:
 		var target_direction = (attack_move_target_position - unit.position).normalized()
 		unit.velocity = target_direction * unit.unit_stats.move_speed
