@@ -7,33 +7,81 @@ class_name Level
 @onready var game_resources = GameInventory
 @onready var ui = $UI
 @onready var control_grid = %ControlGrid
+@onready var selector_rect_display = %SelectorRectDisplay
+
+var selector_rect : Rect2
 
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
+	if selector_rect:
+		selector_rect_display.position = selector_rect.position
+		selector_rect_display.size = selector_rect.size
+
 
 func _unhandled_input(event):
+	
+
+	
 	if Input.is_action_just_pressed("select"):
-		var click_location = get_global_mouse_position()
-		var closest_unit = GlobalFunctions.get_closest_unit_to_location("Unit",click_location)
-		if click_location.distance_to(closest_unit.global_position) <= selection_feather :
-			if closest_unit.is_selected == false:
-				if Input.is_action_pressed("shift"):
-					pass
-				else:
-					for unit in get_tree().get_nodes_in_group("Selected"):
-						unit.deselect()
-				closest_unit.select()
-			elif closest_unit.is_selected == true:
-				if Input.is_action_pressed("shift"):
-					closest_unit.deselect()
-				else:
-					for unit in get_tree().get_nodes_in_group("Selected"):
-						unit.deselect()
-					closest_unit.select()
-			update_control_grid_ui()
+		selector_rect.position = get_global_mouse_position() # sets top left position of selector
+	
+	if Input.is_action_pressed("select"):
+		selector_rect.end = get_global_mouse_position()
+	
+	if Input.is_action_just_released("select"):
+		var units_in_selector_rect : Array[Unit]
+		var all_units = get_tree().get_nodes_in_group("Unit")
+		if selector_rect.size.x > selection_feather or selector_rect.size.y > selection_feather:
+			for unit in all_units:
+				if selector_rect.has_point(unit.global_position):
+					units_in_selector_rect.append(unit)
 		else:
-			print("No unit close to click location to select")
+			var click_location = get_global_mouse_position()
+			var closest_unit = GlobalFunctions.get_closest_unit_to_location("Unit",click_location)
+			
+			if click_location.distance_to(closest_unit.global_position) >= selection_feather :
+				print("No unit close to click location to select")
+				pass
+			else:
+				units_in_selector_rect.append(closest_unit)
 		
+		if units_in_selector_rect.size() > 1:
+			if Input.is_action_pressed("shift"):
+				for unit in units_in_selector_rect:
+					if not unit.unit_stats.is_selectable or unit.unit_stats.allegiance != "Player":
+						continue
+					unit.select()
+			else:
+				for unit in all_units:
+					unit.deselect()
+				for unit in units_in_selector_rect:
+					if not unit.unit_stats.is_selectable or unit.unit_stats.allegiance != "Player":
+						continue
+					unit.select()
+
+					
+		if units_in_selector_rect.size() <= 1:
+			for unit in units_in_selector_rect:
+				if not unit.unit_stats.is_selectable:
+					continue
+					
+				if unit.is_selected == false:
+					if Input.is_action_pressed("shift"):
+						unit.select()
+					else:
+						for checked_unit in get_tree().get_nodes_in_group("Selected"):
+							checked_unit.deselect()
+						unit.select()
+				elif unit.is_selected == true:
+					if Input.is_action_pressed("shift"):
+						unit.deselect()
+					else:
+						for checked_unit in get_tree().get_nodes_in_group("Selected"):
+							checked_unit.deselect()
+						unit.select()
+		update_control_grid_ui()
+		selector_rect.size = Vector2(0,0)
+
 	if Input.is_action_just_pressed("move_to"):
 		var selected_units = get_tree().get_nodes_in_group("Selected")
 		for unit in selected_units:
@@ -55,10 +103,12 @@ func _unhandled_input(event):
 		if closest_unit.position.distance_to(mouse_position) <= selection_feather:
 			for unit in selected_units:
 				if unit != closest_unit: 
-					unit.state_machine._transition_to_next_state("Attacking", {"AttackTarget" : closest_unit})
+					if unit.state_machine:
+						unit.state_machine._transition_to_next_state("Attacking", {"AttackTarget" : closest_unit})
 		else:
 			for unit in selected_units:
-				unit.state_machine._transition_to_next_state("AttackMove", {"AttackMoveTargetPosition" : mouse_position})
+				if unit.state_machine:
+					unit.state_machine._transition_to_next_state("AttackMove", {"AttackMoveTargetPosition" : mouse_position})
 	 
 	#if Input.is_action_just_pressed("produce_unit"):
 		#var selected_units = get_tree().get_nodes_in_group("Selected")
