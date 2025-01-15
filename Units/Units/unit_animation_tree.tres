@@ -1,6 +1,27 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=15 format=3 uid="uid://fyxg2re3v00t"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=19 format=3 uid="uid://fyxg2re3v00t"]
 
-[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://djnn61dsj3md0" path="res://Units/Units/Archer/archer_attack_blend.tres" id="1_rp1j8"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aet06"]
+animation = &"attack_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_25cu6"]
+animation = &"attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1sj6"]
+animation = &"attack_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijmjr"]
+animation = &"attack_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_oev3s"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_aet06")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_25cu6")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_x1sj6")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ijmjr")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 2
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_854q8"]
 animation = &"idle_left"
@@ -39,28 +60,28 @@ advance_condition = &"move"
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alu7b"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4764g"]
 advance_mode = 2
 advance_condition = &"attack"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ouayu"]
-advance_mode = 2
-advance_condition = &"attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpqu4"]
-advance_mode = 2
-advance_condition = &"move"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_auti4"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qnujs"]
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v8cbf"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rmusw"]
+advance_mode = 2
+advance_condition = &"move"
+
 [resource]
-states/Attack/node = ExtResource("1_rp1j8")
-states/Attack/position = Vector2(606, 100)
+states/Attack/node = SubResource("AnimationNodeBlendSpace2D_oev3s")
+states/Attack/position = Vector2(652, 91)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_h8w43")
 states/Idle/position = Vector2(459, 38)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_vul6i")
 states/Move/position = Vector2(459, 155)
 states/Start/position = Vector2(220, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qvnu2"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_2o5i8"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_jtprp"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_alu7b"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_ouayu"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_tpqu4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_auti4")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qvnu2"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_2o5i8"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_jtprp"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_4764g"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_qnujs"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_v8cbf"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_rmusw")]

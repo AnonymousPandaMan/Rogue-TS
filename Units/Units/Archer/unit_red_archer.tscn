@@ -412,6 +412,6 @@ parameters/TimeScale/scale = 1.0
 parameters/UnitState/conditions/attack = false
 parameters/UnitState/conditions/idle = false
 parameters/UnitState/conditions/move = false
-parameters/UnitState/Attack/blend_position = Vector2(-0.00114548, 0.98419)
+parameters/UnitState/Attack/blend_position = Vector2(0, 0)
 parameters/UnitState/Idle/blend_position = 0
 parameters/UnitState/Move/blend_position = 0

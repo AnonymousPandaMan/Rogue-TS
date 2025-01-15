@@ -389,10 +389,11 @@ unit_sprite = NodePath("UnitSprite")
 
 [node name="UnitSprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
+scale = Vector2(-1, 1)
 texture = ExtResource("1_nm1kl")
 hframes = 8
 vframes = 7
-frame = 48
+frame = 4
 
 [node name="UnitAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
@@ -408,6 +409,6 @@ parameters/TimeScale/scale = 1.0
 parameters/UnitState/conditions/attack = false
 parameters/UnitState/conditions/idle = false
 parameters/UnitState/conditions/move = false
-parameters/UnitState/Attack/blend_position = Vector2(-0.00114548, 0.98419)
+parameters/UnitState/Attack/blend_position = Vector2(0, 0)
 parameters/UnitState/Idle/blend_position = 0
 parameters/UnitState/Move/blend_position = 0

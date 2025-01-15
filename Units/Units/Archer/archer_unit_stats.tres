@@ -22,4 +22,4 @@ is_selectable = true
 is_controllable = true
 is_building = false
 can_move = true
-allegiance = "Ally"
+allegiance = "Player"
