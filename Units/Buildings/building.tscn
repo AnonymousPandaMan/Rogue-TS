@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bvs5n5csnq30g"]
+[gd_scene load_steps=37 format=3 uid="uid://bvs5n5csnq30g"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_ffggy"]
 [ext_resource type="Material" uid="uid://c4pb5lkhkw6la" path="res://Resources/Shaders/selected_outline.tres" id="2_dxew7"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://bsoi4h24lgu27" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Hover.png" id="18_dyq4f"]
 [ext_resource type="Script" path="res://Game/UI/rally_point_button.gd" id="19_5467a"]
 [ext_resource type="Texture2D" uid="uid://27vsi6lw8lte" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Disable.png" id="19_ye6gf"]
+[ext_resource type="Texture2D" uid="uid://bxbm218lkrs7j" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png" id="20_ahcsc"]
+[ext_resource type="Texture2D" uid="uid://dkuem2o3whwct" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="20_kvkue"]
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="20_yopf0"]
 [ext_resource type="Texture2D" uid="uid://uicpurwmdh7i" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red.png" id="21_5phve"]
 [ext_resource type="Texture2D" uid="uid://cdomxbcfexso6" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red_Pressed.png" id="22_suafh"]
@@ -40,7 +42,9 @@ unicode = 113
 events = [SubResource("InputEventKey_23ndj")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v8pqw"]
-font_size = 24
+font_size = 18
+font_color = Color(0.0862745, 0.109804, 0.180392, 1)
+outline_size = 1
 
 [sub_resource type="InputEventKey" id="InputEventKey_1bne3"]
 device = -1
@@ -142,12 +146,22 @@ produced_unit = NodePath("../../ProducerComponent/Knight")
 listener_unit_group = "Building"
 button_id = "ProduceKnight"
 
+[node name="Sprite2D" type="Sprite2D" parent="ControlGridComponent/Produce Knight"]
+position = Vector2(30, 26)
+scale = Vector2(0.377, 0.4)
+texture = ExtResource("20_kvkue")
+hframes = 6
+vframes = 8
+
 [node name="Label" type="Label" parent="ControlGridComponent/Produce Knight"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -15.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 9.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Q"
@@ -170,12 +184,22 @@ produced_unit = NodePath("../../ProducerComponent/Archer")
 listener_unit_group = "Building"
 button_id = "ProduceArcher"
 
+[node name="Sprite2D" type="Sprite2D" parent="ControlGridComponent/Produce Archer"]
+position = Vector2(30, 24)
+scale = Vector2(0.424479, 0.424479)
+texture = ExtResource("20_ahcsc")
+hframes = 8
+vframes = 7
+
 [node name="Label" type="Label" parent="ControlGridComponent/Produce Archer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -15.0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 6.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "W"

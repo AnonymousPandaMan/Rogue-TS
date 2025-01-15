@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://psx5uxaxdqaa"]
+[gd_scene load_steps=8 format=3 uid="uid://psx5uxaxdqaa"]
 
 [ext_resource type="Script" path="res://Game/Levels/world.gd" id="1_5fqmg"]
 [ext_resource type="PackedScene" uid="uid://bvs5n5csnq30g" path="res://Units/Buildings/building.tscn" id="3_xjl0l"]
 [ext_resource type="Script" path="res://Game/ui.gd" id="6_7b22a"]
+[ext_resource type="Resource" uid="uid://2eb8k1apvrp1" path="res://Resources/Items/meat.tres" id="6_7xh4w"]
 [ext_resource type="Script" path="res://Game/Levels/rts_camera.gd" id="6_ns7qt"]
 [ext_resource type="PackedScene" uid="uid://jrtbbjksqh87" path="res://Units/Units/Archer/unit_red_archer.tscn" id="6_yk2fn"]
 [ext_resource type="PackedScene" uid="uid://pnxv4vnimohn" path="res://Resources/Items/item_pickup.tscn" id="7_eecuj"]
@@ -13,10 +14,10 @@ script = ExtResource("1_5fqmg")
 selection_feather = 75
 
 [node name="Building" parent="." instance=ExtResource("3_xjl0l")]
-position = Vector2(513, 568)
+position = Vector2(271, 489)
 
 [node name="Building2" parent="." instance=ExtResource("3_xjl0l")]
-position = Vector2(199, 570)
+position = Vector2(-2107, 2260)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("6_7b22a")
@@ -43,6 +44,7 @@ grow_vertical = 0
 columns = 5
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2(-2500, 1800)
 anchor_mode = 0
 limit_left = -2500
 limit_top = -2500
@@ -55,18 +57,26 @@ script = ExtResource("6_ns7qt")
 threshold = 75
 
 [node name="ItemPickup" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(133, 184)
+position = Vector2(-1063, 1409)
 adds_gold = 200
 
+[node name="ItemPickup2" parent="." instance=ExtResource("7_eecuj")]
+position = Vector2(-915, 1543)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
 [node name="RedArcher" parent="." instance=ExtResource("6_yk2fn")]
-position = Vector2(1049, 54)
+position = Vector2(-921, 1646)
+
+[node name="RedArcher3" parent="." instance=ExtResource("6_yk2fn")]
+position = Vector2(-1040, 1526)
 
 [node name="RedArcher2" parent="." instance=ExtResource("6_yk2fn")]
-position = Vector2(915, 47)
+position = Vector2(-1198, 1404)
 
 [node name="SelectorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color(0.501961, 1, 1, 0.329412)
+color = Color(0.501961, 1, 0.756863, 0.376471)

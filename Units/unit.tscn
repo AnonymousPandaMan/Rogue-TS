@@ -13,8 +13,7 @@
 [ext_resource type="Script" path="res://Units/unit_finder_component.gd" id="13_iwsor"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
-custom_solver_bias = 0.5
-radius = 20.0
+radius = 15.0333
 
 [node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "unit_finder_component", "health_bar_component")]
 y_sort_enabled = true
@@ -29,6 +28,7 @@ health_bar_component = NodePath("HealthBarComponent")
 selected_outline = ExtResource("2_f6ofu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_b16wh")
 
 [node name="StateMachine" type="Node" parent="."]
