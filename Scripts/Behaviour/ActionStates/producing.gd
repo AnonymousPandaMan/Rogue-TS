@@ -7,6 +7,8 @@ var producing_unit = preload("res://Units/unit.tscn") # needs to be changed to b
 var current_production_progress = 0.0
 var produced_unit
 
+## CURRENTLY UNUSED
+
 func enter(previous_state_path: String, data := {}) -> void:
 	pass
 

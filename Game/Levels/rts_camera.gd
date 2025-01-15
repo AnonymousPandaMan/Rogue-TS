@@ -16,8 +16,8 @@ func _process(delta):
 	elif local_mouse_pos.y > viewport_size.y - threshold:
 		position.y += step
 
-func _input(event):
-	if Input.is_action_pressed("scroll_up"):
-		zoom = Vector2(zoom.x*0.95,zoom.y*0.95)
-	if Input.is_action_pressed("scroll_down"):
-		zoom = Vector2(zoom.x*1.05,zoom.y*1.05)
+#func _input(event):
+	#if Input.is_action_pressed("scroll_up"):
+		#zoom = Vector2(zoom.x*0.95,zoom.y*0.95)
+	#if Input.is_action_pressed("scroll_down"):
+		#zoom = Vector2(zoom.x*1.05,zoom.y*1.05)

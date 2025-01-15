@@ -32,11 +32,11 @@ func physics_update(_delta: float) -> void:
 				
 				# change facing direction
 				var facing_direction = unit.position.direction_to(attack_target.position)
-				unit.unit_animation.unit_animation_tree.set("parameters/UnitState/Attack/blend_position",facing_direction)
+				unit.unit_animation.set_blend_position("parameters/UnitState/Attack/blend_position",facing_direction)
 				
 				# apply animation time scale
 				var attack_speed_corrected_animation_time_scale = unit.unit_stats.attack_animation_time/attack_time
-				unit.unit_animation.unit_animation_tree.set("parameters/TimeScale/scale", attack_speed_corrected_animation_time_scale)
+				unit.unit_animation.set_timescale(attack_speed_corrected_animation_time_scale)
 
 		if unit.position.distance_to(attack_target.position) > unit.unit_stats.attack_range and currently_attacking == false:
 			finished.emit(MOVETOATTACK,{"AttackTarget" : attack_target, "AttackMoveTargetPosition" : attack_move_target_position})
@@ -49,7 +49,7 @@ func physics_update(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String, data := {}) -> void:
-	unit.unit_animation.unit_animation_tree.set("parameters/UnitState/conditions/attack", true)
+	unit.unit_animation.set_condition("parameters/UnitState/conditions/attack", true)
 
 	if data:
 		attack_target = data.get("AttackTarget")
@@ -59,8 +59,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
 func exit() -> void:
-	unit.unit_animation.unit_animation_tree.set("parameters/UnitState/conditions/attack", false)
-	unit.unit_animation.unit_animation_tree.set("parameters/TimeScale/scale", 1)
+	unit.unit_animation.set_condition("parameters/UnitState/conditions/attack", false)
+	unit.unit_animation.set_timescale(1)
 	current_attack_time = attack_time
 	currently_attacking = false
 	can_attack = true

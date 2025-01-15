@@ -36,9 +36,6 @@ shape = SubResource("CircleShape2D_b16wh")
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_14kq8")
 
-[node name="AttackMove" type="Node" parent="StateMachine"]
-script = ExtResource("11_elbt2")
-
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_g1y2t")
 
@@ -50,6 +47,9 @@ script = ExtResource("6_4yixh")
 
 [node name="MoveToAttack" type="Node" parent="StateMachine"]
 script = ExtResource("7_gcf8v")
+
+[node name="AttackMove" type="Node" parent="StateMachine"]
+script = ExtResource("11_elbt2")
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false

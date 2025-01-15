@@ -25,13 +25,13 @@ func physics_update(_delta: float) -> void:
 		var target_direction = (attack_move_target_position - unit.position).normalized()
 		unit.velocity = target_direction * unit.unit_stats.move_speed
 		var facing_direction = unit.velocity.normalized()
-		unit.unit_animation.unit_animation_tree.set("parameters/UnitState/Move/blend_position",facing_direction.x)
+		unit.unit_animation.set_blend_position("parameters/UnitState/Move/blend_position",facing_direction.x)
 	else:
 		finished.emit(IDLE)
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String, data := {}) -> void:
-	unit.unit_animation.unit_animation_tree.set("parameters/UnitState/conditions/move", true)
+	unit.unit_animation.set_condition("parameters/UnitState/conditions/move", true)
 	if data:
 		attack_move_target_position = data.get("AttackMoveTargetPosition")
 	else:
@@ -40,5 +40,5 @@ func enter(previous_state_path: String, data := {}) -> void:
 ## to clean up the state.
 func exit() -> void:
 	attack_move_target_unit = null
-	unit.unit_animation.unit_animation_tree.set("parameters/UnitState/conditions/move", false)
+	unit.unit_animation.set_condition("parameters/UnitState/conditions/move", false)
 	pass

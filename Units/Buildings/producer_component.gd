@@ -115,7 +115,8 @@ func produce_first_unit_in_queue() -> void:
 		production_node_list.erase(producing_unit_node)
 		if production_behaviour != ProductionBehaviour.USER:
 			refresh_unit_list()
-		producing_unit_node = production_node_list.front()
+		if production_node_list.size() > 0:
+			producing_unit_node = production_node_list.front()
 		current_production_progress = 0.0
 
 func pay_for_production(type,amount) -> void:

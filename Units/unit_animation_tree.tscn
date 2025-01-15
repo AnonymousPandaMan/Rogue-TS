@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfahcyck8rob2"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://fyxg2re3v00t" path="res://Units/Units/unit_animation_tree.tres" id="1_2ebty"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ks2m"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0f4tj"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4ks2m")
+nodes/TimeScale/position = Vector2(600, 20)
+nodes/UnitState/node = ExtResource("1_2ebty")
+nodes/UnitState/position = Vector2(400, 200)
+nodes/output/position = Vector2(760, 200)
+node_connections = [&"TimeScale", 0, &"UnitState", &"output", 0, &"TimeScale"]
+
+[node name="UnitAnimationTree" type="AnimationTree"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_0f4tj")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../UnitAnimation")
+parameters/TimeScale/scale = 1.0
+parameters/UnitState/conditions/attack = false
+parameters/UnitState/conditions/idle = false
+parameters/UnitState/conditions/move = false
+parameters/UnitState/Attack/blend_position = Vector2(-0.00114548, 0.98419)
+parameters/UnitState/Idle/blend_position = 0
+parameters/UnitState/Move/blend_position = 0
