@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cp1a0s3dxh3tr"]
+[gd_scene load_steps=13 format=3 uid="uid://cp1a0s3dxh3tr"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_8cpma"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/state_machine.gd" id="2_14kq8"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/move_to_attack.gd" id="7_gcf8v"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/attack_move.gd" id="11_elbt2"]
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="12_m4mny"]
-[ext_resource type="PackedScene" uid="uid://dame5dqfprbte" path="res://Units/unit_animation.tscn" id="12_ngk0e"]
 [ext_resource type="Script" path="res://Units/unit_finder_component.gd" id="13_iwsor"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
@@ -26,7 +25,7 @@ unit_stats_resource = ExtResource("2_800oa")
 debug_label = NodePath("DebugLabel")
 state_machine = NodePath("StateMachine")
 unit_finder_component = NodePath("UnitFinderComponent")
-unit_animation = NodePath("UnitAnimation")
+unit_animation = NodePath("")
 health_bar_component = NodePath("HealthBarComponent")
 selected_outline = ExtResource("2_f6ofu")
 
@@ -59,8 +58,6 @@ offset_top = -34.0
 offset_right = 20.0
 offset_bottom = -11.0
 horizontal_alignment = 1
-
-[node name="UnitAnimation" parent="." instance=ExtResource("12_ngk0e")]
 
 [node name="HealthBarComponent" parent="." instance=ExtResource("12_m4mny")]
 z_index = 10

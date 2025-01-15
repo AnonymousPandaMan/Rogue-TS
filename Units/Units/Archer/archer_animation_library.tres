@@ -1,8 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dame5dqfprbte"]
-
-[ext_resource type="Script" path="res://Units/unit_animation.gd" id="1_kq51d"]
-[ext_resource type="Texture2D" uid="uid://bxbm218lkrs7j" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png" id="1_nm1kl"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://fyxg2re3v00t" path="res://Units/Units/unit_animation_tree.tres" id="3_bxu71"]
+[gd_resource type="AnimationLibrary" load_steps=14 format=3 uid="uid://cx361lvklr2dn"]
 
 [sub_resource type="Animation" id="Animation_uxhd4"]
 length = 0.001
@@ -355,7 +351,7 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mnx12"]
+[resource]
 _data = {
 "RESET": SubResource("Animation_uxhd4"),
 "attack_down": SubResource("Animation_xmko3"),
@@ -371,43 +367,3 @@ _data = {
 "move_left": SubResource("Animation_asdu0"),
 "move_right": SubResource("Animation_kdso0")
 }
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ks2m"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0f4tj"]
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4ks2m")
-nodes/TimeScale/position = Vector2(580, 180)
-nodes/UnitState/node = ExtResource("3_bxu71")
-nodes/UnitState/position = Vector2(400, 180)
-nodes/output/position = Vector2(740, 180)
-node_connections = [&"TimeScale", 0, &"UnitState", &"output", 0, &"TimeScale"]
-
-[node name="UnitAnimation" type="Node2D" node_paths=PackedStringArray("unit_animation_tree", "unit_sprite")]
-script = ExtResource("1_kq51d")
-unit_animation_tree = NodePath("UnitAnimationTree")
-unit_sprite = NodePath("UnitSprite")
-
-[node name="UnitSprite" type="Sprite2D" parent="."]
-y_sort_enabled = true
-texture = ExtResource("1_nm1kl")
-hframes = 8
-vframes = 7
-frame = 1
-
-[node name="UnitAnimation" type="AnimationPlayer" parent="."]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_mnx12")
-}
-
-[node name="UnitAnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../..")
-tree_root = SubResource("AnimationNodeBlendTree_0f4tj")
-anim_player = NodePath("../UnitAnimation")
-parameters/TimeScale/scale = 1.0
-parameters/UnitState/conditions/attack = false
-parameters/UnitState/conditions/idle = false
-parameters/UnitState/conditions/move = false
-parameters/UnitState/Attack/blend_position = Vector2(-0.00114548, 0.98419)
-parameters/UnitState/Idle/blend_position = 0
-parameters/UnitState/Move/blend_position = 0

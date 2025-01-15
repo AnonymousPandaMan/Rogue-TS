@@ -1,13 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddyx4o8ne41xg"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_krah5"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://8u4yoob86v12" path="res://Units/Units/Archer/archer_animation_node_blend.tres" id="2_l3m1c"]
 [ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/archer_unit_stats.tres" id="2_uy8qt"]
+[ext_resource type="PackedScene" uid="uid://dame5dqfprbte" path="res://Units/unit_animation.tscn" id="3_fhg3n"]
 
-[node name="Archer" instance=ExtResource("1_krah5")]
+[node name="Archer" node_paths=PackedStringArray("unit_animation") instance=ExtResource("1_krah5")]
 unit_stats_resource = ExtResource("2_uy8qt")
+unit_animation = NodePath("ArcherAnimation")
 
-[node name="UnitAnimationTree" parent="UnitAnimation" index="2"]
-tree_root = ExtResource("2_l3m1c")
-
-[editable path="UnitAnimation"]
+[node name="ArcherAnimation" parent="." index="5" instance=ExtResource("3_fhg3n")]

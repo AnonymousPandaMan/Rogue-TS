@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://jdbxklpq0g6c"]
+
+[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_bs4pq"]
+
+[resource]
+script = ExtResource("1_bs4pq")
+unit_name = "Knight"
+move_speed = 400.0
+max_health = 120.0
+health_regen = 1.0
+armour = 1.0
+attack_damage = 15.0
+attack_speed = 1.2
+attack_animation_time = 0.6
+attack_range = 100.0
+ranged_projectile_speed = 500.0
+ranged_projectile_size_modifier = 1.0
+ranged_or_melee = "Melee"
+is_selectable = true
+is_controllable = true
+is_building = false
+can_move = true
+allegiance = "Player"
