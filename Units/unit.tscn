@@ -16,7 +16,7 @@
 custom_solver_bias = 0.5
 radius = 20.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "unit_finder_component", "unit_animation", "health_bar_component")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "unit_finder_component", "health_bar_component")]
 y_sort_enabled = true
 motion_mode = 1
 safe_margin = 1.0
@@ -25,7 +25,6 @@ unit_stats_resource = ExtResource("2_800oa")
 debug_label = NodePath("DebugLabel")
 state_machine = NodePath("StateMachine")
 unit_finder_component = NodePath("UnitFinderComponent")
-unit_animation = NodePath("")
 health_bar_component = NodePath("HealthBarComponent")
 selected_outline = ExtResource("2_f6ofu")
 

@@ -6,6 +6,6 @@
 
 [node name="Archer" node_paths=PackedStringArray("unit_animation") instance=ExtResource("1_krah5")]
 unit_stats_resource = ExtResource("2_uy8qt")
-unit_animation = NodePath("ArcherAnimation")
+unit_animation = NodePath("UnitAnimation")
 
-[node name="ArcherAnimation" parent="." index="5" instance=ExtResource("3_fhg3n")]
+[node name="UnitAnimation" parent="." index="5" instance=ExtResource("3_fhg3n")]

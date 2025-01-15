@@ -392,7 +392,7 @@ y_sort_enabled = true
 texture = ExtResource("1_nm1kl")
 hframes = 8
 vframes = 7
-frame = 1
+frame = 48
 
 [node name="UnitAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
