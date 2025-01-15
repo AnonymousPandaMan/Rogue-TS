@@ -1,0 +1,66 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=15 format=3 uid="uid://cvsy3oodbmeau"]
+
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://djnn61dsj3md0" path="res://Units/Units/Archer/archer_attack_blend.tres" id="1_5k11n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_854q8"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ryxi5"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_h8w43"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_854q8")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_ryxi5")
+blend_point_1/pos = 1.0
+blend_mode = 2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vuhki"]
+animation = &"move_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xe3od"]
+animation = &"move_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vul6i"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_vuhki")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_xe3od")
+blend_point_1/pos = 1.0
+blend_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qvnu2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2o5i8"]
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jtprp"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alu7b"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ouayu"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpqu4"]
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_auti4"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[resource]
+states/Attack/node = ExtResource("1_5k11n")
+states/Attack/position = Vector2(606, 100)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_h8w43")
+states/Idle/position = Vector2(459, 38)
+states/Move/node = SubResource("AnimationNodeBlendSpace1D_vul6i")
+states/Move/position = Vector2(459, 155)
+states/Start/position = Vector2(220, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qvnu2"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_2o5i8"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_jtprp"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_alu7b"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_ouayu"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_tpqu4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_auti4")]

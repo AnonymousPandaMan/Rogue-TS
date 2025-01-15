@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://m6iuic2ru6o5"]
+
+[ext_resource type="Script" path="res://Resources/Items/item.gd" id="1_1vfce"]
+[ext_resource type="Texture2D" uid="uid://qo778vs1hxs7" path="res://Assets/Tiny Swords (Update 010)/Resources/Resources/G_Idle.png" id="2_qty15"]
+
+[resource]
+script = ExtResource("1_1vfce")
+item_name = "Gold"
+sprite = ExtResource("2_qty15")

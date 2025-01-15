@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://cbrc6x5i15l7l"]
+
+[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_mbtk2"]
+
+[resource]
+script = ExtResource("1_mbtk2")
+unit_name = ""
+move_speed = 500.0
+max_health = 100.0
+health = 100.0
+health_regen = 10.0
+armour = 1.0
+attack_damage = 10.0
+attack_speed = 1.66667
+attack_range = 200.0
+is_selectable = true
+is_controllable = true
+is_building = false
+can_move = true
+allegiance = "Ally"

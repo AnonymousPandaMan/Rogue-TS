@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ButtonID" load_steps=2 format=3 uid="uid://c61melorned4k"]
+
+[ext_resource type="Script" path="res://Scenes/UI/button_id.gd" id="1_kowjq"]
+
+[resource]
+script = ExtResource("1_kowjq")
+id = "ProduceUnit"

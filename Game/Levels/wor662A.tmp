@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://psx5uxaxdqaa"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_5fqmg"]
+[ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/Unit.tscn" id="1_i4unr"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_5fqmg")
+selection_feather = 535
+
+[node name="Unit" parent="." instance=ExtResource("1_i4unr")]
+position = Vector2(46.4531, 197.454)

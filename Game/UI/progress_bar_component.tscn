@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dboa0ndxs2qjb"]
+
+[ext_resource type="Script" path="res://Units/Buildings/progress_bar_component.gd" id="1_5ku20"]
+
+[node name="ProgressBarComponent" type="ProgressBar"]
+offset_right = 4.0
+offset_bottom = 27.0
+show_percentage = false
+script = ExtResource("1_5ku20")

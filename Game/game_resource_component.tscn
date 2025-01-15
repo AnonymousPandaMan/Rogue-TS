@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc6g6oo4akqq4"]
+
+[sub_resource type="GDScript" id="GDScript_eq6ii"]
+script/source = "extends Node
+
+class_name GameResource
+
+@export var resource_name: String # Set automatically to node name on ready if not set within editor.
+@export var resource_starting_amount: int
+
+func _ready():
+	if not resource_name:
+		resource_name = name
+"
+
+[node name="GameResourceComponent" type="Node"]
+script = SubResource("GDScript_eq6ii")
+resource_starting_amount = 100

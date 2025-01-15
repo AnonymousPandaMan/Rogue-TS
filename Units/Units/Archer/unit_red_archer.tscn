@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://jrtbbjksqh87"]
+
+[ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_isn06"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://8u4yoob86v12" path="res://Units/Units/Archer/archer_animation_node_blend.tres" id="2_gqxg8"]
+[ext_resource type="Texture2D" uid="uid://drd14i0nqtmhy" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Red/Archer_Red.png" id="2_wyjwq"]
+
+[node name="RedArcher" instance=ExtResource("1_isn06")]
+
+[node name="UnitSprite" parent="UnitAnimation" index="0"]
+texture = ExtResource("2_wyjwq")
+
+[node name="UnitAnimationTree" parent="UnitAnimation" index="2"]
+tree_root = ExtResource("2_gqxg8")
+
+[editable path="UnitAnimation"]
