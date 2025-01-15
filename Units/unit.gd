@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Unit
 
+signal navigation_refeshed()
+
 ## All unit stats, flags and assets stored in a UnitStats resource. This asks for a UnitStats resource then duplicates it to avoid changing all stats of same unit type at once.
 @export var unit_stats_resource : UnitStats 
 @onready var unit_stats : UnitStats = unit_stats_resource.duplicate()
@@ -11,6 +13,7 @@ class_name Unit
 @export var debug_label: Label ## Optional. Debug unit states
 @export var state_machine: StateMachine ## StateMachine controls unit states and actions.
 @export var producer_component: ProducerComponent ## Optional. Producer component which creates units.
+@export var navigation_component: NavigationComponent ## Nav component for navigation
 @export var unit_finder_component: UnitFinderComponent ## Required for units to be able to scan for enemies/targets.
 @export var control_grid_component: ControlGridComponent ## For Units that have special actions that need to be displayed on the control grid.
 @export var unit_animation : UnitAnimationComponent ## Unit Animation Holder
@@ -20,6 +23,7 @@ class_name Unit
 @export var selected_outline : ShaderMaterial
 
 var is_selected := false
+var requested_navigation_target_position : Vector2
 
 func _ready():
 	if unit_stats:
@@ -43,6 +47,9 @@ func _ready():
 
 	## Signal Connections
 	unit_stats.health_changed.connect(on_health_changed)
+	
+	if navigation_component:
+		navigation_component.refresh_timer.timeout.connect(on_refresh_timer_timeout)
 
 func select():
 	is_selected = true
@@ -101,3 +108,9 @@ func on_health_changed(health):
 		health_bar_component.visible = true
 	if unit_stats.health <= 0:
 		die()
+
+func on_refresh_timer_timeout():
+	## Update Navigation
+	if requested_navigation_target_position:
+		navigation_component.nav.target_position = requested_navigation_target_position
+		navigation_refeshed.emit()

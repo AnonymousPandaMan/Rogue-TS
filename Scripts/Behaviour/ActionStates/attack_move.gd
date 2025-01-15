@@ -22,7 +22,8 @@ func physics_update(_delta: float) -> void:
 			if attack_move_target_unit.position.distance_to(unit.position) < target_range:
 				finished.emit(MOVETOATTACK,{"AttackMoveTargetPosition" : attack_move_target_position,"AttackTarget" : attack_move_target_unit})
 	if unit.position.distance_to(attack_move_target_position) >= 10:
-		var target_direction = (attack_move_target_position - unit.position).normalized()
+		var target_direction = (
+			unit.navigation_component.nav.get_next_path_position() - unit.global_position).normalized()
 		unit.velocity = target_direction * unit.unit_stats.move_speed
 		var facing_direction = unit.velocity.normalized()
 		unit.unit_animation.set_blend_position("parameters/UnitState/Move/blend_position",facing_direction.x)
@@ -34,6 +35,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	unit.unit_animation.set_condition("parameters/UnitState/conditions/move", true)
 	if data:
 		attack_move_target_position = data.get("AttackMoveTargetPosition")
+		unit.requested_navigation_target_position = attack_move_target_position
 	else:
 		finished.emit(IDLE)
 ## Called by the state machine before changing the active state. Use this function
