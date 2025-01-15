@@ -1,14 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://gliog5bn3uyd"]
+[gd_scene load_steps=3 format=3 uid="uid://gliog5bn3uyd"]
 
 [ext_resource type="Script" path="res://Units/Buildings/producer_component.gd" id="1_qgh6x"]
 [ext_resource type="PackedScene" uid="uid://dboa0ndxs2qjb" path="res://Game/UI/progress_bar_component.tscn" id="2_3x3eq"]
-[ext_resource type="Script" path="res://Game/rally_point.gd" id="3_wr460"]
 
-[node name="ProducerComponent" type="Node2D" node_paths=PackedStringArray("progress_bar", "rally_point")]
+[node name="ProducerComponent" type="Node2D" node_paths=PackedStringArray("progress_bar")]
 script = ExtResource("1_qgh6x")
 production_behaviour = 1
 progress_bar = NodePath("ProgressBarComponent")
-rally_point = NodePath("RallyPoint")
 
 [node name="ProgressBarComponent" parent="." instance=ExtResource("2_3x3eq")]
 top_level = true
@@ -16,7 +14,4 @@ z_index = 1
 offset_left = -126.0
 offset_top = 2.0
 offset_right = 128.0
-offset_bottom = 29.0
-
-[node name="RallyPoint" type="Node2D" parent="."]
-script = ExtResource("3_wr460")
+offset_bottom = 10.0

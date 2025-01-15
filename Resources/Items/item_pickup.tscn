@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://m6iuic2ru6o5" path="res://Resources/Items/gold.tres" id="2_w7e3k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_idblq"]
+radius = 50.0
 
 [node name="ItemPickup" type="Node2D" node_paths=PackedStringArray("item_sprite", "pickup_area")]
 script = ExtResource("1_jbone")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl57o6dv8rqew"]
+
+[ext_resource type="PackedScene" uid="uid://bvs5n5csnq30g" path="res://Units/Buildings/building.tscn" id="1_jsxns"]
+[ext_resource type="Resource" uid="uid://sl5cag42nxs5" path="res://Units/Buildings/Stats/red_castle_stats.tres" id="2_wautw"]
+[ext_resource type="Resource" uid="uid://dge84gyyi0v41" path="res://Units/Units/Archer/red_archer_unit_stats.tres" id="3_1yjyi"]
+[ext_resource type="Texture2D" uid="uid://cti0k0p07oiyr" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Red.png" id="3_mgxfg"]
+[ext_resource type="Resource" uid="uid://cj7yf7cwn6gw7" path="res://Units/Units/Knight/Stats/red_knight_stats.tres" id="3_n347l"]
+
+[node name="Red Castle" instance=ExtResource("1_jsxns")]
+unit_stats_resource = ExtResource("2_wautw")
+
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Idle")
+
+[node name="ProducerComponent" parent="." index="4"]
+production_behaviour = 0
+
+[node name="Archer" parent="ProducerComponent" index="1"]
+unit_scene = "res://Units/Units/Knight/red_knight.tscn"
+unit_stats = ExtResource("3_n347l")
+unit_primary_resource_cost = 0
+unit_secondary_resource_cost = 0
+unit_production_time = 22.0
+
+[node name="Knight" parent="ProducerComponent" index="2"]
+unit_scene = "res://Units/Units/Archer/unit_red_archer.tscn"
+unit_stats = ExtResource("3_1yjyi")
+unit_primary_resource_cost = 0
+unit_production_time = 0.1
+
+[node name="Sprite2D" parent="UnitAnimation" index="0"]
+texture = ExtResource("3_mgxfg")
+
+[editable path="ProducerComponent"]

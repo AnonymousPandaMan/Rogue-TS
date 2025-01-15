@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_bs4pq")
 unit_name = "Knight"
-move_speed = 400.0
+move_speed = 350.0
 max_health = 120.0
 health_regen = 1.0
 armour = 1.0

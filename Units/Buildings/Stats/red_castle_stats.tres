@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://sl5cag42nxs5"]
+
+[ext_resource type="Texture2D" uid="uid://cyxot4yfyxqf7" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="1_31drf"]
+[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="2_4mndc"]
+
+[resource]
+script = ExtResource("2_4mndc")
+unit_name = "RedCastle"
+move_speed = 0.0
+max_health = 1000.0
+health_regen = 0.0
+armour = 3.0
+attack_damage = 12.0
+attack_speed = 1.5
+attack_animation_time = 0.1
+attack_range = 800.0
+ranged_projectile_speed = 2000.0
+ranged_projectile_size_modifier = 2.0
+ranged_projectile_sprite = ExtResource("1_31drf")
+ranged_or_melee = "Ranged"
+is_selectable = false
+is_controllable = true
+is_building = true
+can_move = false
+allegiance = "Enemy"

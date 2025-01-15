@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://csdsdlf0ore7g"]
 
-[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_f8iau"]
+[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_0qdki"]
 
 [resource]
-script = ExtResource("1_f8iau")
+script = ExtResource("1_0qdki")
 unit_name = "Castle"
 move_speed = 0.0
 max_health = 1000.0

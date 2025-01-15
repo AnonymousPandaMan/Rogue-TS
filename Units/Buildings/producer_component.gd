@@ -23,13 +23,19 @@ enum ProductionBehaviour {CYCLE,USER,MOST_EXPENSIVE,LEAST_EXPENSIVE}
 @export var production_behaviour : ProductionBehaviour = ProductionBehaviour.CYCLE
 @export var spawn_point : SpawnPoint
 @export var progress_bar : ProgressBarComponent
-@export var rally_point : RallyPoint
+@export var rally_point : Node2D
+
+@export var production_is_free : bool = false
 
 func _ready():
 	refresh_unit_list()
 	if owner.get_parent() is Level:
 		level_node = owner.get_parent()
-		
+	if not production_behaviour == ProductionBehaviour.USER:
+		init_production(null)
+	if rally_point:
+		RallyPoint.new(self,rally_point.global_position)
+		print("corrected rally point")
 
 func _process(delta):
 	if units_queued >= 1:
@@ -42,23 +48,30 @@ func _process(delta):
 	else:
 		is_producing = false
 		progress_bar.visible = false
+	
+	if not production_behaviour == ProductionBehaviour.USER:
+		init_production(production_node_list.front())
 
 
 func init_production(unit):
 	if not unit:
 		unit = production_node_list.front()
-	var cost1 = unit.unit_primary_resource_cost
-	var cost2 = unit.unit_secondary_resource_cost
-	if has_enough_resources("Meat",cost1) and has_enough_resources("Gold",cost2):
-		pay_for_production("Meat",cost1)
-		pay_for_production("Gold",cost2)
-		is_producing = true
-		units_queued += 1
-		if production_behaviour == ProductionBehaviour.USER:
-			add_unit_to_queue(unit)
+	if units_queued <= 5:
+		var cost1 = unit.unit_primary_resource_cost
+		var cost2 = unit.unit_secondary_resource_cost
+		if has_enough_resources("Meat",cost1) and has_enough_resources("Gold",cost2):
+			pay_for_production("Meat",cost1)
+			pay_for_production("Gold",cost2)
+			is_producing = true
+			units_queued += 1
+			if production_behaviour == ProductionBehaviour.USER:
+				add_unit_to_queue(unit)
+		else:
+			print("Not enough resources")
 	else:
-		print("Not enough resources")
-	pass
+		#print("Too many units in queue")
+		pass
+	
 
 func add_unit_to_queue(unit) -> void:
 	production_node_list.append(unit)
@@ -87,6 +100,7 @@ func progress_production(amount) -> void:
 		if current_production_progress >= producing_unit_node.unit_production_time:
 			produce_first_unit_in_queue()
 			units_queued -= 1
+
 			if units_queued <= 0:
 				is_producing = false
 		else:

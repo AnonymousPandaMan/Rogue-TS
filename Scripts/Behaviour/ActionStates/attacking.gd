@@ -39,7 +39,10 @@ func physics_update(_delta: float) -> void:
 				unit.unit_animation.set_timescale(attack_speed_corrected_animation_time_scale)
 
 		if unit.position.distance_to(attack_target.position) > unit.unit_stats.attack_range and currently_attacking == false:
-			finished.emit(MOVETOATTACK,{"AttackTarget" : attack_target, "AttackMoveTargetPosition" : attack_move_target_position})
+			if unit.unit_stats.can_move:
+				finished.emit(MOVETOATTACK,{"AttackTarget" : attack_target, "AttackMoveTargetPosition" : attack_move_target_position})
+			else:
+				finished.emit(IDLE)
 	else:
 		if currently_attacking == false:
 			if attack_move_target_position:

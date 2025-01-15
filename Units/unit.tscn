@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/moving.gd" id="4_ttj7d"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/attacking.gd" id="6_4yixh"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/move_to_attack.gd" id="7_gcf8v"]
+[ext_resource type="PackedScene" uid="uid://cm8cc5sq2ylw6" path="res://Units/unit_finder_component.tscn" id="11_dyv4c"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/attack_move.gd" id="11_elbt2"]
+[ext_resource type="PackedScene" uid="uid://djidnvvbkw1lq" path="res://Units/navigation_component.tscn" id="12_8epqk"]
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="12_m4mny"]
-[ext_resource type="Script" path="res://Units/navigation_component.gd" id="12_xs83d"]
-[ext_resource type="Script" path="res://Units/unit_finder_component.gd" id="13_iwsor"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
 radius = 15.0333
@@ -20,6 +20,7 @@ radius = 15.0333
 y_sort_enabled = true
 collision_mask = 3
 motion_mode = 1
+wall_min_slide_angle = 0.0
 safe_margin = 1.0
 script = ExtResource("1_8cpma")
 unit_stats_resource = ExtResource("2_800oa")
@@ -73,17 +74,6 @@ offset_bottom = 80.0
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 
-[node name="UnitFinderComponent" type="Node2D" parent="."]
-script = ExtResource("13_iwsor")
+[node name="UnitFinderComponent" parent="." instance=ExtResource("11_dyv4c")]
 
-[node name="NavigationComponent" type="Node2D" parent="."]
-script = ExtResource("12_xs83d")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationComponent"]
-target_desired_distance = 50.0
-path_postprocessing = 1
-avoidance_enabled = true
-
-[node name="RefreshTimer" type="Timer" parent="NavigationComponent"]
-wait_time = 0.1
-autostart = true
+[node name="NavigationComponent" parent="." instance=ExtResource("12_8epqk")]

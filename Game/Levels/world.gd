@@ -117,7 +117,8 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("stop"):
 		var selected_units = get_tree().get_nodes_in_group("Selected")
 		for unit in selected_units:
-			unit.state_machine._transition_to_next_state("Idle")
+			if unit.state_machine:
+				unit.state_machine._transition_to_next_state("Idle")
 	
 	if Input.is_action_just_pressed("attack"):
 		var selected_units = get_tree().get_nodes_in_group("Selected")

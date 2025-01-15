@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_wqinn")
 unit_name = "Archer"
-move_speed = 400.0
+move_speed = 300.0
 max_health = 75.0
 health_regen = 10.0
 armour = 0.0
