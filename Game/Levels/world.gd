@@ -7,28 +7,51 @@ class_name Level
 @onready var game_resources = GameInventory
 @onready var ui = $UI
 @onready var control_grid = %ControlGrid
-@onready var selector_rect_display = %SelectorRectDisplay
 
+var is_selecting = false
+var selector_origin : Vector2
 var selector_rect : Rect2
+@onready var selector_rect_fill : ColorRect = %SelectorRect
 
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
-	if selector_rect:
-		selector_rect_display.position = selector_rect.position
-		selector_rect_display.size = selector_rect.size
+		
 
 
 func _unhandled_input(event):
-	
-
-	
 	if Input.is_action_just_pressed("select"):
-		selector_rect.position = get_global_mouse_position() # sets top left position of selector
+			# Start drawing the rectangle selector
+		is_selecting = true
+		selector_origin = get_global_mouse_position()
+		selector_rect = Rect2(selector_origin, selector_origin)
+		selector_rect_fill.visible = true
+		selector_rect_fill.position = selector_origin
+		
 	
 	if Input.is_action_pressed("select"):
-		selector_rect.end = get_global_mouse_position()
+		var current_mouse_position = get_global_mouse_position()
+		var size = current_mouse_position - selector_origin
 	
+		# Handle flipping the rectangle selector
+		selector_rect.position = Vector2(
+			min(selector_origin.x, current_mouse_position.x), 
+			min(selector_origin.y, current_mouse_position.y)
+		)
+		selector_rect.size = Vector2(
+			abs(current_mouse_position.x - selector_origin.x),
+			abs(current_mouse_position.y - selector_origin.y)
+		)
+		
+		# Update the UI rectangle
+		selector_rect_fill.position = selector_rect.position
+		selector_rect_fill.size = selector_rect.size
+
 	if Input.is_action_just_released("select"):
+		# Stop drawing the rectangle
+		is_selecting = false
+		selector_rect_fill.visible = false
+		print(str(selector_rect))
+		# Get units in the selector rectangle
 		var units_in_selector_rect : Array[Unit]
 		var all_units = get_tree().get_nodes_in_group("Unit")
 		if selector_rect.size.x > selection_feather or selector_rect.size.y > selection_feather:
@@ -149,6 +172,8 @@ func update_control_grid_ui():
 						new_button.rally_button_pressed.connect(_on_rally_button_pressed)
 				else:
 					continue
+
+
 
 ## Called when production button is pressed. Checks for the producer unit with the least amount of units queued then adds the unit to queue. Produced unit is set in the production componenent of the Unit.
 func _on_production_button_pressed(produced_unit):

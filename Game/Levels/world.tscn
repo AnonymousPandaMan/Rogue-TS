@@ -64,6 +64,9 @@ position = Vector2(1049, 54)
 [node name="RedArcher2" parent="." instance=ExtResource("6_yk2fn")]
 position = Vector2(915, 47)
 
-[node name="SelectorRectDisplay" type="ColorRect" parent="."]
+[node name="SelectorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
-color = Color(1, 1, 1, 0.27451)
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.501961, 1, 1, 0.329412)
