@@ -75,3 +75,5 @@ offset_right = 106.0
 offset_bottom = 80.0
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+
+[node name="ScannerNew" type="Node2D" parent="."]
