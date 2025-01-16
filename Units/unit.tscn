@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="12_m4mny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
-radius = 15.0333
+radius = 20.0
 
 [node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "navigation_component", "unit_finder_component", "health_bar_component")]
 y_sort_enabled = true
