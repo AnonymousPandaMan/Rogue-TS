@@ -10,17 +10,24 @@ signal navigation_refeshed()
 
 
 ## Exported refences to nodes here.
+@export_group("Components and Nodes")
+@export_subgroup("Required")
 @export var debug_label: Label ## Optional. Debug unit states
 @export var state_machine: StateMachine ## StateMachine controls unit states and actions.
-@export var producer_component: ProducerComponent ## Optional. Producer component which creates units.
 @export var navigation_component: NavigationComponent ## Nav component for navigation
-@export var unit_finder_component: UnitFinderComponent ## Required for units to be able to scan for enemies/targets.
-@export var control_grid_component: ControlGridComponent ## For Units that have special actions that need to be displayed on the control grid.
 @export var unit_animation : UnitAnimationComponent ## Unit Animation Holder
-@export var health_bar_component : HealthBarComponent ## Healthbar
+
+@export_subgroup("Optional")
+@export var health_bar_component : HealthBarComponent ## Healthbar. Use if unit has health.
+@export var producer_component: ProducerComponent ## Optional. Producer component which creates units.
+@export var control_grid_component: ControlGridComponent ## For Units that have special actions that need to be displayed on the control grid.
+@export var unit_finder_component: UnitFinderComponent ## Required for units to be able to scan for enemies/targets.
 
 ## Exported references to non-node resources here.
+@export_group("Resources")
 @export var selected_outline : ShaderMaterial
+
+@onready var unit_portrait = $UnitPortrait
 
 var is_selected := false
 var requested_navigation_target_position : Vector2
@@ -51,6 +58,10 @@ func _ready():
 	if navigation_component:
 		navigation_component.refresh_timer.timeout.connect(on_refresh_timer_timeout)
 
+	# Other assigns
+	#if unit_stats.unit_portrait:
+		#$UnitPortrait.texture = unit_stats.unit_portrait
+	
 func select():
 	is_selected = true
 	#print(name + " is selected.")
@@ -108,6 +119,13 @@ func on_health_changed(health):
 		health_bar_component.visible = true
 	if unit_stats.health <= 0:
 		die()
+		
+# Connected to duplicated unit portrait to display changes to health, etc.
+func update_unit_portrait(cloned_unit_portrait):
+	var health_decimal = unit_stats.health/unit_stats.max_health
+	if health_decimal > 0.7:
+		cloned_unit_portrait.background.color = Color.GREEN
+	pass
 
 func on_refresh_timer_timeout():
 	## Update Navigation

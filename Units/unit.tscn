@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cp1a0s3dxh3tr"]
+[gd_scene load_steps=16 format=3 uid="uid://cp1a0s3dxh3tr"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_8cpma"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/state_machine.gd" id="2_14kq8"]
@@ -12,11 +12,13 @@
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/attack_move.gd" id="11_elbt2"]
 [ext_resource type="PackedScene" uid="uid://djidnvvbkw1lq" path="res://Units/navigation_component.tscn" id="12_8epqk"]
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="12_m4mny"]
+[ext_resource type="Script" path="res://Game/UI/unit_portrait.gd" id="13_3wal3"]
+[ext_resource type="Texture2D" uid="uid://bddsioqs6uute" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue_No_Bow_Portrait.png" id="13_85nc5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
 radius = 20.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "navigation_component", "unit_finder_component", "health_bar_component")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "navigation_component", "health_bar_component", "unit_finder_component")]
 y_sort_enabled = true
 collision_mask = 3
 motion_mode = 1
@@ -27,8 +29,8 @@ unit_stats_resource = ExtResource("2_800oa")
 debug_label = NodePath("DebugLabel")
 state_machine = NodePath("StateMachine")
 navigation_component = NodePath("NavigationComponent")
-unit_finder_component = NodePath("UnitFinderComponent")
 health_bar_component = NodePath("HealthBarComponent")
+unit_finder_component = NodePath("UnitFinderComponent")
 selected_outline = ExtResource("2_f6ofu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -77,3 +79,34 @@ scale = Vector2(0.5, 0.5)
 [node name="UnitFinderComponent" parent="." instance=ExtResource("11_dyv4c")]
 
 [node name="NavigationComponent" parent="." instance=ExtResource("12_8epqk")]
+
+[node name="UnitPortrait" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("13_3wal3")
+
+[node name="Background" type="ColorRect" parent="UnitPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Sprite" type="TextureRect" parent="UnitPortrait"]
+material = ExtResource("2_f6ofu")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 72.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("13_85nc5")
+expand_mode = 2
+stretch_mode = 3

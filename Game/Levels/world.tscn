@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://psx5uxaxdqaa"]
+[gd_scene load_steps=14 format=4 uid="uid://psx5uxaxdqaa"]
 
 [ext_resource type="Script" path="res://Game/Levels/world.gd" id="1_5fqmg"]
 [ext_resource type="TileSet" uid="uid://6ukpoc63it1" path="res://Game/Levels/cliffs.tres" id="3_by1b0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Game/ui.gd" id="6_7b22a"]
 [ext_resource type="Resource" uid="uid://2eb8k1apvrp1" path="res://Resources/Items/meat.tres" id="6_7xh4w"]
 [ext_resource type="Script" path="res://Game/Levels/rts_camera.gd" id="6_ns7qt"]
+[ext_resource type="Texture2D" uid="uid://d0tagp5l1in4t" path="res://Assets/Tiny Swords (Update 010)/UI/Banners/Carved_9Slides.png" id="6_ttqk5"]
 [ext_resource type="PackedScene" uid="uid://jrtbbjksqh87" path="res://Units/Units/Archer/unit_red_archer.tscn" id="6_yk2fn"]
 [ext_resource type="PackedScene" uid="uid://pnxv4vnimohn" path="res://Resources/Items/item_pickup.tscn" id="7_eecuj"]
 [ext_resource type="TileSet" uid="uid://cwyartruyxsqp" path="res://Game/Levels/default_tile_map.tres" id="8_bsqv0"]
@@ -50,16 +51,46 @@ offset_bottom = 23.0
 grow_horizontal = 0
 horizontal_alignment = 2
 
-[node name="ControlGrid" type="GridContainer" parent="UI"]
-unique_name_in_owner = true
+[node name="HSplitContainer" type="HSplitContainer" parent="UI"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 895.0
-offset_top = -129.0
+offset_top = -128.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 3
+split_offset = 800
+dragger_visibility = 2
+
+[node name="GridBackground2" type="NinePatchRect" parent="UI/HSplitContainer"]
+layout_mode = 2
+texture = ExtResource("6_ttqk5")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="UnitPortraitGrid" type="GridContainer" parent="UI/HSplitContainer/GridBackground2"]
+unique_name_in_owner = true
+layout_mode = 0
+columns = 12
+
+[node name="GridBackground" type="NinePatchRect" parent="UI/HSplitContainer"]
+layout_mode = 2
+texture = ExtResource("6_ttqk5")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="ControlGrid" type="GridContainer" parent="UI/HSplitContainer/GridBackground"]
+unique_name_in_owner = true
+layout_mode = 0
 columns = 5
 
 [node name="Camera" type="Camera2D" parent="."]

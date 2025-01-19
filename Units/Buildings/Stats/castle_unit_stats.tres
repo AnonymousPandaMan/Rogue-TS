@@ -16,6 +16,7 @@ attack_range = 200.0
 ranged_projectile_speed = 500.0
 ranged_projectile_size_modifier = 1.0
 ranged_or_melee = ""
+armour_type = ""
 is_selectable = true
 is_controllable = true
 is_building = true

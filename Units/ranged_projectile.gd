@@ -20,9 +20,7 @@ func _init(projectile_owner, target, projectile_speed, size_modifier, sprite):
 		scale.x = size_modifier
 		scale.y = size_modifier
 		
-		vframes = 2
-		
-		z_index = 5
+		z_index = 2
 		
 
 func _physics_process(delta):

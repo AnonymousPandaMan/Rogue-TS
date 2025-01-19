@@ -7,6 +7,7 @@ class_name Level
 @onready var game_resources = GameInventory
 @onready var ui = $UI
 @onready var control_grid = %ControlGrid
+@onready var unit_portrait_grid = %UnitPortraitGrid
 
 var is_selecting = false
 var selector_origin : Vector2
@@ -102,7 +103,7 @@ func _unhandled_input(event):
 						for checked_unit in get_tree().get_nodes_in_group("Selected"):
 							checked_unit.deselect()
 						unit.select()
-		update_control_grid_ui()
+		update_ui()
 		selector_rect.size = Vector2(0,0)
 
 	if Input.is_action_just_pressed("move_to"):
@@ -151,12 +152,19 @@ func _unhandled_input(event):
 		print(game_resources.game_resources_dictionary)
 		pass
 
+## Updates all UI elements.
+func update_ui():
+	update_control_grid_ui()
+	update_selected_units_ui()
+
 ## Updates the control grid UI.
 func update_control_grid_ui():
 	# Clear Control Grid UI
 	for child in control_grid.get_children():
 		control_grid.remove_child(child)
 		child.queue_free()
+		
+	# Get UI elements from selected units
 	var selected_units = get_tree().get_nodes_in_group("Selected")
 	var button_id_list : Array
 	for unit in selected_units:
@@ -174,6 +182,22 @@ func update_control_grid_ui():
 				else:
 					continue
 
+## Update Selected Unit UI.
+func update_selected_units_ui():
+	# Clear unit_portrait UI
+	for child in unit_portrait_grid.get_children():
+		unit_portrait_grid.remove_child(child)
+		child.queue_free()
+	
+	var selected_units = get_tree().get_nodes_in_group("Selected")
+	var unit_portraits
+	for unit in selected_units:
+		if unit.unit_portrait:
+			var portrait = unit.unit_portrait
+			var new_portrait = portrait.duplicate()
+			unit_portrait_grid.add_child(new_portrait)
+			new_portrait.visible = true
+	pass
 
 
 ## Called when production button is pressed. Checks for the producer unit with the least amount of units queued then adds the unit to queue. Produced unit is set in the production componenent of the Unit.

@@ -3,8 +3,9 @@ extends Resource
 
 signal health_changed(new_health)
 
-@export_group("Names")
+@export_group("Identity")
 @export var unit_name: String
+@export var unit_portrait : Texture2D = AtlasTexture.new() ## Used to display the unit in the selected units interface.
 
 @export_group("Unit Stats")
 @export_subgroup("Defence and Movement Stats")
