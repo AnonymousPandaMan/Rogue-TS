@@ -8,7 +8,6 @@ class_name Level
 @onready var ui = $UI
 @onready var control_grid = %ControlGrid
 @onready var unit_portrait_grid = %UnitPortraitGrid
-@onready var unit_camera = %UnitCamera
 
 var is_selecting = false
 var selector_origin : Vector2
@@ -22,9 +21,6 @@ var unit_portrait_dict : Dictionary
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
 	
-	var first_selected_unit = get_tree().get_first_node_in_group("Selected")
-	if first_selected_unit:
-		%UnitCamera.global_position = first_selected_unit.global_position
 		
 
 
@@ -231,12 +227,13 @@ func update_selected_units_ui():
 
 	# Return unit portraits to respectful unit_portrait owners
 	for unit in unit_portrait_owners:
-		var reparented_portrait = unit_portrait_dict.get(unit)
-		if reparented_portrait:
-			reparented_portrait.reparent(unit)
-			reparented_portrait.visible = false
+		if is_instance_valid(unit):
+			var reparented_portrait = unit_portrait_dict.get(unit)
+			if reparented_portrait:
+				reparented_portrait.reparent(unit)
+				reparented_portrait.visible = false
 		if not is_instance_valid(unit):
-			reparented_portrait.queue_free()
+			unit_portrait_dict.get(unit).queue_free()
 		
 	unit_portrait_owners.clear()
 	unit_portrait_dict.clear()
