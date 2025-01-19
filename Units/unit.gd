@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Unit
 
 signal navigation_refeshed()
+signal health_percent_changed(percentage)
 
 ## All unit stats, flags and assets stored in a UnitStats resource. This asks for a UnitStats resource then duplicates it to avoid changing all stats of same unit type at once.
 @export var unit_stats_resource : UnitStats 
@@ -55,9 +56,12 @@ func _ready():
 	## Signal Connections
 	unit_stats.health_changed.connect(on_health_changed)
 	
+	if unit_portrait:
+		unit_stats.health_changed.connect(unit_portrait._on_unit_health_percentage_changed)
+	
 	if navigation_component:
 		navigation_component.refresh_timer.timeout.connect(on_refresh_timer_timeout)
-
+	
 	# Other assigns
 	#if unit_stats.unit_portrait:
 		#$UnitPortrait.texture = unit_stats.unit_portrait
@@ -82,6 +86,7 @@ func take_damage(amount: int):
 
 func die():
 	print(name + " has died.")
+	unit_portrait.queue_free()
 	queue_free() # deletes this node
 
 func enemy(my_allegiance : String):
@@ -114,18 +119,14 @@ func is_enemy(my_allegiance : String):
 
 func on_health_changed(health):
 	var health_decimal := unit_stats.health/unit_stats.max_health
-	health_bar_component.value = health_decimal * 100
+	var health_percentage = health_decimal * 100
+	health_percent_changed.emit(health_percentage)
+	health_bar_component.value = health_percentage
 	if unit_stats.health < unit_stats.max_health:
 		health_bar_component.visible = true
 	if unit_stats.health <= 0:
 		die()
-		
-# Connected to duplicated unit portrait to display changes to health, etc.
-func update_unit_portrait(cloned_unit_portrait):
-	var health_decimal = unit_stats.health/unit_stats.max_health
-	if health_decimal > 0.7:
-		cloned_unit_portrait.background.color = Color.GREEN
-	pass
+
 
 func on_refresh_timer_timeout():
 	## Update Navigation

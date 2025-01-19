@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bvs5n5csnq30g"]
+[gd_scene load_steps=40 format=3 uid="uid://bvs5n5csnq30g"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_ffggy"]
 [ext_resource type="Material" uid="uid://c4pb5lkhkw6la" path="res://Resources/Shaders/selected_outline.tres" id="2_dxew7"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cdomxbcfexso6" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red_Pressed.png" id="22_suafh"]
 [ext_resource type="Script" path="res://Units/unit_animation.gd" id="25_yck62"]
 [ext_resource type="PackedScene" uid="uid://djidnvvbkw1lq" path="res://Units/navigation_component.tscn" id="28_vdipf"]
+[ext_resource type="Script" path="res://Game/UI/unit_portrait.gd" id="31_yp0te"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dsp6s"]
 radius = 39.0
@@ -64,7 +65,7 @@ unicode = 101
 [sub_resource type="Shortcut" id="Shortcut_u47iy"]
 events = [SubResource("InputEventKey_542qt")]
 
-[node name="Building" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "producer_component", "navigation_component", "unit_finder_component", "control_grid_component", "unit_animation", "health_bar_component")]
+[node name="Building" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "navigation_component", "unit_animation", "health_bar_component", "producer_component", "control_grid_component", "unit_finder_component")]
 editor_description = "Always have unit nestled under \"World\" or \"Level\""
 motion_mode = 1
 safe_margin = 1.0
@@ -72,12 +73,12 @@ script = ExtResource("1_ffggy")
 unit_stats_resource = ExtResource("2_pgc1g")
 debug_label = NodePath("DebugLabel")
 state_machine = NodePath("StateMachine")
-producer_component = NodePath("ProducerComponent")
 navigation_component = NodePath("NavigationComponent")
-unit_finder_component = NodePath("UnitFinderComponent")
-control_grid_component = NodePath("ControlGridComponent")
 unit_animation = NodePath("UnitAnimation")
 health_bar_component = NodePath("HealthBarComponent")
+producer_component = NodePath("ProducerComponent")
+control_grid_component = NodePath("ControlGridComponent")
+unit_finder_component = NodePath("UnitFinderComponent")
 selected_outline = ExtResource("2_dxew7")
 
 [node name="UnitFinderComponent" parent="." instance=ExtResource("4_1bsny")]
@@ -265,5 +266,32 @@ position = Vector2(-2, -90)
 texture = ExtResource("3_k308t")
 
 [node name="NavigationComponent" parent="." instance=ExtResource("28_vdipf")]
+
+[node name="UnitPortrait" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("31_yp0te")
+
+[node name="Background" type="ColorRect" parent="UnitPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Sprite" type="TextureRect" parent="UnitPortrait"]
+material = ExtResource("2_dxew7")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("3_k308t")
+expand_mode = 5
 
 [editable path="ProducerComponent"]

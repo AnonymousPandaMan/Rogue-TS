@@ -14,6 +14,10 @@ var selector_origin : Vector2
 var selector_rect : Rect2
 @onready var selector_rect_fill : ColorRect = %SelectorRect
 
+# unit_portrait array variables
+var unit_portrait_owners : Array 
+var unit_portrait_nodes : Array 
+
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
 		
@@ -51,7 +55,6 @@ func _unhandled_input(event):
 		# Stop drawing the rectangle
 		is_selecting = false
 		selector_rect_fill.visible = false
-		print(str(selector_rect))
 		# Get units in the selector rectangle
 		var units_in_selector_rect : Array[Unit]
 		var all_units = get_tree().get_nodes_in_group("Unit")
@@ -184,19 +187,30 @@ func update_control_grid_ui():
 
 ## Update Selected Unit UI.
 func update_selected_units_ui():
-	# Clear unit_portrait UI
-	for child in unit_portrait_grid.get_children():
-		unit_portrait_grid.remove_child(child)
-		child.queue_free()
+	# "Owner" "Reparented Node"
+	var n : int
+	# Return unit portraits to respectful unit_portrait owners
+	for unit in unit_portrait_owners:
+		if is_instance_valid(unit):
+			var reparented_portrait = unit_portrait_nodes[n]
+			reparented_portrait.visible = false
+			reparented_portrait.reparent(unit)
+		unit_portrait_owners.erase(unit)
+		unit_portrait_nodes.remove_at(n)
+		n += 1
+		
 	
+	# Reparent unit portraits
 	var selected_units = get_tree().get_nodes_in_group("Selected")
 	var unit_portraits
 	for unit in selected_units:
 		if unit.unit_portrait:
 			var portrait = unit.unit_portrait
-			var new_portrait = portrait.duplicate()
-			unit_portrait_grid.add_child(new_portrait)
-			new_portrait.visible = true
+			portrait.visible = true
+			portrait.reparent(unit_portrait_grid)
+			unit_portrait_owners.append(unit)
+			unit_portrait_nodes.append(portrait)
+			# save which units are which unit portrait
 	pass
 
 
