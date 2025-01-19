@@ -43,8 +43,6 @@ func _ready():
 		add_to_group(unit_stats.allegiance)
 		add_to_group("Unit")
 	
-	
-	
 	#Errors for missing references
 	if not state_machine:
 		printerr("StateMachine not found for " + name)
@@ -63,8 +61,10 @@ func _ready():
 		navigation_component.refresh_timer.timeout.connect(on_refresh_timer_timeout)
 	
 	# Other assigns
-	#if unit_stats.unit_portrait:
-		#$UnitPortrait.texture = unit_stats.unit_portrait
+	
+	
+	if unit_stats.unit_portrait:
+		unit_portrait.sprite.set_texture(unit_stats.unit_portrait) 
 	
 func select():
 	is_selected = true

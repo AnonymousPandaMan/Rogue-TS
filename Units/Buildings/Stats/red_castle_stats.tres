@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://sl5cag42nxs5"]
 
-[ext_resource type="Texture2D" uid="uid://cyxot4yfyxqf7" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="1_31drf"]
+[ext_resource type="Texture2D" uid="uid://d18f6mvuit21n" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/arrow_single.png" id="1_rww5d"]
 [ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="2_4mndc"]
 
 [resource]
@@ -16,7 +16,7 @@ attack_animation_time = 0.1
 attack_range = 800.0
 ranged_projectile_speed = 2000.0
 ranged_projectile_size_modifier = 2.0
-ranged_projectile_sprite = ExtResource("1_31drf")
+ranged_projectile_sprite = ExtResource("1_rww5d")
 ranged_or_melee = "Ranged"
 armour_type = ""
 is_selectable = false

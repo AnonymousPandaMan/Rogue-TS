@@ -192,6 +192,9 @@ rally_point = NodePath("../../Building2")
 offset_top = 2.0
 offset_bottom = 29.0
 
+[node name="Background" parent="Red Castle/UnitPortrait" index="0"]
+visible = true
+
 [node name="Archer2" parent="." instance=ExtResource("10_fobqc")]
 position = Vector2(-1987, 1914)
 

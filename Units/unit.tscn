@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cp1a0s3dxh3tr"]
+[gd_scene load_steps=17 format=3 uid="uid://cp1a0s3dxh3tr"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_8cpma"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/state_machine.gd" id="2_14kq8"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="12_m4mny"]
 [ext_resource type="Script" path="res://Game/UI/unit_portrait.gd" id="13_3wal3"]
 [ext_resource type="Texture2D" uid="uid://bddsioqs6uute" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue_No_Bow_Portrait.png" id="13_85nc5"]
+[ext_resource type="Material" uid="uid://b8ecp1u2jtvhy" path="res://Resources/Shaders/damage_outline.tres" id="14_u7kiw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
 radius = 20.0
@@ -89,6 +90,7 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("13_3wal3")
 
 [node name="Background" type="ColorRect" parent="UnitPortrait"]
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 15
@@ -99,7 +101,7 @@ grow_vertical = 2
 color = Color(0, 1, 0, 1)
 
 [node name="Sprite" type="TextureRect" parent="UnitPortrait"]
-material = ExtResource("2_f6ofu")
+material = ExtResource("14_u7kiw")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_left = 8.0
