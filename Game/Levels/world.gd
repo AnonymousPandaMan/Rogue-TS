@@ -8,6 +8,7 @@ class_name Level
 @onready var ui = $UI
 @onready var control_grid = %ControlGrid
 @onready var unit_portrait_grid = %UnitPortraitGrid
+@onready var unit_camera = %UnitCamera
 
 var is_selecting = false
 var selector_origin : Vector2
@@ -15,11 +16,15 @@ var selector_rect : Rect2
 @onready var selector_rect_fill : ColorRect = %SelectorRect
 
 # unit_portrait array variables
-var unit_portrait_owners : Array 
-var unit_portrait_nodes : Array 
+var unit_portrait_owners : Array
+var unit_portrait_dict : Dictionary
 
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
+	
+	var first_selected_unit = get_tree().get_first_node_in_group("Selected")
+	if first_selected_unit:
+		%UnitCamera.global_position = first_selected_unit.global_position
 		
 
 
@@ -222,18 +227,19 @@ func update_control_grid_ui():
 ## Update Selected Unit UI.
 func update_selected_units_ui():
 	# "Owner" "Reparented Node"
-	var n : int
+	var n : int = 0
+
 	# Return unit portraits to respectful unit_portrait owners
 	for unit in unit_portrait_owners:
-		if is_instance_valid(unit):
-			var reparented_portrait = unit_portrait_nodes[n]
-			reparented_portrait.visible = false
+		var reparented_portrait = unit_portrait_dict.get(unit)
+		if reparented_portrait:
 			reparented_portrait.reparent(unit)
-		unit_portrait_owners.erase(unit)
-		unit_portrait_nodes.remove_at(n)
-		n += 1
+			reparented_portrait.visible = false
+		if not is_instance_valid(unit):
+			reparented_portrait.queue_free()
 		
-	
+	unit_portrait_owners.clear()
+	unit_portrait_dict.clear()
 	# Reparent unit portraits
 	var selected_units = get_tree().get_nodes_in_group("Selected")
 	var unit_portraits
@@ -243,7 +249,10 @@ func update_selected_units_ui():
 			portrait.visible = true
 			portrait.reparent(unit_portrait_grid)
 			unit_portrait_owners.append(unit)
-			unit_portrait_nodes.append(portrait)
+			unit_portrait_dict.merge({
+				unit : portrait
+				})
+	
 			# save which units are which unit portrait
 	pass
 

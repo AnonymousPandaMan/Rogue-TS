@@ -86,7 +86,7 @@ func take_damage(amount: int):
 
 func die():
 	print(name + " has died.")
-	unit_portrait.queue_free()
+	unit_portrait.visible = false
 	queue_free() # deletes this node
 
 func enemy(my_allegiance : String):
