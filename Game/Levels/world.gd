@@ -111,12 +111,22 @@ func _unhandled_input(event):
 
 	if Input.is_action_just_pressed("move_to"):
 		var selected_units = get_tree().get_nodes_in_group("Selected")
+		var click_position = get_global_mouse_position()
+		# Remove units that cannot move and get group centre position
+		var moveable_units = selected_units
+		
 		for unit in selected_units:
-			if unit.unit_stats.can_move == true:
-				var click_position = get_global_mouse_position()
-				unit.state_machine._transition_to_next_state("Moving",{"MoveTarget" : click_position})
-			else:
+			if unit.unit_stats.can_move == false:
+				moveable_units.erase(unit)
 				print(unit.name + " cannot move.")
+				return
+		# Get offsetted move target
+		var move_target_dict = get_offsetted_position(moveable_units, click_position)
+		for unit in moveable_units:
+			var move_target = move_target_dict.get(unit)
+			unit.state_machine._transition_to_next_state("Moving",{"MoveTarget" : move_target})
+				
+		# Set each unit's target move position based on mouse position and offset from base position
 	
 	if Input.is_action_just_pressed("stop"):
 		var selected_units = get_tree().get_nodes_in_group("Selected")
@@ -128,15 +138,23 @@ func _unhandled_input(event):
 		var selected_units = get_tree().get_nodes_in_group("Selected")
 		var mouse_position = get_global_mouse_position()
 		var closest_unit = GlobalFunctions.get_closest_unit_to_location("Unit", mouse_position)
+		
 		if closest_unit.position.distance_to(mouse_position) <= selection_feather:
 			for unit in selected_units:
 				if unit != closest_unit: 
 					if unit.state_machine:
 						unit.state_machine._transition_to_next_state("Attacking", {"AttackTarget" : closest_unit})
 		else:
+			var moveable_units : Array
+			for unit in selected_units:
+				if unit.unit_stats.can_move == true:
+					moveable_units.append(unit)
+			# Set attack move targets with offset
+			var attack_move_target_dict = get_offsetted_position(moveable_units, mouse_position)
 			for unit in selected_units:
 				if unit.state_machine:
-					unit.state_machine._transition_to_next_state("AttackMove", {"AttackMoveTargetPosition" : mouse_position})
+					var offset_attack_move_position : Vector2 = attack_move_target_dict.get(unit)
+					unit.state_machine._transition_to_next_state("AttackMove", {"AttackMoveTargetPosition" : offset_attack_move_position})
 	 
 	#if Input.is_action_just_pressed("produce_unit"):
 		#var selected_units = get_tree().get_nodes_in_group("Selected")
@@ -154,6 +172,22 @@ func _unhandled_input(event):
 		game_resources.add_resources("Meat", 200)
 		print(game_resources.game_resources_dictionary)
 		pass
+
+func get_offsetted_position(unit_group,target_position) -> Dictionary:
+	# Set target position based on offsetting units based on their direction from the centre of the group.
+	var positions_dictionary : Dictionary = {}
+	var unit_selection_centre = unit_group[0].global_position
+	for unit in unit_group:
+		unit_selection_centre = unit.global_position.lerp(unit_selection_centre,0.5)
+	for unit in unit_group:
+		var move_offset_direction = unit_selection_centre.direction_to(unit.global_position)
+		var offsetted_target_position = target_position + move_offset_direction * Vector2(50,50)
+		positions_dictionary.merge({
+			unit : offsetted_target_position
+		})
+	return positions_dictionary
+		
+
 
 ## Updates all UI elements.
 func update_ui():
