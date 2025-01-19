@@ -18,6 +18,7 @@ ranged_projectile_speed = 1500.0
 ranged_projectile_size_modifier = 1.0
 ranged_projectile_sprite = ExtResource("1_p1mv5")
 ranged_or_melee = "Ranged"
+armour_type = "Light"
 is_selectable = true
 is_controllable = true
 is_building = false

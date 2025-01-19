@@ -28,6 +28,7 @@ var health := max_health:
 
 @export_group("Unit Flags")
 @export_enum("Ranged","Melee") var ranged_or_melee : String
+@export_enum("Light", "Medium", "Armoured") var armour_type : String
 @export var is_selectable := true ## non-functional atm
 @export var is_controllable := true ## non-functional atm
 @export var is_building := false ## non-functional atm
