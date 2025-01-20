@@ -389,7 +389,6 @@ unit_sprite = NodePath("UnitSprite")
 
 [node name="UnitSprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
-scale = Vector2(-1, 1)
 texture = ExtResource("1_nm1kl")
 hframes = 8
 vframes = 7

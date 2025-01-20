@@ -177,7 +177,9 @@ func _unhandled_input(event):
 func get_offsetted_position(unit_group,target_position) -> Dictionary:
 	# Set target position based on offsetting units based on their direction from the centre of the group.
 	var positions_dictionary : Dictionary = {}
-	var unit_selection_centre = unit_group[0].global_position
+	var unit_selection_centre : Vector2
+	if unit_group.size() > 0:
+		unit_selection_centre = unit_group[0].global_position
 	for unit in unit_group:
 		unit_selection_centre = unit.global_position.lerp(unit_selection_centre,0.5)
 	for unit in unit_group:

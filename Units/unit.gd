@@ -33,6 +33,8 @@ signal health_percent_changed(percentage)
 var is_selected := false
 var requested_navigation_target_position : Vector2
 
+var previous_health
+
 func _ready():
 	if unit_stats:
 		unit_stats.health = unit_stats.max_health
@@ -52,20 +54,20 @@ func _ready():
 		printerr("UnitFinderComponent not found for " + name + " if this is not intentional, check that it has been assigned in the Inspector")
 
 	## Signal Connections
+	# Connect health changed signal (emitted from unit_stats)
 	unit_stats.health_changed.connect(on_health_changed)
-	
 	if unit_portrait:
 		unit_stats.health_changed.connect(unit_portrait._on_unit_health_percentage_changed)
-	
+	# Connect navigation component signal
 	if navigation_component:
 		navigation_component.refresh_timer.timeout.connect(on_refresh_timer_timeout)
 	
 	# Other assigns
-	
-	
 	if unit_stats.unit_portrait:
 		unit_portrait.sprite.set_texture(unit_stats.unit_portrait) 
 	
+	# Function inits.
+	previous_health = unit_stats.health
 func select():
 	is_selected = true
 	#print(name + " is selected.")
@@ -126,10 +128,19 @@ func on_health_changed(health):
 		health_bar_component.visible = true
 	if unit_stats.health <= 0:
 		die()
-
+	
+	if health - previous_health < 0:
+		do_flash(Color.ORANGE_RED)
+	elif health - previous_health > 0:
+		do_flash(Color.GREEN)
 
 func on_refresh_timer_timeout():
 	## Update Navigation
 	if requested_navigation_target_position:
 		navigation_component.nav.target_position = requested_navigation_target_position
 		navigation_refeshed.emit()
+
+func do_flash(color:Color):
+	modulate = color
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE

@@ -201,7 +201,7 @@ visible = true
 position = Vector2(-1987, 1914)
 
 [node name="Archer3" parent="." instance=ExtResource("10_fobqc")]
-position = Vector2(-1822, 1937)
+position = Vector2(-1668, 2335)
 
 [node name="SelectorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
