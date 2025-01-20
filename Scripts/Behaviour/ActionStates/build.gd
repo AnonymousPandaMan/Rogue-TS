@@ -23,8 +23,7 @@ func physics_update(_delta: float) -> void:
 func enter(previous_state_path: String, data := {}) -> void:
 	if data:
 		build_target = data.get("BuildTarget")
-		build_target.being_constructed = true
-		build_target.state_machine._transition_to_next_state("Constructing")
+		build_target.construction_power += unit.unit_stats.build_power
 		unit.requested_navigation_target_position = build_target.global_position
 		var facing_direction = unit.global_position.direction_to(build_target.global_position)
 		unit.unit_animation.set_blend_position("parameters/UnitState/Build/blend_position",facing_direction.x)
@@ -40,5 +39,5 @@ func exit() -> void:
 	unit.unit_animation.set_condition("parameters/UnitState/conditions/build", false)
 	if build_target:
 		if is_instance_valid(build_target):
-			build_target.being_constructed = false
+			build_target.construction_power -= unit.unit_stats.build_power
 	pass

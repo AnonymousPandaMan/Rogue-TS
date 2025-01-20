@@ -37,7 +37,7 @@ var requested_navigation_target_position : Vector2
 var previous_health
 
 # variables for the state machines functionality
-var being_constructed = false
+
 
 func _ready():
 	if unit_stats:
@@ -73,9 +73,7 @@ func _ready():
 	# Function inits.
 	previous_health = unit_stats.health
 	
-	# Stat inits.
-	if unit_stats.is_construction:
-		unit_stats.health = 0.1 * unit_stats.max_health
+
 func select():
 	is_selected = true
 	#print(name + " is selected.")
@@ -149,6 +147,7 @@ func on_refresh_timer_timeout():
 		navigation_refeshed.emit()
 
 func do_flash(color:Color):
-	modulate = color
-	await get_tree().create_timer(0.1).timeout
-	modulate = Color.WHITE
+	if not unit_stats.is_building:
+		modulate = color
+		await get_tree().create_timer(0.1).timeout
+		modulate = Color.WHITE

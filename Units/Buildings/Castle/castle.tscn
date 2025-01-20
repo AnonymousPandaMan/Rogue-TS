@@ -80,8 +80,8 @@ events = [SubResource("InputEventKey_1bne3")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_542qt"]
 device = -1
-keycode = 69
-unicode = 101
+keycode = 82
+unicode = 114
 
 [sub_resource type="Shortcut" id="Shortcut_u47iy"]
 events = [SubResource("InputEventKey_542qt")]
@@ -306,7 +306,7 @@ anchor_bottom = 1.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "E"
+text = "R"
 label_settings = SubResource("LabelSettings_v8pqw")
 horizontal_alignment = 1
 vertical_alignment = 1

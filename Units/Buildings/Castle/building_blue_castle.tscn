@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4kjxkmc543yw"]
+[gd_scene load_steps=9 format=3 uid="uid://d4kjxkmc543yw"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_xdgb5"]
+[ext_resource type="Script" path="res://Units/Buildings/building_construction_unit.gd" id="2_tpvqp"]
 [ext_resource type="Resource" uid="uid://bsrshp2uyhy8x" path="res://Units/Buildings/Castle/building_blue_castle.tres" id="3_gd5aj"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/constructing.gd" id="4_ig7b1"]
 [ext_resource type="Texture2D" uid="uid://e3qwpn282gbb" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Construction.png" id="4_mrql0"]
@@ -12,6 +13,7 @@ radius = 29.0
 height = 230.0
 
 [node name="BuildingBlueCastle" node_paths=PackedStringArray("unit_animation") instance=ExtResource("1_xdgb5")]
+script = ExtResource("2_tpvqp")
 unit_stats_resource = ExtResource("3_gd5aj")
 unit_animation = NodePath("UnitAnimationComponent")
 
@@ -21,7 +23,7 @@ rotation = 17.2788
 shape = SubResource("CapsuleShape2D_ss26b")
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("Constructing")
+initial_state = NodePath("Idle")
 
 [node name="Constructing" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("progress_bar")]
 script = ExtResource("4_ig7b1")

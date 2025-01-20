@@ -23,6 +23,7 @@ footprint_x = 4
 footprint_y = 4
 ranged_or_melee = "Ranged"
 armour_type = "Armoured"
+is_passive = false
 is_selectable = true
 is_controllable = true
 is_building = true
