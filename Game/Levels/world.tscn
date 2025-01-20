@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://psx5uxaxdqaa"]
+[gd_scene load_steps=15 format=4 uid="uid://psx5uxaxdqaa"]
 
 [ext_resource type="Script" path="res://Game/Levels/world.gd" id="1_5fqmg"]
 [ext_resource type="TileSet" uid="uid://6ukpoc63it1" path="res://Game/Levels/cliffs.tres" id="3_by1b0"]
@@ -12,6 +12,7 @@
 [ext_resource type="TileSet" uid="uid://cwyartruyxsqp" path="res://Game/Levels/default_tile_map.tres" id="8_bsqv0"]
 [ext_resource type="PackedScene" uid="uid://ddyx4o8ne41xg" path="res://Units/Units/Archer/unit_archer.tscn" id="10_fobqc"]
 [ext_resource type="PackedScene" uid="uid://cl57o6dv8rqew" path="res://Units/Buildings/red_castle.tscn" id="11_7auv0"]
+[ext_resource type="Resource" uid="uid://6h4ckho4nwmc" path="res://Units/Units/Knight/Stats/free_unit_costs.tres" id="13_sv70t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6rd8"]
 vertices = PackedVector2Array(29.0625, 923.031, 37.9297, 2388.1, -694, 2038, -758, 1802, -758, 1270, -2451.01, 930.961, -1354, 1270, -1354, 2403.06, -2452.98, 2414.89, -2452.68, 2186, -2422, 2186, -1418, 2250, -722, 2066, -722, 2396.27, -942, 2398.64, -942, 2358, -842, 2066, -694, 2395.98, -822, 2038, -822, 1974, -978, 1802, -886, 1910, -2450, 2102, -2452.58, 2102, -2452.18, 1810, -2450, 2038, -2322, 2038, -2358, 1810, -2322, 1974, -2378, 1782, -2452.15, 1782, -2378, 1654, -1354, 1398, -1418, 1398, -1418, 1526, -1482, 1526, -1482, 1654, -1610, 1654, -1974, 1590, -1270, 1994, -1270, 1866, -1262, 1866, -1298, 1782, -1298, 1910, -1582, 1910, -1582, 1682, -1462, 1682, -1462, 1674, -1454, 1674, -1454, 1554, -1398, 1554, -1262, 1782, -1398, 1546, -1390, 1546, -1170, 1718, -1390, 1426, -1334, 1426, -978, 1718, -1134, 1718, -1334, 1418, -1326, 1418, -786, 1718, -1326, 1298, -786, 1298, -886, 1974, -1078, 1910, -1078, 1846, -1142, 1846, -1142, 1802, -1134, 1802, -1170, 1866, -1162, 1866, -1162, 1874, -1198, 2058, -1106, 1874, -1106, 1930, -1098, 1930, -1098, 1938, -914, 1938, -914, 1994, -906, 1994, -906, 2002, -1326, 2166, -1270, 2130, -850, 2002, -850, 2058, -842, 2058, -1326, 2358, -1390, 2166, -1390, 2130, -1270, 2122, -1262, 2122, -1262, 2066, -1206, 2066, -1206, 2058, -1234, 1866, -1226, 1866, -1226, 2038, -1290, 2038, -1290, 2102, -1418, 2102, -1354, 2250, -2294, 2122, -2422, 2122, -2294, 2058, -2166, 2058, -2166, 1994, -2058, 1994, -2058, 2058, -1910, 2058, -1910, 1994, -1902, 1994, -1938, 1910, -1938, 1974, -2030, 1974, -2030, 1910, -2350, 1802, -2194, 1910, -2194, 1974, -2358, 1802, -2350, 1682, -2294, 1682, -2294, 1674, -2286, 1674, -2286, 1618, -2002, 1618, -2002, 1674, -1994, 1674, -1994, 1682, -1874, 1682, -1874, 1738, -1866, 1738, -1866, 1746, -1902, 1910, -1810, 1746, -1810, 1974, -1838, 1910, -1838, 1974, -1874, 1910, -1874, 1994, -1866, 1994, -1866, 2058, -1782, 1718, -1846, 1718, -1846, 1654, -1974, 1654, -2314, 1590, -2314, 1654, -1610, 1994, -1782, 2058, -1234, 1782, -1198, 1782)
@@ -193,6 +194,12 @@ rally_point = NodePath("../../Building2")
 [node name="ProgressBarComponent" parent="Red Castle/ProducerComponent" index="0"]
 offset_top = 2.0
 offset_bottom = 29.0
+
+[node name="Archer" parent="Red Castle/ProducerComponent" index="1"]
+unit_costs = ExtResource("13_sv70t")
+
+[node name="Knight" parent="Red Castle/ProducerComponent" index="2"]
+unit_costs = ExtResource("13_sv70t")
 
 [node name="Background" parent="Red Castle/UnitPortrait" index="0"]
 visible = true

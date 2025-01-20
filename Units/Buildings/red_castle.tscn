@@ -18,15 +18,10 @@ production_behaviour = 0
 [node name="Archer" parent="ProducerComponent" index="1"]
 unit_scene = "res://Units/Units/Knight/red_knight.tscn"
 unit_stats = ExtResource("3_n347l")
-unit_primary_resource_cost = 0
-unit_secondary_resource_cost = 0
-unit_production_time = 22.0
 
 [node name="Knight" parent="ProducerComponent" index="2"]
 unit_scene = "res://Units/Units/Archer/unit_red_archer.tscn"
 unit_stats = ExtResource("3_1yjyi")
-unit_primary_resource_cost = 0
-unit_production_time = 0.1
 
 [node name="Sprite2D" parent="UnitAnimation" index="0"]
 texture = ExtResource("3_mgxfg")

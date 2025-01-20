@@ -44,7 +44,7 @@ func _process(delta):
 		if progress_bar:
 			if producing_unit_node:
 				progress_bar.visible = true
-				progress_bar.update_progress_bar(current_production_progress, producing_unit_node.unit_production_time)
+				progress_bar.update_progress_bar(current_production_progress, producing_unit_node.unit_costs.production_time)
 	else:
 		is_producing = false
 		progress_bar.visible = false
@@ -57,11 +57,13 @@ func init_production(unit):
 	if not unit:
 		unit = production_node_list.front()
 	if units_queued <= 5:
-		var cost1 = unit.unit_primary_resource_cost
-		var cost2 = unit.unit_secondary_resource_cost
-		if has_enough_resources("Meat",cost1) and has_enough_resources("Gold",cost2):
-			pay_for_production("Meat",cost1)
-			pay_for_production("Gold",cost2)
+		var cost1 = unit.unit_costs.wood_cost
+		var cost2 = unit.unit_costs.meat_cost
+		var cost3 = unit.unit_costs.gold_cost
+		if GameInventory.has_enough_resources("Wood",cost1) and GameInventory.has_enough_resources("Meat",cost2) and GameInventory.has_enough_resources("Gold",cost3):
+			GameInventory.change_resource_amount("Wood", -cost1)
+			GameInventory.change_resource_amount("Meat", -cost2)
+			GameInventory.change_resource_amount("Gold", -cost3)
 			is_producing = true
 			units_queued += 1
 			if production_behaviour == ProductionBehaviour.USER:
@@ -97,7 +99,7 @@ func refresh_unit_list() -> void:
 
 func progress_production(amount) -> void:
 	if producing_unit_node:
-		if current_production_progress >= producing_unit_node.unit_production_time:
+		if current_production_progress >= producing_unit_node.unit_costs.production_time:
 			produce_first_unit_in_queue()
 			units_queued -= 1
 
@@ -133,9 +135,6 @@ func produce_first_unit_in_queue() -> void:
 			producing_unit_node = production_node_list.front()
 		current_production_progress = 0.0
 
-func pay_for_production(type,amount) -> void:
-	var remove_resource = ChangeResourceAmount.new(resources_inventory,type, -amount)
-	remove_resource.execute()
 
 func has_enough_resources(type,amount) -> bool:
 	var current_amount = resources_inventory.game_resources_dictionary.get(type)

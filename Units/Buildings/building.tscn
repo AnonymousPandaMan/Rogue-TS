@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvs5n5csnq30g"]
+[gd_scene load_steps=42 format=3 uid="uid://bvs5n5csnq30g"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_ffggy"]
 [ext_resource type="Material" uid="uid://c4pb5lkhkw6la" path="res://Resources/Shaders/selected_outline.tres" id="2_dxew7"]
@@ -15,8 +15,10 @@
 [ext_resource type="Resource" uid="uid://jdbxklpq0g6c" path="res://Units/Units/Knight/knight_unit_stats.tres" id="12_82g78"]
 [ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/archer_unit_stats.tres" id="12_1563n"]
 [ext_resource type="PackedScene" uid="uid://c14q48khq61h0" path="res://Units/Buildings/spawn_point_component.tscn" id="12_s5rrd"]
+[ext_resource type="Resource" uid="uid://b4vfebmynrc8f" path="res://Units/Units/Archer/Stats and Costs/archer_unit_costs.tres" id="13_akkik"]
 [ext_resource type="PackedScene" uid="uid://c736gxs3hquqa" path="res://Game/UI/control_grid_component.tscn" id="14_f5ncr"]
 [ext_resource type="Script" path="res://Game/rally_point.gd" id="14_rljor"]
+[ext_resource type="Resource" uid="uid://b1bcu6tg0cd0l" path="res://Units/Units/Knight/Stats/knight_costs.tres" id="15_8wwkm"]
 [ext_resource type="Script" path="res://Game/UI/produce_button.gd" id="15_e83vr"]
 [ext_resource type="Texture2D" uid="uid://6snbvfx7nm0u" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue.png" id="16_iidr7"]
 [ext_resource type="Texture2D" uid="uid://cko8n5r405ypb" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue_Pressed.png" id="17_idmmc"]
@@ -127,15 +129,12 @@ offset_bottom = -177.0
 [node name="Archer" parent="ProducerComponent" instance=ExtResource("11_in75x")]
 unit_scene = "res://Units/Units/Archer/unit_archer.tscn"
 unit_stats = ExtResource("12_1563n")
-unit_primary_resource_cost = 50
-unit_secondary_resource_cost = 50
-unit_production_time = 2.0
+unit_costs = ExtResource("13_akkik")
 
 [node name="Knight" parent="ProducerComponent" instance=ExtResource("11_in75x")]
 unit_scene = "res://Units/Units/Knight/knight.tscn"
 unit_stats = ExtResource("12_82g78")
-unit_primary_resource_cost = 100
-unit_production_time = 2.0
+unit_costs = ExtResource("15_8wwkm")
 
 [node name="RallyPoint" type="Node2D" parent="ProducerComponent"]
 script = ExtResource("14_rljor")

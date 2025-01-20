@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UnitCosts" load_steps=2 format=3 uid="uid://6h4ckho4nwmc"]
+
+[ext_resource type="Script" path="res://Resources/Stats/unit_costs.gd" id="1_v0s5k"]
+
+[resource]
+script = ExtResource("1_v0s5k")
+wood_cost = 0
+meat_cost = 0
+gold_cost = 0
+production_time = 10
