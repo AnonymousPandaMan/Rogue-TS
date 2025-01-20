@@ -13,16 +13,17 @@ signal health_percent_changed(percentage)
 ## Exported refences to nodes here.
 @export_group("Components and Nodes")
 @export_subgroup("Required")
-@export var debug_label: Label ## Optional. Debug unit states
 @export var state_machine: StateMachine ## StateMachine controls unit states and actions.
 @export var navigation_component: NavigationComponent ## Nav component for navigation
 @export var unit_animation : UnitAnimationComponent ## Unit Animation Holder
 
 @export_subgroup("Optional")
+@export var debug_label: Label ## Optional. Debug unit states
 @export var health_bar_component : HealthBarComponent ## Healthbar. Use if unit has health.
 @export var producer_component: ProducerComponent ## Optional. Producer component which creates units.
 @export var control_grid_component: ControlGridComponent ## For Units that have special actions that need to be displayed on the control grid.
 @export var unit_finder_component: UnitFinderComponent ## Required for units to be able to scan for enemies/targets.
+@export var builder_component: BuilderComponent
 
 ## Exported references to non-node resources here.
 @export_group("Resources")
@@ -84,7 +85,6 @@ func deselect():
 
 func take_damage(amount: int):
 	unit_stats.health -= amount
-
 
 func die():
 	print(name + " has died.")

@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://buk8y4nrlklx7"]
+
+[ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
+[ext_resource type="PackedScene" uid="uid://dfw6gyd847pys" path="res://Units/builder_component.tscn" id="2_k4pre"]
+[ext_resource type="Script" path="res://Units/Units/built_unit.gd" id="3_ixn17"]
+[ext_resource type="Script" path="res://Game/UI/control_grid_component.gd" id="4_3dc6x"]
+[ext_resource type="Resource" uid="uid://dxlra21y75wrw" path="res://Units/Buildings/building_default_costs.tres" id="4_3ul06"]
+[ext_resource type="Script" path="res://Game/UI/build_grid_button.gd" id="6_vuxww"]
+
+[node name="Worker" node_paths=PackedStringArray("control_grid_component") instance=ExtResource("1_nbgmn")]
+control_grid_component = NodePath("ControlGridComponent")
+
+[node name="BuilderComponent" parent="." index="6" instance=ExtResource("2_k4pre")]
+
+[node name="Castle" type="Node" parent="BuilderComponent" index="0"]
+script = ExtResource("3_ixn17")
+building_scene = "res://Units/Buildings/building.tscn"
+unit_costs = ExtResource("4_3ul06")
+
+[node name="ControlGridComponent" type="Control" parent="." index="8"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_3dc6x")
+
+[node name="BuildCastle" type="TextureButton" parent="ControlGridComponent" index="0"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_vuxww")

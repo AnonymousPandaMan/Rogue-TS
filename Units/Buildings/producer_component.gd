@@ -120,7 +120,6 @@ func produce_first_unit_in_queue() -> void:
 		
 		if rally_point:
 			produced_unit.state_machine._transition_to_next_state("AttackMove", {"AttackMoveTargetPosition" : rally_point.global_position})
-			
 		if spawn_point:
 			produced_unit.position = spawn_point.global_position
 		else:
@@ -135,13 +134,6 @@ func produce_first_unit_in_queue() -> void:
 			producing_unit_node = production_node_list.front()
 		current_production_progress = 0.0
 
-
-func has_enough_resources(type,amount) -> bool:
-	var current_amount = resources_inventory.game_resources_dictionary.get(type)
-	if current_amount >= amount:
-		return true
-	else:
-		return false
 	
 func change_rally_point(rally_point,location):
 	rally_point.global_position = location

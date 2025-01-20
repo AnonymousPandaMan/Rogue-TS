@@ -7,4 +7,6 @@ func update_progress_bar(over, under):
 		if under:
 			value = (over/under)*100
 func _ready():
+	
+		await owner.owner.ready
 		position = owner.owner.global_position + position

@@ -16,7 +16,7 @@ var health := max_health:
 		health = clamp(value, 0, max_health)
 		health_changed.emit(health)
 		
-@export var health_regen := 10.0
+@export var health_regen := 0.0
 @export var armour := 1.0
 @export_subgroup("Attack Stats")
 @export var attack_damage := 10.0
@@ -25,7 +25,11 @@ var health := max_health:
 @export var attack_range:= 200.0 ## maximal distance from target to initiate an attack
 @export var ranged_projectile_speed : float = 500
 @export var ranged_projectile_size_modifier : float = 1
-@export var ranged_projectile_sprite : Texture2D = AtlasTexture.new()
+
+
+@export_group("Misc Assets")
+@export_range(0,5) var footprint_x := 1 ## Horizontal footprint of build area if building, otherwise area that the unit occupies to block building.
+@export_range(0,5) var footprint_y := 1 ## Vertical footprint of build area if building, otherwise area that the unit occupies to block building.
 
 @export_group("Unit Flags")
 @export_enum("Ranged","Melee") var ranged_or_melee : String
@@ -39,3 +43,4 @@ var health := max_health:
 @export_enum("Ally","Player","Enemy","Neutral") var allegiance : String = "Neutral"
 
 @export_group("Unit Assets")
+@export var ranged_projectile_sprite : Texture2D = AtlasTexture.new()

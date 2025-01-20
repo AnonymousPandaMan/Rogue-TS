@@ -375,6 +375,7 @@ _data = {
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ks2m"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0f4tj"]
+graph_offset = Vector2(-205.364, 168.476)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4ks2m")
 nodes/TimeScale/position = Vector2(580, 180)
 nodes/UnitState/node = ExtResource("3_bxu71")
@@ -389,10 +390,11 @@ unit_sprite = NodePath("UnitSprite")
 
 [node name="UnitSprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
+scale = Vector2(-1, 1)
 texture = ExtResource("1_nm1kl")
 hframes = 8
 vframes = 7
-frame = 1
+frame = 2
 
 [node name="UnitAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

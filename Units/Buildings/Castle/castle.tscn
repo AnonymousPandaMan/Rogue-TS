@@ -1,0 +1,297 @@
+[gd_scene load_steps=42 format=3 uid="uid://x6r056xu7g5w"]
+
+[ext_resource type="Script" path="res://Units/unit.gd" id="1_mygdu"]
+[ext_resource type="Resource" uid="uid://csdsdlf0ore7g" path="res://Units/Buildings/Stats/castle_unit_stats.tres" id="2_qma3m"]
+[ext_resource type="Material" uid="uid://c4pb5lkhkw6la" path="res://Resources/Shaders/selected_outline.tres" id="3_76pmt"]
+[ext_resource type="PackedScene" uid="uid://cm8cc5sq2ylw6" path="res://Units/unit_finder_component.tscn" id="4_jmrml"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/state_machine.gd" id="5_001s4"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/frozen.gd" id="6_ftkuh"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/idle.gd" id="7_wr5tb"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/attacking.gd" id="8_uklry"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/move_to_attack.gd" id="9_7xlgp"]
+[ext_resource type="PackedScene" uid="uid://gliog5bn3uyd" path="res://Game/producer_component.tscn" id="10_mtvfm"]
+[ext_resource type="PackedScene" uid="uid://nxf6jksafy4f" path="res://Units/Units/produced_unit.tscn" id="11_hq7y2"]
+[ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/archer_unit_stats.tres" id="12_hkjrv"]
+[ext_resource type="Resource" uid="uid://b4vfebmynrc8f" path="res://Units/Units/Archer/Stats and Costs/archer_unit_costs.tres" id="13_d0o0q"]
+[ext_resource type="Resource" uid="uid://jdbxklpq0g6c" path="res://Units/Units/Knight/knight_unit_stats.tres" id="14_qf8fv"]
+[ext_resource type="Resource" uid="uid://b1bcu6tg0cd0l" path="res://Units/Units/Knight/Stats/knight_costs.tres" id="15_jorfa"]
+[ext_resource type="Script" path="res://Game/rally_point.gd" id="16_k62hc"]
+[ext_resource type="PackedScene" uid="uid://c14q48khq61h0" path="res://Units/Buildings/spawn_point_component.tscn" id="17_kw61o"]
+[ext_resource type="PackedScene" uid="uid://c736gxs3hquqa" path="res://Game/UI/control_grid_component.tscn" id="18_4vr1x"]
+[ext_resource type="Texture2D" uid="uid://6snbvfx7nm0u" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue.png" id="19_b0i2x"]
+[ext_resource type="Texture2D" uid="uid://cko8n5r405ypb" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue_Pressed.png" id="20_6viaa"]
+[ext_resource type="Texture2D" uid="uid://bsoi4h24lgu27" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Hover.png" id="21_m5t1e"]
+[ext_resource type="Texture2D" uid="uid://27vsi6lw8lte" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Disable.png" id="22_j2nsu"]
+[ext_resource type="Script" path="res://Game/UI/produce_button.gd" id="23_m0712"]
+[ext_resource type="Texture2D" uid="uid://dkuem2o3whwct" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="24_b7qkl"]
+[ext_resource type="Texture2D" uid="uid://bxbm218lkrs7j" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png" id="25_raa60"]
+[ext_resource type="Texture2D" uid="uid://uicpurwmdh7i" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red.png" id="26_7wjih"]
+[ext_resource type="Texture2D" uid="uid://cdomxbcfexso6" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red_Pressed.png" id="27_pkt02"]
+[ext_resource type="Script" path="res://Game/UI/rally_point_button.gd" id="28_5o3hy"]
+[ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="29_inbkc"]
+[ext_resource type="Script" path="res://Units/unit_animation.gd" id="30_8fn0m"]
+[ext_resource type="Texture2D" uid="uid://b4r5eqkwb7x5o" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="31_a5cke"]
+[ext_resource type="PackedScene" uid="uid://djidnvvbkw1lq" path="res://Units/navigation_component.tscn" id="32_cdeqx"]
+[ext_resource type="Script" path="res://Game/UI/unit_portrait.gd" id="33_rqb3w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dsp6s"]
+radius = 39.0
+height = 250.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_23ndj"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_ehey6"]
+events = [SubResource("InputEventKey_23ndj")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v8pqw"]
+font_size = 18
+font_color = Color(0.0862745, 0.109804, 0.180392, 1)
+outline_size = 1
+
+[sub_resource type="InputEventKey" id="InputEventKey_1bne3"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="Shortcut" id="Shortcut_l5fd8"]
+events = [SubResource("InputEventKey_1bne3")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_542qt"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="Shortcut" id="Shortcut_u47iy"]
+events = [SubResource("InputEventKey_542qt")]
+
+[node name="Castle" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "navigation_component", "unit_animation", "debug_label", "health_bar_component", "producer_component", "control_grid_component", "unit_finder_component")]
+editor_description = "Always have unit nestled under \"World\" or \"Level\""
+motion_mode = 1
+safe_margin = 1.0
+script = ExtResource("1_mygdu")
+unit_stats_resource = ExtResource("2_qma3m")
+state_machine = NodePath("StateMachine")
+navigation_component = NodePath("NavigationComponent")
+unit_animation = NodePath("UnitAnimation")
+debug_label = NodePath("DebugLabel")
+health_bar_component = NodePath("HealthBarComponent")
+producer_component = NodePath("ProducerComponent")
+control_grid_component = NodePath("ControlGridComponent")
+unit_finder_component = NodePath("UnitFinderComponent")
+selected_outline = ExtResource("3_76pmt")
+
+[node name="UnitFinderComponent" parent="." instance=ExtResource("4_jmrml")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dsp6s")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_001s4")
+initial_state = NodePath("Frozen")
+
+[node name="Frozen" type="Node" parent="StateMachine"]
+script = ExtResource("6_ftkuh")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_wr5tb")
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("8_uklry")
+
+[node name="MoveToAttack" type="Node" parent="StateMachine"]
+script = ExtResource("9_7xlgp")
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+z_index = 50
+offset_left = -20.0
+offset_top = -38.0
+offset_right = 20.0
+offset_bottom = -15.0
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ProducerComponent" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("10_mtvfm")]
+top_level = true
+z_index = 1
+position = Vector2(-1, 0)
+spawn_point = NodePath("../SpawnPointComponent")
+
+[node name="ProgressBarComponent" parent="ProducerComponent" index="0"]
+offset_top = -183.0
+offset_bottom = -177.0
+
+[node name="Archer" parent="ProducerComponent" instance=ExtResource("11_hq7y2")]
+unit_scene = "res://Units/Units/Archer/unit_archer.tscn"
+unit_stats = ExtResource("12_hkjrv")
+unit_costs = ExtResource("13_d0o0q")
+
+[node name="Knight" parent="ProducerComponent" instance=ExtResource("11_hq7y2")]
+unit_scene = "res://Units/Units/Knight/knight.tscn"
+unit_stats = ExtResource("14_qf8fv")
+unit_costs = ExtResource("15_jorfa")
+
+[node name="RallyPoint" type="Node2D" parent="ProducerComponent"]
+script = ExtResource("16_k62hc")
+
+[node name="SpawnPointComponent" parent="." instance=ExtResource("17_kw61o")]
+position = Vector2(0, 35)
+
+[node name="ControlGridComponent" parent="." instance=ExtResource("18_4vr1x")]
+visible = false
+
+[node name="Produce Knight" type="TextureButton" parent="ControlGridComponent" node_paths=PackedStringArray("produced_unit")]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+shortcut = SubResource("Shortcut_ehey6")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("19_b0i2x")
+texture_pressed = ExtResource("20_6viaa")
+texture_hover = ExtResource("21_m5t1e")
+texture_disabled = ExtResource("22_j2nsu")
+script = ExtResource("23_m0712")
+produced_unit = NodePath("../../ProducerComponent/Knight")
+listener_unit_group = "Building"
+button_id = "ProduceKnight"
+
+[node name="Sprite2D" type="Sprite2D" parent="ControlGridComponent/Produce Knight"]
+position = Vector2(30, 26)
+scale = Vector2(0.377, 0.4)
+texture = ExtResource("24_b7qkl")
+hframes = 6
+vframes = 8
+
+[node name="Label" type="Label" parent="ControlGridComponent/Produce Knight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 9.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Q"
+label_settings = SubResource("LabelSettings_v8pqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Produce Archer" type="TextureButton" parent="ControlGridComponent" node_paths=PackedStringArray("produced_unit")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+shortcut = SubResource("Shortcut_l5fd8")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("19_b0i2x")
+texture_pressed = ExtResource("20_6viaa")
+texture_hover = ExtResource("21_m5t1e")
+texture_disabled = ExtResource("22_j2nsu")
+script = ExtResource("23_m0712")
+produced_unit = NodePath("../../ProducerComponent/Archer")
+listener_unit_group = "Building"
+button_id = "ProduceArcher"
+
+[node name="Sprite2D" type="Sprite2D" parent="ControlGridComponent/Produce Archer"]
+position = Vector2(30, 24)
+scale = Vector2(0.424479, 0.424479)
+texture = ExtResource("25_raa60")
+hframes = 8
+vframes = 7
+
+[node name="Label" type="Label" parent="ControlGridComponent/Produce Archer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 6.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "W"
+label_settings = SubResource("LabelSettings_v8pqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RallyPoint" type="TextureButton" parent="ControlGridComponent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+shortcut = SubResource("Shortcut_u47iy")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("26_7wjih")
+texture_pressed = ExtResource("27_pkt02")
+texture_hover = ExtResource("21_m5t1e")
+texture_disabled = ExtResource("22_j2nsu")
+script = ExtResource("28_5o3hy")
+listener_unit_group = "Building"
+button_id = "RallyPoint"
+
+[node name="Label" type="Label" parent="ControlGridComponent/RallyPoint"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+label_settings = SubResource("LabelSettings_v8pqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBarComponent" parent="." instance=ExtResource("29_inbkc")]
+offset_left = -22.0
+offset_top = -191.0
+offset_right = 66.0
+offset_bottom = -151.0
+scale = Vector2(0.5, 0.5)
+
+[node name="UnitAnimation" type="Node2D" parent="." node_paths=PackedStringArray("unit_sprite")]
+script = ExtResource("30_8fn0m")
+unit_sprite = NodePath("Sprite2D")
+has_animation = false
+
+[node name="Sprite2D" type="Sprite2D" parent="UnitAnimation"]
+position = Vector2(-2, -90)
+texture = ExtResource("31_a5cke")
+
+[node name="NavigationComponent" parent="." instance=ExtResource("32_cdeqx")]
+
+[node name="UnitPortrait" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("33_rqb3w")
+
+[node name="Background" type="ColorRect" parent="UnitPortrait"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Sprite" type="TextureRect" parent="UnitPortrait"]
+material = ExtResource("3_76pmt")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("31_a5cke")
+expand_mode = 5
+
+[editable path="ProducerComponent"]

@@ -19,7 +19,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_b16wh"]
 radius = 20.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("debug_label", "state_machine", "navigation_component", "health_bar_component", "unit_finder_component")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "navigation_component", "debug_label", "health_bar_component", "unit_finder_component")]
 y_sort_enabled = true
 collision_mask = 3
 motion_mode = 1
@@ -27,9 +27,9 @@ wall_min_slide_angle = 0.0
 safe_margin = 1.0
 script = ExtResource("1_8cpma")
 unit_stats_resource = ExtResource("2_800oa")
-debug_label = NodePath("DebugLabel")
 state_machine = NodePath("StateMachine")
 navigation_component = NodePath("NavigationComponent")
+debug_label = NodePath("DebugLabel")
 health_bar_component = NodePath("HealthBarComponent")
 unit_finder_component = NodePath("UnitFinderComponent")
 selected_outline = ExtResource("2_f6ofu")

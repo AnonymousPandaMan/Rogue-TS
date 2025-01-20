@@ -1,7 +1,9 @@
 extends Object
 
 class_name ChangeResourceAmount
+# DEPRECATED
 
+# DEPRECATED
 var added_to 
 var type : String
 var amount : int

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bsrshp2uyhy8x"]
+
+[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_s7u1p"]
+[ext_resource type="Texture2D" uid="uid://e3qwpn282gbb" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Construction.png" id="2_mi2yy"]
+
+[resource]
+script = ExtResource("1_s7u1p")
+unit_name = "Castle Construction"
+unit_portrait = ExtResource("2_mi2yy")
+move_speed = 0.0
+max_health = 1500.0
+health_regen = 0.0
+armour = 3.0
+attack_damage = 0.0
+attack_speed = 1.66667
+attack_animation_time = 0.8
+attack_range = 200.0
+ranged_projectile_speed = 500.0
+ranged_projectile_size_modifier = 1.0
+footprint_x = 4
+footprint_y = 4
+ranged_or_melee = "Ranged"
+armour_type = "Armoured"
+is_selectable = true
+is_controllable = true
+is_building = true
+can_move = false
+allegiance = "Player"
