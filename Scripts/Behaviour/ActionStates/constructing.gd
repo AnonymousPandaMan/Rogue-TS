@@ -9,13 +9,14 @@ var construction_total_time : int = 10
 @export var progress_bar : ProgressBarComponent
 
 func enter(previous_state_path: String, data := {}) -> void:
-	unit.unit_stats.health = 0.1 * unit.unit_stats.max_health
+	
 	unit.add_to_group("Construction")
 	pass
 
 func update(_delta: float) -> void:
 	# Progress construction
 	if unit.being_constructed:
+		
 		construction_progress += _delta
 		unit.unit_stats.health += _delta * 0.9 * unit.unit_stats.max_health / construction_total_time
 		progress_bar.update_progress_bar(construction_progress, construction_total_time)

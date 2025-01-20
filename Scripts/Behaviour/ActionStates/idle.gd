@@ -11,7 +11,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 func physics_update(_delta: float) -> void:
 	if unit.unit_stats.can_move == true:
 		unit.move_and_slide()
-	if unit.unit_finder_component:
+	if unit.unit_finder_component and not unit.unit_stats.is_passive:
 		var enemy_array = unit.enemy(unit.unit_stats.allegiance)
 		var target_unit
 		for enemy in enemy_array:

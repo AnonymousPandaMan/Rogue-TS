@@ -294,7 +294,7 @@ func _on_command_button_pressed(commanded_state, target):
 						unit.state_machine._transition_to_next_state(commanded_state,{"AttackMoveTargetPosition":target})
 			elif target is Unit:
 				match commanded_state:
-					"Build":
+					"Building":
 						unit.state_machine._transition_to_next_state(commanded_state,{"BuildTarget":target})
 					"Attack":
 						unit.state_machine._transition_to_next_state(commanded_state,{"AttackTarget":target})

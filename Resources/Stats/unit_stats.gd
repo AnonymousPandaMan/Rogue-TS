@@ -37,9 +37,11 @@ var health := max_health:
 @export_group("Unit Flags")
 @export_enum("Ranged","Melee") var ranged_or_melee : String
 @export_enum("Light", "Medium", "Armoured") var armour_type : String
+@export var is_passive := false ## whether or not this unit actively scans for and attacks enemies.
 @export var is_selectable := true ## non-functional atm
 @export var is_controllable := true ## non-functional atm
 @export var is_building := false ## non-functional atm
+@export var is_construction := false ## If the building is a construction site. If true, the unit starts at 10% health and gains health slowly.
 @export var can_move := true
 
 @export_subgroup("Unit Allegiance")

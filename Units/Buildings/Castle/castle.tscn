@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://x6r056xu7g5w"]
+[gd_scene load_steps=49 format=3 uid="uid://x6r056xu7g5w"]
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_mygdu"]
 [ext_resource type="Resource" uid="uid://csdsdlf0ore7g" path="res://Units/Buildings/Stats/castle_unit_stats.tres" id="2_qma3m"]
@@ -16,8 +16,11 @@
 [ext_resource type="Resource" uid="uid://jdbxklpq0g6c" path="res://Units/Units/Knight/knight_unit_stats.tres" id="14_qf8fv"]
 [ext_resource type="Resource" uid="uid://b1bcu6tg0cd0l" path="res://Units/Units/Knight/Stats/knight_costs.tres" id="15_jorfa"]
 [ext_resource type="Script" path="res://Game/rally_point.gd" id="16_k62hc"]
+[ext_resource type="Script" path="res://Units/Units/produced_unit.gd" id="16_t7vio"]
 [ext_resource type="PackedScene" uid="uid://c14q48khq61h0" path="res://Units/Buildings/spawn_point_component.tscn" id="17_kw61o"]
+[ext_resource type="Resource" uid="uid://b1xnnmkij7u0v" path="res://Units/Units/Worker/worker_unit_stats.tres" id="17_ofnyg"]
 [ext_resource type="PackedScene" uid="uid://c736gxs3hquqa" path="res://Game/UI/control_grid_component.tscn" id="18_4vr1x"]
+[ext_resource type="Script" path="res://Resources/Stats/unit_costs.gd" id="18_cwlne"]
 [ext_resource type="Texture2D" uid="uid://6snbvfx7nm0u" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue.png" id="19_b0i2x"]
 [ext_resource type="Texture2D" uid="uid://cko8n5r405ypb" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue_Pressed.png" id="20_6viaa"]
 [ext_resource type="Texture2D" uid="uid://bsoi4h24lgu27" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Hover.png" id="21_m5t1e"]
@@ -27,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bxbm218lkrs7j" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png" id="25_raa60"]
 [ext_resource type="Texture2D" uid="uid://uicpurwmdh7i" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red.png" id="26_7wjih"]
 [ext_resource type="Texture2D" uid="uid://cdomxbcfexso6" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red_Pressed.png" id="27_pkt02"]
+[ext_resource type="Texture2D" uid="uid://niuwkcy6cbwh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="27_ytqo4"]
 [ext_resource type="Script" path="res://Game/UI/rally_point_button.gd" id="28_5o3hy"]
 [ext_resource type="PackedScene" uid="uid://dih1sjh5gjnei" path="res://Game/UI/health_bar_component.tscn" id="29_inbkc"]
 [ext_resource type="Script" path="res://Units/unit_animation.gd" id="30_8fn0m"]
@@ -38,23 +42,38 @@
 radius = 39.0
 height = 250.0
 
-[sub_resource type="InputEventKey" id="InputEventKey_23ndj"]
+[sub_resource type="Resource" id="Resource_5kwhp"]
+script = ExtResource("18_cwlne")
+wood_cost = 50
+meat_cost = 0
+gold_cost = 0
+production_time = 12
+
+[sub_resource type="InputEventKey" id="InputEventKey_bnuw3"]
 device = -1
 keycode = 81
 unicode = 113
 
-[sub_resource type="Shortcut" id="Shortcut_ehey6"]
-events = [SubResource("InputEventKey_23ndj")]
+[sub_resource type="Shortcut" id="Shortcut_pcrax"]
+events = [SubResource("InputEventKey_bnuw3")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v8pqw"]
 font_size = 18
 font_color = Color(0.0862745, 0.109804, 0.180392, 1)
 outline_size = 1
 
-[sub_resource type="InputEventKey" id="InputEventKey_1bne3"]
+[sub_resource type="InputEventKey" id="InputEventKey_23ndj"]
 device = -1
 keycode = 87
 unicode = 119
+
+[sub_resource type="Shortcut" id="Shortcut_ehey6"]
+events = [SubResource("InputEventKey_23ndj")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1bne3"]
+device = -1
+keycode = 69
+unicode = 101
 
 [sub_resource type="Shortcut" id="Shortcut_l5fd8"]
 events = [SubResource("InputEventKey_1bne3")]
@@ -136,6 +155,12 @@ unit_scene = "res://Units/Units/Knight/knight.tscn"
 unit_stats = ExtResource("14_qf8fv")
 unit_costs = ExtResource("15_jorfa")
 
+[node name="Worker" type="Node" parent="ProducerComponent"]
+script = ExtResource("16_t7vio")
+unit_scene = "res://Units/Units/Worker/worker.tscn"
+unit_stats = ExtResource("17_ofnyg")
+unit_costs = SubResource("Resource_5kwhp")
+
 [node name="RallyPoint" type="Node2D" parent="ProducerComponent"]
 script = ExtResource("16_k62hc")
 
@@ -144,6 +169,44 @@ position = Vector2(0, 35)
 
 [node name="ControlGridComponent" parent="." instance=ExtResource("18_4vr1x")]
 visible = false
+
+[node name="Produce Worker" type="TextureButton" parent="ControlGridComponent" node_paths=PackedStringArray("produced_unit")]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+shortcut = SubResource("Shortcut_pcrax")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("19_b0i2x")
+texture_pressed = ExtResource("20_6viaa")
+texture_hover = ExtResource("21_m5t1e")
+texture_disabled = ExtResource("22_j2nsu")
+script = ExtResource("23_m0712")
+produced_unit = NodePath("../../ProducerComponent/Worker")
+listener_unit_group = "Building"
+button_id = "ProduceWorker"
+
+[node name="Sprite2D" type="Sprite2D" parent="ControlGridComponent/Produce Worker"]
+position = Vector2(32, 22.919)
+scale = Vector2(0.40725, 0.432096)
+texture = ExtResource("27_ytqo4")
+hframes = 6
+vframes = 6
+
+[node name="Label" type="Label" parent="ControlGridComponent/Produce Worker"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 9.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Q"
+label_settings = SubResource("LabelSettings_v8pqw")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Produce Knight" type="TextureButton" parent="ControlGridComponent" node_paths=PackedStringArray("produced_unit")]
 layout_mode = 0
@@ -178,7 +241,7 @@ offset_right = 9.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Q"
+text = "W"
 label_settings = SubResource("LabelSettings_v8pqw")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -216,7 +279,7 @@ offset_right = 6.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "W"
+text = "E"
 label_settings = SubResource("LabelSettings_v8pqw")
 horizontal_alignment = 1
 vertical_alignment = 1

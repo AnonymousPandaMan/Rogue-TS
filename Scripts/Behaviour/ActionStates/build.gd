@@ -26,12 +26,13 @@ func enter(previous_state_path: String, data := {}) -> void:
 		build_target.being_constructed = true
 		build_target.state_machine._transition_to_next_state("Constructing")
 		unit.requested_navigation_target_position = build_target.global_position
+		var facing_direction = unit.global_position.direction_to(build_target.global_position)
+		unit.unit_animation.set_blend_position("parameters/UnitState/Build/blend_position",facing_direction.x)
+		unit.unit_animation.set_condition("parameters/UnitState/conditions/build", true)
 	else:
 		printerr("No data for build state for " + unit.name + ". Reverting to IDLE")
 		finished.emit(IDLE)
-	var facing_direction = unit.velocity.normalized()
-	unit.unit_animation.set_blend_position("parameters/UnitState/Build/blend_position",facing_direction.x)
-	unit.unit_animation.set_condition("parameters/UnitState/conditions/build", true)
+
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.

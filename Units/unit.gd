@@ -72,6 +72,10 @@ func _ready():
 	
 	# Function inits.
 	previous_health = unit_stats.health
+	
+	# Stat inits.
+	if unit_stats.is_construction:
+		unit_stats.health = 0.1 * unit_stats.max_health
 func select():
 	is_selected = true
 	#print(name + " is selected.")
