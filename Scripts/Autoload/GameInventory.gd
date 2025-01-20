@@ -1,6 +1,9 @@
 extends Node
 
+var game_item_dictionary : Dictionary
+
 var game_resources_dictionary : Dictionary = {
+	"Wood" : 200,
 	"Meat" : 200,
 	"Gold" : 200
 }

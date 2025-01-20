@@ -5,6 +5,7 @@ script/source = "extends Node
 
 class_name GameResource
 
+#DEPRECATED
 @export var resource_name: String # Set automatically to node name on ready if not set within editor.
 @export var resource_starting_amount: int
 
