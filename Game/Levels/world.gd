@@ -18,6 +18,9 @@ var selector_rect : Rect2
 var unit_portrait_owners : Array
 var unit_portrait_dict : Dictionary
 
+func _ready():
+	add_to_group("Level")
+
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
 	
