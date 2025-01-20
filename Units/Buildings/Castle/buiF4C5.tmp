@@ -39,7 +39,6 @@ offset_bottom = 28.0
 [node name="UnitAnimationComponent" type="Node2D" parent="." index="7" node_paths=PackedStringArray("unit_sprite")]
 script = ExtResource("5_ikg7m")
 unit_sprite = NodePath("Sprite")
-has_animation = false
 
 [node name="Sprite" type="Sprite2D" parent="UnitAnimationComponent" index="0"]
 position = Vector2(0, -77)

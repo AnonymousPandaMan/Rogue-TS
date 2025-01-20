@@ -26,8 +26,11 @@ var health := max_health:
 @export var ranged_projectile_speed : float = 500
 @export var ranged_projectile_size_modifier : float = 1
 
+@export_group("Worker Stats")
+@export var build_power := 1.0 # multiplier for build speed
+@export var harvest_power := 5 # amount of resources harvest per harvest
 
-@export_group("Misc Assets")
+@export_group("Misc Stats")
 @export_range(0,5) var footprint_x := 1 ## Horizontal footprint of build area if building, otherwise area that the unit occupies to block building.
 @export_range(0,5) var footprint_y := 1 ## Vertical footprint of build area if building, otherwise area that the unit occupies to block building.
 

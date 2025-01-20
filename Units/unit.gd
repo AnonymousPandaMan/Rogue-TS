@@ -36,6 +36,9 @@ var requested_navigation_target_position : Vector2
 
 var previous_health
 
+# variables for the state machines functionality
+var being_constructed = false
+
 func _ready():
 	if unit_stats:
 		unit_stats.health = unit_stats.max_health
@@ -89,6 +92,7 @@ func take_damage(amount: int):
 func die():
 	print(name + " has died.")
 	unit_portrait.visible = false
+	state_machine.state.exit()
 	queue_free() # deletes this node
 
 func enemy(my_allegiance : String):

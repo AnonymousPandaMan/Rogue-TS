@@ -9,6 +9,7 @@ const FROZEN = "Frozen"
 const PRODUCING = "Producing"
 const MOVETOATTACK = "MoveToAttack"
 const ATTACKMOVE = "AttackMove"
+const CONSTRUCTING = "Constructing"
 
 var unit: Unit
 

@@ -6,7 +6,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 	if data:
 		target_position = data.get("MoveTarget")
 		unit.requested_navigation_target_position = target_position
-		#await unit.navigation_refreshed
 		unit.unit_animation.set_condition("parameters/UnitState/conditions/move", true)
 	else:
 		finished.emit(IDLE)

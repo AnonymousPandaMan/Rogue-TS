@@ -45,3 +45,9 @@ func _transition_to_next_state(target_state_path: String, data: Dictionary = {})
 	#print(owner.name + ": Transitioning to " + target_state_path)
 	if owner.debug_label:
 		owner.debug_label.set_text(str(target_state_path))
+
+func has_state(state):
+	for child in get_children():
+		if child.name == state:
+			return true
+	return false

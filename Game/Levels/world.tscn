@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://psx5uxaxdqaa"]
+[gd_scene load_steps=17 format=4 uid="uid://psx5uxaxdqaa"]
 
 [ext_resource type="Script" path="res://Game/Levels/world.gd" id="1_5fqmg"]
 [ext_resource type="PackedScene" uid="uid://x6r056xu7g5w" path="res://Units/Buildings/Castle/castle.tscn" id="2_wt3kn"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cl57o6dv8rqew" path="res://Units/Buildings/red_castle.tscn" id="11_7auv0"]
 [ext_resource type="Resource" uid="uid://6h4ckho4nwmc" path="res://Units/Units/Knight/Stats/free_unit_costs.tres" id="13_sv70t"]
 [ext_resource type="PackedScene" uid="uid://d4kjxkmc543yw" path="res://Units/Buildings/Castle/building_blue_castle.tscn" id="14_vg2rn"]
+[ext_resource type="PackedScene" uid="uid://buk8y4nrlklx7" path="res://Units/Units/Worker/worker.tscn" id="15_nhf48"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6rd8"]
 vertices = PackedVector2Array(29.0625, 923.031, 37.9297, 2388.1, -694, 2038, -758, 1802, -758, 1270, -2451.01, 930.961, -1354, 1270, -1354, 2403.06, -2452.98, 2414.89, -2452.68, 2186, -2422, 2186, -1418, 2250, -722, 2066, -722, 2396.27, -942, 2398.64, -942, 2358, -842, 2066, -694, 2395.98, -822, 2038, -822, 1974, -978, 1802, -886, 1910, -2450, 2102, -2452.58, 2102, -2452.18, 1810, -2450, 2038, -2322, 2038, -2358, 1810, -2322, 1974, -2378, 1782, -2452.15, 1782, -2378, 1654, -1354, 1398, -1418, 1398, -1418, 1526, -1482, 1526, -1482, 1654, -1610, 1654, -1974, 1590, -1270, 1994, -1270, 1866, -1262, 1866, -1298, 1782, -1298, 1910, -1582, 1910, -1582, 1682, -1462, 1682, -1462, 1674, -1454, 1674, -1454, 1554, -1398, 1554, -1262, 1782, -1398, 1546, -1390, 1546, -1170, 1718, -1390, 1426, -1334, 1426, -978, 1718, -1134, 1718, -1334, 1418, -1326, 1418, -786, 1718, -1326, 1298, -786, 1298, -886, 1974, -1078, 1910, -1078, 1846, -1142, 1846, -1142, 1802, -1134, 1802, -1170, 1866, -1162, 1866, -1162, 1874, -1198, 2058, -1106, 1874, -1106, 1930, -1098, 1930, -1098, 1938, -914, 1938, -914, 1994, -906, 1994, -906, 2002, -1326, 2166, -1270, 2130, -850, 2002, -850, 2058, -842, 2058, -1326, 2358, -1390, 2166, -1390, 2130, -1270, 2122, -1262, 2122, -1262, 2066, -1206, 2066, -1206, 2058, -1234, 1866, -1226, 1866, -1226, 2038, -1290, 2038, -1290, 2102, -1418, 2102, -1354, 2250, -2294, 2122, -2422, 2122, -2294, 2058, -2166, 2058, -2166, 1994, -2058, 1994, -2058, 2058, -1910, 2058, -1910, 1994, -1902, 1994, -1938, 1910, -1938, 1974, -2030, 1974, -2030, 1910, -2350, 1802, -2194, 1910, -2194, 1974, -2358, 1802, -2350, 1682, -2294, 1682, -2294, 1674, -2286, 1674, -2286, 1618, -2002, 1618, -2002, 1674, -1994, 1674, -1994, 1682, -1874, 1682, -1874, 1738, -1866, 1738, -1866, 1746, -1902, 1910, -1810, 1746, -1810, 1974, -1838, 1910, -1838, 1974, -1874, 1910, -1874, 1994, -1866, 1994, -1866, 2058, -1782, 1718, -1846, 1718, -1846, 1654, -1974, 1654, -2314, 1590, -2314, 1654, -1610, 1994, -1782, 2058, -1234, 1782, -1198, 1782)
@@ -117,57 +118,6 @@ threshold = 75
 [node name="Castle" parent="." instance=ExtResource("2_wt3kn")]
 position = Vector2(-2130, 2261)
 
-[node name="Gold Pickup" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-1063, 1409)
-adds_gold = 200
-
-[node name="Gold Pickup2" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-1455, 1812)
-adds_gold = 200
-
-[node name="Gold Pickup3" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-1469, 2338)
-adds_gold = 200
-
-[node name="ItemPickup3" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-2360, 1892)
-adds_gold = 200
-
-[node name="ItemPickup2" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-915, 1543)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
-[node name="ItemPickup4" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-2192, 1395)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
-[node name="ItemPickup7" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-1689, 1862)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
-[node name="ItemPickup8" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-1631, 1916)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
-[node name="ItemPickup9" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-1245, 1899)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
-[node name="ItemPickup5" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-845, 2315)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
-[node name="ItemPickup6" parent="." instance=ExtResource("7_eecuj")]
-position = Vector2(-744, 1927)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
-
 [node name="RedArcher" parent="." instance=ExtResource("6_yk2fn")]
 position = Vector2(-819, 1664)
 collision_mask = 1
@@ -187,7 +137,7 @@ wall_min_slide_angle = 0.261799
 position = Vector2(-2139, 1802)
 
 [node name="Archer" parent="." instance=ExtResource("10_fobqc")]
-position = Vector2(-1752, 2258)
+position = Vector2(-1932, 2262)
 
 [node name="Red Castle" parent="." instance=ExtResource("11_7auv0")]
 position = Vector2(-336, 1136)
@@ -209,7 +159,7 @@ visible = true
 position = Vector2(-1987, 1914)
 
 [node name="Archer3" parent="." instance=ExtResource("10_fobqc")]
-position = Vector2(-1668, 2335)
+position = Vector2(-1933, 2146)
 
 [node name="SelectorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -217,6 +167,62 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0.501961, 1, 0.756863, 0.376471)
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Gold Pickup" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1063, 1409)
+adds_gold = 200
+
+[node name="Gold Pickup2" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1455, 1812)
+adds_gold = 200
+
+[node name="Gold Pickup3" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1469, 2338)
+adds_gold = 200
+
+[node name="ItemPickup3" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-2360, 1892)
+adds_gold = 200
+
+[node name="ItemPickup2" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-915, 1543)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="ItemPickup4" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-2192, 1395)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="ItemPickup7" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1689, 1862)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="ItemPickup8" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1631, 1916)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="ItemPickup9" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1245, 1899)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="ItemPickup5" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-845, 2315)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="ItemPickup6" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-744, 1927)
+item = ExtResource("6_7xh4w")
+adds_meat = 200
+
+[node name="Worker" parent="." instance=ExtResource("15_nhf48")]
+position = Vector2(-2290, 1850)
 
 [editable path="Red Castle"]
 [editable path="Red Castle/ProducerComponent"]

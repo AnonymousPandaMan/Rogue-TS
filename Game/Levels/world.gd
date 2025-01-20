@@ -123,7 +123,6 @@ func _unhandled_input(event):
 			if unit.unit_stats.can_move == false:
 				moveable_units.erase(unit)
 				print(unit.name + " cannot move.")
-				return
 		# Get offsetted move target
 		var move_target_dict = get_offsetted_position(moveable_units, click_position)
 		for unit in moveable_units:
@@ -174,6 +173,7 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("cheat_resources"):
 		game_resources.add_resources("Gold", 200)
 		game_resources.add_resources("Meat", 200)
+		game_resources.add_resources("Wood", 200)
 		print(game_resources.game_resources_dictionary)
 		pass
 
@@ -222,6 +222,8 @@ func update_control_grid_ui():
 						new_button.production_button_pressed.connect(_on_production_button_pressed)
 					if new_button is RallyPointButton:
 						new_button.rally_button_pressed.connect(_on_rally_button_pressed)
+					if new_button is CommandButton:
+						new_button.command_button_pressed.connect(_on_command_button_pressed)
 				else:
 					continue
 
@@ -272,9 +274,29 @@ func _on_production_button_pressed(produced_unit):
 			least_busy_producer = unit
 	least_busy_producer.producer_component.init_production(produced_unit)
 
+## Called when rally button is pressed.
 func _on_rally_button_pressed(rally_point):
 	var selected_units = get_tree().get_nodes_in_group("Selected")
 	for unit : Unit in selected_units:
 		if unit.producer_component:
 			var mouse_location = get_global_mouse_position()
 			var rally_point_instance = RallyPoint.new(unit.producer_component,mouse_location)
+			
+func _on_command_button_pressed(commanded_state, target):
+	var selected_units = get_tree().get_nodes_in_group("Selected")
+	for unit : Unit in selected_units:
+		if unit.state_machine.has_state(commanded_state):
+			if target is Vector2:
+				match commanded_state:
+					"Move":
+						unit.state_machine._transition_to_next_state(commanded_state,{"MoveTarget":target})
+					"AttackMove":
+						unit.state_machine._transition_to_next_state(commanded_state,{"AttackMoveTargetPosition":target})
+			elif target is Unit:
+				match commanded_state:
+					"Build":
+						unit.state_machine._transition_to_next_state(commanded_state,{"BuildTarget":target})
+					"Attack":
+						unit.state_machine._transition_to_next_state(commanded_state,{"AttackTarget":target})
+			else:
+				unit.state_machine._transition_to_next_state(commanded_state)

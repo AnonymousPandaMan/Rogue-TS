@@ -1,14 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://buk8y4nrlklx7"]
+[gd_scene load_steps=20 format=3 uid="uid://buk8y4nrlklx7"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/build.gd" id="2_dduj1"]
+[ext_resource type="Resource" uid="uid://b1xnnmkij7u0v" path="res://Units/Units/Worker/worker_unit_stats.tres" id="2_gbn3u"]
 [ext_resource type="PackedScene" uid="uid://dfw6gyd847pys" path="res://Units/builder_component.tscn" id="2_k4pre"]
 [ext_resource type="Script" path="res://Units/Units/built_unit.gd" id="3_ixn17"]
 [ext_resource type="Script" path="res://Game/UI/control_grid_component.gd" id="4_3dc6x"]
 [ext_resource type="Resource" uid="uid://dxlra21y75wrw" path="res://Units/Buildings/building_default_costs.tres" id="4_3ul06"]
 [ext_resource type="Script" path="res://Game/UI/build_grid_button.gd" id="6_vuxww"]
+[ext_resource type="Script" path="res://Game/UI/command_button.gd" id="8_0pxoy"]
+[ext_resource type="Script" path="res://Units/unit_animation.gd" id="8_8f5wm"]
+[ext_resource type="Texture2D" uid="uid://6snbvfx7nm0u" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue.png" id="8_jplb2"]
+[ext_resource type="Texture2D" uid="uid://cko8n5r405ypb" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue_Pressed.png" id="9_o73n2"]
+[ext_resource type="Texture2D" uid="uid://bsoi4h24lgu27" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Hover.png" id="10_htnu8"]
+[ext_resource type="Texture2D" uid="uid://27vsi6lw8lte" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Disable.png" id="11_nuasq"]
+[ext_resource type="Texture2D" uid="uid://niuwkcy6cbwh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="14_8yetf"]
+[ext_resource type="AnimationLibrary" uid="uid://dsdv0pofhovpq" path="res://Units/Units/Worker/worker_animation_library.tres" id="16_513tx"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://0wsckkwn0fno" path="res://Units/Units/Worker/worker_node_blend.tres" id="17_76cfo"]
 
-[node name="Worker" node_paths=PackedStringArray("control_grid_component") instance=ExtResource("1_nbgmn")]
+[sub_resource type="InputEventKey" id="InputEventKey_itb43"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_8cbt7"]
+events = [SubResource("InputEventKey_itb43")]
+
+[node name="Worker" node_paths=PackedStringArray("unit_animation", "control_grid_component", "builder_component") instance=ExtResource("1_nbgmn")]
+unit_stats_resource = ExtResource("2_gbn3u")
+unit_animation = NodePath("UnitAnimation")
 control_grid_component = NodePath("ControlGridComponent")
+builder_component = NodePath("BuilderComponent")
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Idle")
+
+[node name="Build" type="Node" parent="StateMachine" index="5"]
+script = ExtResource("2_dduj1")
 
 [node name="BuilderComponent" parent="." index="6" instance=ExtResource("2_k4pre")]
 
@@ -18,14 +46,68 @@ building_scene = "res://Units/Buildings/building.tscn"
 unit_costs = ExtResource("4_3ul06")
 
 [node name="ControlGridComponent" type="Control" parent="." index="8"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_3dc6x")
 
-[node name="BuildCastle" type="TextureButton" parent="ControlGridComponent" index="0"]
+[node name="BuildCastle" type="TextureButton" parent="ControlGridComponent" index="0" node_paths=PackedStringArray("builds")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("6_vuxww")
+builds = NodePath("../../BuilderComponent/Castle")
+listener_unit_group = "Worker"
+
+[node name="BuildCommand" type="TextureButton" parent="ControlGridComponent" index="1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+shortcut = SubResource("Shortcut_8cbt7")
+texture_normal = ExtResource("8_jplb2")
+texture_pressed = ExtResource("9_o73n2")
+texture_hover = ExtResource("10_htnu8")
+texture_disabled = ExtResource("11_nuasq")
+script = ExtResource("8_0pxoy")
+commanded_state = "Build"
+target_group = "Construction"
+listener_unit_group = "Worker"
+button_id = "BuildCommand"
+
+[node name="UnitAnimation" type="Node2D" parent="." index="9" node_paths=PackedStringArray("unit_animation_tree", "unit_sprite")]
+script = ExtResource("8_8f5wm")
+unit_animation_tree = NodePath("UnitAnimationTree")
+unit_sprite = NodePath("UnitSprite")
+
+[node name="UnitSprite" type="Sprite2D" parent="UnitAnimation" index="0"]
+y_sort_enabled = true
+scale = Vector2(-1, 1)
+texture = ExtResource("14_8yetf")
+hframes = 6
+vframes = 6
+
+[node name="UnitAnimation" type="AnimationPlayer" parent="UnitAnimation" index="1"]
+root_node = NodePath("../..")
+libraries = {
+"": ExtResource("16_513tx")
+}
+
+[node name="UnitAnimationTree" type="AnimationTree" parent="UnitAnimation" index="2"]
+root_node = NodePath("../..")
+tree_root = ExtResource("17_76cfo")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../UnitAnimation")
+parameters/TimeScale/scale = 1.0
+parameters/UnitState/conditions/attack = false
+parameters/UnitState/conditions/build = false
+parameters/UnitState/conditions/idle = false
+parameters/UnitState/conditions/move = false
+parameters/UnitState/Attack/blend_position = 0.0480497
+parameters/UnitState/Build/blend_position = 0
+parameters/UnitState/Idle/blend_position = 0.0317286
+parameters/UnitState/Move/blend_position = 0
+
+[connection signal="pressed" from="ControlGridComponent/BuildCastle" to="ControlGridComponent/BuildCastle" method="_on_pressed"]
+[connection signal="pressed" from="ControlGridComponent/BuildCommand" to="ControlGridComponent/BuildCommand" method="_on_pressed"]
