@@ -394,7 +394,6 @@ scale = Vector2(-1, 1)
 texture = ExtResource("1_nm1kl")
 hframes = 8
 vframes = 7
-frame = 2
 
 [node name="UnitAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

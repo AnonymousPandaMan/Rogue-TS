@@ -49,3 +49,4 @@ var health := max_health:
 
 @export_group("Unit Assets")
 @export var ranged_projectile_sprite : Texture2D = AtlasTexture.new()
+@export_file("*.tscn") var on_death : String = "res://Units/death_anim.tscn"

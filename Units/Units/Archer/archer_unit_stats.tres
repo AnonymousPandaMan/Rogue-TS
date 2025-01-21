@@ -32,3 +32,4 @@ is_construction = false
 can_move = true
 allegiance = "Player"
 ranged_projectile_sprite = ExtResource("1_iib0p")
+on_death = "res://Units/death_anim.tscn"

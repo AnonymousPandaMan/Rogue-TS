@@ -94,7 +94,12 @@ func take_damage(amount: int):
 func die():
 	print(name + " has died.")
 	unit_portrait.visible = false
-	state_machine.state.exit()
+	state_machine.state.exit() # cleans up any final state stuff
+	var on_death_scene = load(unit_stats.on_death)
+	var on_death = on_death_scene.instantiate()
+	var level_node = get_tree().get_first_node_in_group("Level")
+	level_node.add_child(on_death)
+	on_death.global_position = global_position
 	queue_free() # deletes this node
 
 func enemy(my_allegiance : String):

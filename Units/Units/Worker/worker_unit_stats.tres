@@ -28,3 +28,4 @@ is_building = false
 is_construction = false
 can_move = true
 allegiance = "Player"
+on_death = "res://Units/death_anim.tscn"

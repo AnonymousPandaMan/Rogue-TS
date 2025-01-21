@@ -22,10 +22,8 @@ func _on_pressed():
 				target_group, mouse_position
 				)
 			if closest_target:
-				print(closest_target.name + str(closest_target.global_position.distance_to(mouse_position)))
 				if closest_target.global_position.distance_to(mouse_position) <= 300:
 					target = closest_target
-					print(target.name)
 				else:
 					return
 			else:

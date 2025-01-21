@@ -125,6 +125,13 @@ func _unhandled_input(event):
 				print(unit.name + " cannot move.")
 		# Get offsetted move target
 		var move_target_dict = get_offsetted_position(moveable_units, click_position)
+		var unit_closest_to_centre = moveable_units[0]
+		for unit in moveable_units:
+			var distance_to_centre = unit.global_position.distance_squared_to(click_position)
+			if distance_to_centre < unit_closest_to_centre.global_position.distance_squared_to(click_position):
+				unit_closest_to_centre = unit
+		unit_closest_to_centre.state_machine._transition_to_next_state("Moving",{"MoveTarget" : click_position})
+		moveable_units.erase(unit_closest_to_centre)
 		for unit in moveable_units:
 			var move_target = move_target_dict.get(unit)
 			unit.state_machine._transition_to_next_state("Moving",{"MoveTarget" : move_target})
