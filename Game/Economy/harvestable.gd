@@ -14,5 +14,7 @@ func _ready():
 
 func _on_harvested(amount):
 	amount_remaining -= amount
+	frame = 0
+	play("harvested")
 	if amount_remaining <= 0:
 		queue_free()

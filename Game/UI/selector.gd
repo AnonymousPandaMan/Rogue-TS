@@ -19,6 +19,7 @@ func _init(target_group, range : int):
 
 func _ready():
 	texture = sprite_texture
+	z_index = 5
 	
 func _physics_process(delta):
 	currently_selecting = true

@@ -11,6 +11,8 @@ const MOVETOATTACK = "MoveToAttack"
 const ATTACKMOVE = "AttackMove"
 const CONSTRUCTING = "Constructing"
 const BUILDING = "Build"
+const HARVESTING = "Harvesting"
+const MOVETOHARVEST = "MoveToHarvest"
 
 var unit: Unit
 
