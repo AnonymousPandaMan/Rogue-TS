@@ -1,12 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://buk8y4nrlklx7"]
+[gd_scene load_steps=26 format=3 uid="uid://buk8y4nrlklx7"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
-[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/build.gd" id="2_dduj1"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/building.gd" id="2_dduj1"]
 [ext_resource type="Resource" uid="uid://b1xnnmkij7u0v" path="res://Units/Units/Worker/worker_unit_stats.tres" id="2_gbn3u"]
 [ext_resource type="PackedScene" uid="uid://dfw6gyd847pys" path="res://Units/builder_component.tscn" id="2_k4pre"]
 [ext_resource type="Script" path="res://Units/Units/built_unit.gd" id="3_ixn17"]
 [ext_resource type="Script" path="res://Game/UI/control_grid_component.gd" id="4_3dc6x"]
 [ext_resource type="Resource" uid="uid://dxlra21y75wrw" path="res://Units/Buildings/building_default_costs.tres" id="4_3ul06"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/harvesting.gd" id="4_bpxee"]
 [ext_resource type="Script" path="res://Game/UI/build_grid_button.gd" id="6_vuxww"]
 [ext_resource type="Texture2D" uid="uid://dktbbpm2vt8f6" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/pawn_blue_portrait.png" id="7_40aj2"]
 [ext_resource type="Script" path="res://Game/UI/command_button.gd" id="8_0pxoy"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bsoi4h24lgu27" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Hover.png" id="10_htnu8"]
 [ext_resource type="Texture2D" uid="uid://27vsi6lw8lte" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Disable.png" id="11_nuasq"]
 [ext_resource type="Texture2D" uid="uid://niuwkcy6cbwh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="14_8yetf"]
+[ext_resource type="Texture2D" uid="uid://ddaknuu38n6v1" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/hammer.png" id="15_yfo1r"]
 [ext_resource type="AnimationLibrary" uid="uid://dsdv0pofhovpq" path="res://Units/Units/Worker/worker_animation_library.tres" id="16_513tx"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://0wsckkwn0fno" path="res://Units/Units/Worker/worker_node_blend.tres" id="17_76cfo"]
 
@@ -26,6 +28,19 @@ unicode = 98
 
 [sub_resource type="Shortcut" id="Shortcut_8cbt7"]
 events = [SubResource("InputEventKey_itb43")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2jgy"]
+font_size = 18
+font_color = Color(0.0862745, 0.109804, 0.180392, 1)
+outline_size = 1
+
+[sub_resource type="InputEventKey" id="InputEventKey_14ep7"]
+device = -1
+keycode = 86
+unicode = 118
+
+[sub_resource type="Shortcut" id="Shortcut_ert20"]
+events = [SubResource("InputEventKey_14ep7")]
 
 [node name="Worker" node_paths=PackedStringArray("unit_animation", "control_grid_component", "builder_component") instance=ExtResource("1_nbgmn")]
 unit_stats_resource = ExtResource("2_gbn3u")
@@ -38,6 +53,9 @@ initial_state = NodePath("Idle")
 
 [node name="Building" type="Node" parent="StateMachine" index="5"]
 script = ExtResource("2_dduj1")
+
+[node name="Harvesting" type="Node" parent="StateMachine" index="6"]
+script = ExtResource("4_bpxee")
 
 [node name="BuilderComponent" parent="." index="6" instance=ExtResource("2_k4pre")]
 
@@ -79,7 +97,64 @@ commanded_state = "Building"
 commanded_unit = NodePath("../..")
 target_group = "Construction"
 listener_unit_group = "Worker"
-button_id = "BuildCommand"
+button_id = "BuildingCommand"
+
+[node name="Sprite" type="Sprite2D" parent="ControlGridComponent/BuildingCommand" index="0"]
+position = Vector2(32, 25)
+texture = ExtResource("15_yfo1r")
+
+[node name="Label" type="Label" parent="ControlGridComponent/BuildingCommand" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 6.5
+offset_right = 9.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "B"
+label_settings = SubResource("LabelSettings_i2jgy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HarvestingCommand" type="TextureButton" parent="ControlGridComponent" index="2" node_paths=PackedStringArray("commanded_unit")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+shortcut = SubResource("Shortcut_ert20")
+texture_normal = ExtResource("8_jplb2")
+texture_pressed = ExtResource("9_o73n2")
+texture_hover = ExtResource("10_htnu8")
+texture_disabled = ExtResource("11_nuasq")
+script = ExtResource("8_0pxoy")
+commanded_state = "Harvesting"
+commanded_unit = NodePath("../..")
+demand_target = 2
+target_group = "Construction"
+listener_unit_group = "Worker"
+button_id = "HarvestingCommand"
+
+[node name="Sprite" type="Sprite2D" parent="ControlGridComponent/HarvestingCommand" index="0"]
+position = Vector2(32, 25)
+texture = ExtResource("15_yfo1r")
+
+[node name="Label" type="Label" parent="ControlGridComponent/HarvestingCommand" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 6.5
+offset_right = 9.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "V"
+label_settings = SubResource("LabelSettings_i2jgy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UnitAnimation" type="Node2D" parent="." index="9" node_paths=PackedStringArray("unit_animation_tree", "unit_sprite")]
 script = ExtResource("8_8f5wm")
@@ -116,3 +191,4 @@ parameters/UnitState/Move/blend_position = 0
 
 [connection signal="pressed" from="ControlGridComponent/BuildCastle" to="ControlGridComponent/BuildCastle" method="_on_pressed"]
 [connection signal="pressed" from="ControlGridComponent/BuildingCommand" to="ControlGridComponent/BuildingCommand" method="_on_pressed"]
+[connection signal="pressed" from="ControlGridComponent/HarvestingCommand" to="ControlGridComponent/HarvestingCommand" method="_on_pressed"]

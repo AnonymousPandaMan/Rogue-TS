@@ -73,6 +73,12 @@ func _ready():
 	# Function inits.
 	previous_health = unit_stats.health
 	
+	# Visibility
+	if unit_animation:
+		unit_animation.visible = true
+	
+	if control_grid_component:
+		control_grid_component.visible = false # control grid is hidden until needed
 
 func select():
 	is_selected = true

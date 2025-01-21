@@ -4,12 +4,10 @@ extends ControlGridButton
 @export var commanded_state : String ## String of the commanded states name
 @export var commanded_unit : Unit
 
-enum DEMAND_TARGET {TARGET_UNIT, TARGET_LOCATION, SELF, NONE}
+enum DEMAND_TARGET {TARGET_UNIT, TARGET_LOCATION, TARGET_HARVESTABLE, SELF, NONE}
 @export var demand_target : DEMAND_TARGET
 @export var target_group : String ## if demand_target = TARGET_UNIT, the group that is searched from
 signal command_button_pressed(commanded_state, target)
-
-
 
 
 func _on_pressed():
@@ -17,23 +15,24 @@ func _on_pressed():
 	## currently getting mouse position as the target
 	match demand_target:
 		DEMAND_TARGET.TARGET_UNIT:
-			var mouse_position = get_node("/root/Level").get_global_mouse_position()
-			var closest_target = GlobalFunctions.get_closest_unit_to_location(
-				target_group, mouse_position
-				)
-			if closest_target:
-				if closest_target.global_position.distance_to(mouse_position) <= 300:
-					target = closest_target
-				else:
-					return
-			else:
-				printerr("no target found")
-				return
+			var selector = SelectorOverlay.new("Construction", 0)
+			commanded_unit.add_child(selector)
+			selector.object_selected.connect(_on_object_selected)
 		DEMAND_TARGET.TARGET_LOCATION:
 			target = get_global_mouse_position()
+		DEMAND_TARGET.TARGET_HARVESTABLE:
+			var selector = SelectorOverlay.new("Harvestable", 0)
+			commanded_unit.add_child(selector)
+			selector.object_selected.connect(_on_object_selected)
+			return
 		DEMAND_TARGET.SELF:
 			target = commanded_unit # probably doesnt work
 		DEMAND_TARGET.NONE:
 			target = null
 	command_button_pressed.emit(commanded_state, target)
 	pass
+
+func _on_object_selected(object): # called when an object is selected by the selector
+	command_button_pressed.emit(commanded_state, object)
+	print(object.name)
+	

@@ -114,8 +114,12 @@ func _unhandled_input(event):
 		selector_rect.size = Vector2(0,0)
 
 	if Input.is_action_just_pressed("move_to"):
-		var selected_units = get_tree().get_nodes_in_group("Selected")
 		var click_position = get_global_mouse_position()
+		var selected_units = get_tree().get_nodes_in_group("Selected")
+		## Stops the function if there are no selected units
+		if selected_units.size() <= 0:
+			return
+		
 		# Remove units that cannot move and get group centre position
 		var moveable_units = selected_units
 		
@@ -125,16 +129,17 @@ func _unhandled_input(event):
 				print(unit.name + " cannot move.")
 		# Get offsetted move target
 		var move_target_dict = get_offsetted_position(moveable_units, click_position)
-		var unit_closest_to_centre = moveable_units[0]
-		for unit in moveable_units:
-			var distance_to_centre = unit.global_position.distance_squared_to(click_position)
-			if distance_to_centre < unit_closest_to_centre.global_position.distance_squared_to(click_position):
-				unit_closest_to_centre = unit
-		unit_closest_to_centre.state_machine._transition_to_next_state("Moving",{"MoveTarget" : click_position})
-		moveable_units.erase(unit_closest_to_centre)
-		for unit in moveable_units:
-			var move_target = move_target_dict.get(unit)
-			unit.state_machine._transition_to_next_state("Moving",{"MoveTarget" : move_target})
+		if moveable_units.size() > 0:
+			var unit_closest_to_centre = moveable_units[0]
+			for unit in moveable_units:
+				var distance_to_centre = unit.global_position.distance_squared_to(click_position)
+				if distance_to_centre < unit_closest_to_centre.global_position.distance_squared_to(click_position):
+					unit_closest_to_centre = unit
+			unit_closest_to_centre.state_machine._transition_to_next_state("Moving",{"MoveTarget" : click_position})
+			moveable_units.erase(unit_closest_to_centre)
+			for unit in moveable_units:
+				var move_target = move_target_dict.get(unit)
+				unit.state_machine._transition_to_next_state("Moving",{"MoveTarget" : move_target})
 				
 		# Set each unit's target move position based on mouse position and offset from base position
 	
@@ -305,5 +310,9 @@ func _on_command_button_pressed(commanded_state, target):
 						unit.state_machine._transition_to_next_state(commanded_state,{"BuildTarget":target})
 					"Attack":
 						unit.state_machine._transition_to_next_state(commanded_state,{"AttackTarget":target})
+			elif target is Harvestable:
+				match commanded_state:
+					"Harvesting":
+						unit.state_machine._transition_to_next_state(commanded_state,{"HarvestTarget":target})
 			else:
 				unit.state_machine._transition_to_next_state(commanded_state)

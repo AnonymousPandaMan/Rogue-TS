@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmfmraquv6snm"]
+
+[ext_resource type="Texture2D" uid="uid://ctvfalyhbr67t" path="res://Assets/Tiny Swords (Update 010)/Resources/Trees/Tree.png" id="1_hsrdy"]
+[ext_resource type="Script" path="res://Game/Economy/harvestable.gd" id="2_ye7t4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwts8"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj3yt"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax12x"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5r4r"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_envsh"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fitj"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eq3gp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwts8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj3yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax12x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5r4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_envsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fitj")
+}],
+"loop": true,
+"name": &"harvested",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u80rc"]
+size = Vector2(64, 64)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+y_sort_enabled = true
+position = Vector2(0, -53)
+sprite_frames = SubResource("SpriteFrames_eq3gp")
+animation = &"harvested"
+script = ExtResource("2_ye7t4")
+resource_harvested = "Wood"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 53)
+shape = SubResource("RectangleShape2D_u80rc")
