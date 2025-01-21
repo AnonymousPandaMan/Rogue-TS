@@ -29,6 +29,9 @@ var health := max_health:
 @export_group("Worker Stats")
 @export var build_power := 1.0 # multiplier for build speed
 @export var harvest_power := 5 # amount of resources harvest per harvest
+@export var harvest_speed := 1.0 # harvest amounts per second
+@export var harvest_animation_time := 0.6
+@export var harvest_range := 200
 
 @export_group("Misc Stats")
 @export_range(0,5) var footprint_x := 1 ## Horizontal footprint of build area if building, otherwise area that the unit occupies to block building.

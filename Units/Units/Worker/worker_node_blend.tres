@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=29 format=3 uid="uid://0wsckkwn0fno"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=36 format=3 uid="uid://0wsckkwn0fno"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ks2m"]
 
@@ -30,6 +30,19 @@ animation = &"build_right"
 blend_point_0/node = SubResource("AnimationNodeAnimation_k5tpx")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_ou5ta")
+blend_point_1/pos = 1.0
+blend_mode = 2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_doc4u"]
+animation = &"harvest_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnebi"]
+animation = &"harvest_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ygpfr"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_doc4u")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_pnebi")
 blend_point_1/pos = 1.0
 blend_mode = 2
 
@@ -110,19 +123,38 @@ advance_condition = &"attack"
 advance_mode = 2
 advance_condition = &"build"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7r5lq"]
+advance_mode = 2
+advance_condition = &"harvest"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w4yqm"]
+advance_mode = 2
+advance_condition = &"harvest"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqrph"]
+advance_mode = 2
+advance_condition = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4r4lo"]
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fdkfl"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_e0v5j")
 states/Attack/position = Vector2(766, 57)
 states/Build/node = SubResource("AnimationNodeBlendSpace1D_oc7k0")
-states/Build/position = Vector2(730, 228)
+states/Build/position = Vector2(668, 227)
+states/Harvest/node = SubResource("AnimationNodeBlendSpace1D_ygpfr")
+states/Harvest/position = Vector2(668, 278)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_mxyal")
 states/Idle/position = Vector2(384, 203)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_1aeod")
 states/Move/position = Vector2(398, 57)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tmfab"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_6mbxh"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_0iedm"), "Move", "Build", SubResource("AnimationNodeStateMachineTransition_hrd88"), "Idle", "Build", SubResource("AnimationNodeStateMachineTransition_wbnjh"), "Build", "Move", SubResource("AnimationNodeStateMachineTransition_liaap"), "Build", "Idle", SubResource("AnimationNodeStateMachineTransition_pijpf"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_2ehw4"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_wxvof"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_qijsv"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_rnwpd"), "Build", "Attack", SubResource("AnimationNodeStateMachineTransition_5dv10"), "Attack", "Build", SubResource("AnimationNodeStateMachineTransition_kgvtq")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tmfab"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_6mbxh"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_0iedm"), "Move", "Build", SubResource("AnimationNodeStateMachineTransition_hrd88"), "Idle", "Build", SubResource("AnimationNodeStateMachineTransition_wbnjh"), "Build", "Move", SubResource("AnimationNodeStateMachineTransition_liaap"), "Build", "Idle", SubResource("AnimationNodeStateMachineTransition_pijpf"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_2ehw4"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_wxvof"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_qijsv"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_rnwpd"), "Build", "Attack", SubResource("AnimationNodeStateMachineTransition_5dv10"), "Attack", "Build", SubResource("AnimationNodeStateMachineTransition_kgvtq"), "Move", "Harvest", SubResource("AnimationNodeStateMachineTransition_7r5lq"), "Idle", "Harvest", SubResource("AnimationNodeStateMachineTransition_w4yqm"), "Harvest", "Move", SubResource("AnimationNodeStateMachineTransition_mqrph"), "Harvest", "Idle", SubResource("AnimationNodeStateMachineTransition_4r4lo")]
+graph_offset = Vector2(-32, 52)
 
 [resource]
-graph_offset = Vector2(-561.707, -242.892)
+graph_offset = Vector2(-106.57, 106.405)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4ks2m")
 nodes/TimeScale/position = Vector2(600, 20)
 nodes/UnitState/node = SubResource("AnimationNodeStateMachine_fdkfl")

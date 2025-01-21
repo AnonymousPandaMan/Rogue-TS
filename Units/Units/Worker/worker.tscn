@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://buk8y4nrlklx7"]
+[gd_scene load_steps=25 format=3 uid="uid://buk8y4nrlklx7"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/building.gd" id="2_dduj1"]
@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://dxlra21y75wrw" path="res://Units/Buildings/building_default_costs.tres" id="4_3ul06"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/harvesting.gd" id="4_bpxee"]
 [ext_resource type="Script" path="res://Game/UI/build_grid_button.gd" id="6_vuxww"]
-[ext_resource type="Texture2D" uid="uid://dktbbpm2vt8f6" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/pawn_blue_portrait.png" id="7_40aj2"]
 [ext_resource type="Script" path="res://Game/UI/command_button.gd" id="8_0pxoy"]
 [ext_resource type="Script" path="res://Units/unit_animation.gd" id="8_8f5wm"]
 [ext_resource type="Texture2D" uid="uid://6snbvfx7nm0u" path="res://Assets/Tiny Swords (Update 010)/UI/Buttons/Button_Blue.png" id="8_jplb2"]
@@ -63,9 +62,6 @@ script = ExtResource("4_bpxee")
 script = ExtResource("3_ixn17")
 building_scene = "res://Units/Buildings/building.tscn"
 unit_costs = ExtResource("4_3ul06")
-
-[node name="Sprite" parent="UnitPortrait" index="1"]
-texture = ExtResource("7_40aj2")
 
 [node name="ControlGridComponent" type="Control" parent="." index="8"]
 visible = false
@@ -182,10 +178,12 @@ anim_player = NodePath("../UnitAnimation")
 parameters/TimeScale/scale = 1.0
 parameters/UnitState/conditions/attack = false
 parameters/UnitState/conditions/build = false
+parameters/UnitState/conditions/harvest = false
 parameters/UnitState/conditions/idle = false
 parameters/UnitState/conditions/move = false
 parameters/UnitState/Attack/blend_position = Vector2(-0.991701, 0.0114286)
 parameters/UnitState/Build/blend_position = 0
+parameters/UnitState/Harvest/blend_position = -0.996608
 parameters/UnitState/Idle/blend_position = 0.0317286
 parameters/UnitState/Move/blend_position = 0
 

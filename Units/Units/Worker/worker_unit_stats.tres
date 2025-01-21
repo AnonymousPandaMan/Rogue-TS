@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://b1xnnmkij7u0v"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://b1xnnmkij7u0v"]
 
 [ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_gi0wt"]
+[ext_resource type="Texture2D" uid="uid://dktbbpm2vt8f6" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/pawn_blue_portrait.png" id="2_edvck"]
 
 [resource]
 script = ExtResource("1_gi0wt")
 unit_name = "Worker"
+unit_portrait = ExtResource("2_edvck")
 move_speed = 350.0
 max_health = 50.0
 health_regen = 0.0
@@ -17,6 +19,8 @@ ranged_projectile_speed = 500.0
 ranged_projectile_size_modifier = 1.0
 build_power = 1.0
 harvest_power = 5
+harvest_speed = 1
+harvest_animation_time = 0.6
 footprint_x = 1
 footprint_y = 1
 ranged_or_melee = "Melee"
