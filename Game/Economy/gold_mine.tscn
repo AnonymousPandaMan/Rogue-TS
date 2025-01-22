@@ -27,7 +27,6 @@ animations = [{
 }]
 
 [node name="Gold Mine" instance=ExtResource("1_gg2ln")]
-y_sort_enabled = true
 resource_harvested = "Gold"
 base_amount = 3000
 

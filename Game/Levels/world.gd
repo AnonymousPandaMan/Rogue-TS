@@ -8,6 +8,7 @@ class_name Level
 @onready var ui = $UI
 @onready var control_grid = %ControlGrid
 @onready var unit_portrait_grid = %UnitPortraitGrid
+@onready var nav_region = %NavRegion
 
 var is_selecting = false
 var selector_origin : Vector2

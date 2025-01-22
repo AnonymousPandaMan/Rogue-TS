@@ -16,14 +16,16 @@ func _on_pressed():
 	match demand_target:
 		DEMAND_TARGET.TARGET_UNIT:
 			var selector = SelectorOverlay.new("Construction", 0)
-			commanded_unit.add_child(selector)
 			selector.object_selected.connect(_on_object_selected)
+			commanded_unit.get_tree().get_first_node_in_group("Level").add_child(selector)
+			
 		DEMAND_TARGET.TARGET_LOCATION:
 			target = get_global_mouse_position()
 		DEMAND_TARGET.TARGET_HARVESTABLE:
 			var selector = SelectorOverlay.new("Harvestable", 0)
-			commanded_unit.add_child(selector)
 			selector.object_selected.connect(_on_object_selected)
+			commanded_unit.get_tree().get_first_node_in_group("Level").add_child(selector)
+			
 			return
 		DEMAND_TARGET.SELF:
 			target = commanded_unit # probably doesnt work
