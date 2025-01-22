@@ -28,6 +28,7 @@ GameInventory="*res://Scripts/Autoload/GameInventory.gd"
 [global_group]
 
 Selected="Selected Units"
+navigation_polygon_source_geometry_group="Navigation Geometry Source"
 
 [input]
 
@@ -96,6 +97,12 @@ cancel={
 
 2d_physics/layer_1="Units"
 2d_physics/layer_2="Obstacles"
+2d_physics/layer_3="Buildings"
+2d_physics/layer_4="Resources"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

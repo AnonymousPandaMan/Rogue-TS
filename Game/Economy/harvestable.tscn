@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ctvfalyhbr67t" path="res://Assets/Tiny Swords (Update 010)/Resources/Trees/Tree.png" id="1_hsrdy"]
 [ext_resource type="Script" path="res://Game/Economy/harvestable.gd" id="2_ye7t4"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u80rc"]
+size = Vector2(64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_s345e"]
 atlas = ExtResource("1_hsrdy")
 region = Rect2(0, 0, 192, 192)
@@ -65,25 +68,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u80rc"]
-size = Vector2(64, 64)
-
-[node name="Harvestable" type="Node2D"]
+[node name="StaticBody2D" type="StaticBody2D" groups=["navigation_polygon_source_geometry_group"]]
+y_sort_enabled = true
+disable_mode = 1
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("2_ye7t4")
 resource_harvested = "Wood"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_u80rc")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -53)
+position = Vector2(-1, -51)
 sprite_frames = SubResource("SpriteFrames_eq3gp")
 animation = &"harvested"
 autoplay = "idle"
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, -53)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 53)
-shape = SubResource("RectangleShape2D_u80rc")

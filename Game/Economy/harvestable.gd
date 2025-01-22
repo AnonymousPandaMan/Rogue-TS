@@ -1,5 +1,5 @@
 class_name Harvestable
-extends Node2D
+extends StaticBody2D
 
 @export_enum("Wood","Gold","Meat") var resource_harvested : String
 @export var base_amount : int = 100
