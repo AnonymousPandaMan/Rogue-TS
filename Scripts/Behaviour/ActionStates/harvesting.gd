@@ -20,10 +20,12 @@ func physics_update(_delta: float) -> void:
 	if is_instance_valid(harvest_target):
 		if harvest_target.global_position.distance_to(unit.global_position) < unit.unit_stats.harvest_range:
 			currently_harvesting = true
+			harvest_target.toggle_being_harvested(true)
 			var facing_direction = unit.global_position.direction_to(harvest_target.global_position)
 			unit.unit_animation.set_blend_position("parameters/UnitState/Harvest/blend_position",facing_direction.x)
 			unit.unit_animation.set_condition("parameters/UnitState/conditions/harvest", true)
 			unit.unit_animation.set_timescale(harvest_frequency)
+			harvest_target.set_timescale(harvest_frequency)
 		else:
 			finished.emit(MOVETOHARVEST, {"HarvestTarget" : harvest_target})
 	else: # if harvestable is no longer there
@@ -57,6 +59,7 @@ func exit() -> void:
 	unit.unit_animation.set_condition("parameters/UnitState/conditions/harvest", false)
 	currently_harvesting = false
 	unit.unit_animation.set_timescale(1)
+	harvest_target.toggle_being_harvested(false)
 	pass
 
 func harvest_resources():

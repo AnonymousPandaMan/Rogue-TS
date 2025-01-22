@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://qyiltr4mtolx"]
+
+[ext_resource type="PackedScene" uid="uid://bmfmraquv6snm" path="res://Game/Economy/harvestable.tscn" id="1_gg2ln"]
+[ext_resource type="Texture2D" uid="uid://dokgu3rjj1j05" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Active.png" id="2_08don"]
+[ext_resource type="Texture2D" uid="uid://cgw36wsfdrn12" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Inactive.png" id="3_a4q6b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1aw4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_08don")
+}],
+"loop": true,
+"name": &"harvested",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a4q6b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7ir4"]
+size = Vector2(128, 64)
+
+[node name="Gold Mine" instance=ExtResource("1_gg2ln")]
+resource_harvested = "Gold"
+base_amount = 3000
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_1aw4l")
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(32, 53)
+shape = SubResource("RectangleShape2D_c7ir4")

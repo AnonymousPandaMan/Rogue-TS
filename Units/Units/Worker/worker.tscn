@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://buk8y4nrlklx7"]
+[gd_scene load_steps=27 format=3 uid="uid://buk8y4nrlklx7"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/building.gd" id="2_dduj1"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://niuwkcy6cbwh" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="14_8yetf"]
 [ext_resource type="Texture2D" uid="uid://ddaknuu38n6v1" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/hammer.png" id="15_yfo1r"]
 [ext_resource type="AnimationLibrary" uid="uid://dsdv0pofhovpq" path="res://Units/Units/Worker/worker_animation_library.tres" id="16_513tx"]
+[ext_resource type="Texture2D" uid="uid://c828fqxicqrn" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/axe.png" id="17_0x3wj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://0wsckkwn0fno" path="res://Units/Units/Worker/worker_node_blend.tres" id="17_76cfo"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_itb43"]
@@ -137,8 +138,9 @@ listener_unit_group = "Worker"
 button_id = "HarvestingCommand"
 
 [node name="Sprite" type="Sprite2D" parent="ControlGridComponent/HarvestingCommand" index="0"]
-position = Vector2(32, 25)
-texture = ExtResource("15_yfo1r")
+position = Vector2(28.75, 21.6225)
+scale = Vector2(0.872549, 0.872549)
+texture = ExtResource("17_0x3wj")
 
 [node name="Label" type="Label" parent="ControlGridComponent/HarvestingCommand" index="1"]
 layout_mode = 1

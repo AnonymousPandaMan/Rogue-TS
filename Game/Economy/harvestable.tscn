@@ -1,27 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmfmraquv6snm"]
+[gd_scene load_steps=12 format=3 uid="uid://bmfmraquv6snm"]
 
 [ext_resource type="Texture2D" uid="uid://ctvfalyhbr67t" path="res://Assets/Tiny Swords (Update 010)/Resources/Trees/Tree.png" id="1_hsrdy"]
 [ext_resource type="Script" path="res://Game/Economy/harvestable.gd" id="2_ye7t4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_envsh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s345e"]
 atlas = ExtResource("1_hsrdy")
-region = Rect2(0, 192, 192, 192)
+region = Rect2(0, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8fitj"]
-atlas = ExtResource("1_hsrdy")
-region = Rect2(192, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ax12x"]
-atlas = ExtResource("1_hsrdy")
-region = Rect2(384, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bj3yt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1prkv"]
 atlas = ExtResource("1_hsrdy")
 region = Rect2(192, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qwts8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiuh8"]
 atlas = ExtResource("1_hsrdy")
-region = Rect2(0, 0, 192, 192)
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4c3t"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vqu2"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5o3v"]
+atlas = ExtResource("1_hsrdy")
+region = Rect2(192, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5r4r"]
 atlas = ExtResource("1_hsrdy")
@@ -31,29 +35,32 @@ region = Rect2(576, 0, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_envsh")
+"texture": SubResource("AtlasTexture_s345e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8fitj")
+"texture": SubResource("AtlasTexture_1prkv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ax12x")
+"texture": SubResource("AtlasTexture_xiuh8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bj3yt")
+"texture": SubResource("AtlasTexture_n4c3t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qwts8")
+"texture": SubResource("AtlasTexture_0vqu2")
 }, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5o3v")
+}],
+"loop": true,
+"name": &"harvested",
+"speed": 10.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n5r4r")
 }],
 "loop": false,
-"name": &"harvested",
-"speed": 10.0
-}, {
-"frames": [],
-"loop": true,
 "name": &"idle",
 "speed": 5.0
 }]
@@ -61,17 +68,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u80rc"]
 size = Vector2(64, 64)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+[node name="Harvestable" type="Node2D"]
+script = ExtResource("2_ye7t4")
+resource_harvested = "Wood"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -53)
 sprite_frames = SubResource("SpriteFrames_eq3gp")
 animation = &"harvested"
-frame = 5
-frame_progress = 1.0
-script = ExtResource("2_ye7t4")
-resource_harvested = "Wood"
+autoplay = "idle"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -53)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 53)
