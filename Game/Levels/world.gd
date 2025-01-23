@@ -24,9 +24,6 @@ func _ready():
 
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
-	
-		
-
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("select"):
@@ -296,6 +293,9 @@ func _on_rally_button_pressed(rally_point):
 			var rally_point_instance = RallyPoint.new(unit.producer_component,mouse_location)
 			
 func _on_command_button_pressed(commanded_state, target):
+	change_unit_state(commanded_state, target)
+
+func change_unit_state(commanded_state, target):
 	var selected_units = get_tree().get_nodes_in_group("Selected")
 	for unit : Unit in selected_units:
 		if unit.state_machine.has_state(commanded_state):

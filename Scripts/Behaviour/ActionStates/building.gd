@@ -12,18 +12,22 @@ func update(_delta: float) -> void:
 
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(_delta: float) -> void:
-	if not build_target:
+	if not is_instance_valid(build_target):
 		finished.emit(IDLE)
-	#else:
-		#if build_target.global_position.distance_to(unit.global_position) >= 500:
-			#pass # replace with move to position
+		return
+	if build_target.global_position.distance_to(unit.global_position) >= unit.unit_stats.build_range:
+		finished.emit(MOVETOBUILD, {"BuildTarget" : build_target})
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String, data := {}) -> void:
 	if data:
 		build_target = data.get("BuildTarget")
+
 		build_target.construction_power += unit.unit_stats.build_power
+		#else:
+			#finished.emit(MOVETOBUILD, {"BuildTarget" : build_target})
+			#return
 		unit.requested_navigation_target_position = build_target.global_position
 		var facing_direction = unit.global_position.direction_to(build_target.global_position)
 		unit.unit_animation.set_blend_position("parameters/UnitState/Build/blend_position",facing_direction.x)

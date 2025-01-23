@@ -52,7 +52,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 		var corrected_harvest_timescale = 1/harvest_frequency
 		harvest_time = corrected_harvest_timescale * unit.unit_stats.harvest_swings_required
 		harvest_target.too_many_harvesters.connect(_on_too_many_harvesters)
-	pass
+		unit.toggle_unit_clipping(false)
+	else:
+		finished.emit(IDLE)
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
@@ -60,6 +62,7 @@ func exit() -> void:
 	unit.unit_animation.set_condition("parameters/UnitState/conditions/harvest", false)
 	currently_harvesting = false
 	unit.unit_animation.set_timescale(1)
+	unit.toggle_unit_clipping(true)
 	harvest_target.declare_harvester(unit, false)
 	pass
 
@@ -74,7 +77,10 @@ func look_for_valid_resource():
 		var closest_harvest_target = harvest_targets[0]
 		for object in harvest_targets:
 			if object.global_position.distance_to(unit.global_position) < closest_harvest_target.global_position.distance_to(unit.global_position):
-				if object.harvesters_amount <= harvest_target.max_harvesters:
+				if is_instance_valid(harvest_target):
+					if object.harvesters_amount < harvest_target.max_harvesters:
+						closest_harvest_target = object
+				else:
 					closest_harvest_target = object
 		if closest_harvest_target.global_position.distance_to(unit.global_position) < 1500:
 			harvest_target = closest_harvest_target

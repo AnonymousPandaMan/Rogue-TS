@@ -34,7 +34,8 @@ health_bar_component = NodePath("HealthBarComponent")
 unit_finder_component = NodePath("UnitFinderComponent")
 selected_outline = ExtResource("2_f6ofu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_b16wh")
 

@@ -1,6 +1,8 @@
 class_name UnitFinderComponent
 extends Node2D
 
+
+## REALLY EXPENSIVE WITH LARGE UNIT COUNTS - TO BE OPTIMISED
 func get_closest_unit(allegiance):
 	var bodies = get_tree().get_nodes_in_group("Unit")
 	var closest_unit = bodies.front()

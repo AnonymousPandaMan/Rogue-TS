@@ -30,6 +30,7 @@ signal health_percent_changed(percentage)
 @export var selected_outline : ShaderMaterial
 
 @onready var unit_portrait = $UnitPortrait
+@onready var collision = %Collision
 
 var is_selected := false
 var requested_navigation_target_position : Vector2
@@ -44,6 +45,7 @@ func _ready():
 		unit_stats.health = unit_stats.max_health
 		if unit_stats.unit_name:
 			name = unit_stats.unit_name
+			add_to_group(unit_stats.unit_name)
 		if unit_stats.is_building == true:
 			add_to_group("Building")
 		add_to_group(unit_stats.allegiance)
@@ -162,3 +164,6 @@ func do_flash(color:Color):
 		modulate = color
 		await get_tree().create_timer(0.1).timeout
 		modulate = Color.WHITE
+		
+func toggle_unit_clipping(_bool):
+	set_collision_mask_value(1,_bool)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://buk8y4nrlklx7"]
+[gd_scene load_steps=28 format=3 uid="uid://buk8y4nrlklx7"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/building.gd" id="2_dduj1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dxlra21y75wrw" path="res://Units/Buildings/building_default_costs.tres" id="4_3ul06"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/harvesting.gd" id="4_bpxee"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/move_to_harvest.gd" id="5_d5ugu"]
+[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/move_to_build.tres.gd" id="6_llyg1"]
 [ext_resource type="Script" path="res://Game/UI/build_grid_button.gd" id="6_vuxww"]
 [ext_resource type="Script" path="res://Game/UI/command_button.gd" id="8_0pxoy"]
 [ext_resource type="Script" path="res://Units/unit_animation.gd" id="8_8f5wm"]
@@ -60,6 +61,9 @@ script = ExtResource("4_bpxee")
 
 [node name="MoveToHarvest" type="Node" parent="StateMachine" index="7"]
 script = ExtResource("5_d5ugu")
+
+[node name="MoveToBuild" type="Node" parent="StateMachine" index="8"]
+script = ExtResource("6_llyg1")
 
 [node name="BuilderComponent" parent="." index="6" instance=ExtResource("2_k4pre")]
 

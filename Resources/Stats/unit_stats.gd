@@ -28,6 +28,7 @@ var health := max_health:
 
 @export_group("Worker Stats")
 @export var build_power := 1.0 # multiplier for build speed
+@export var build_range := 200 # how far away can i build from
 @export var harvest_power := 5 # amount of resources harvest per harvest
 @export var harvest_speed := 1.0 # harvest amounts per second is equal to this value divided by the amount of swings to harvest
 @export var harvest_swings_required := 3.0 # the amount of animation swings to harvest
