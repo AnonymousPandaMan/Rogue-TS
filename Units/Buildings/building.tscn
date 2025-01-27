@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://gliog5bn3uyd" path="res://Game/producer_component.tscn" id="10_tga6b"]
 [ext_resource type="PackedScene" uid="uid://nxf6jksafy4f" path="res://Units/Units/produced_unit.tscn" id="11_in75x"]
 [ext_resource type="Resource" uid="uid://jdbxklpq0g6c" path="res://Units/Units/Knight/knight_unit_stats.tres" id="12_82g78"]
-[ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/archer_unit_stats.tres" id="12_1563n"]
+[ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/Stats and Costs/archer_unit_stats.tres" id="12_1563n"]
 [ext_resource type="PackedScene" uid="uid://c14q48khq61h0" path="res://Units/Buildings/spawn_point_component.tscn" id="12_s5rrd"]
 [ext_resource type="Resource" uid="uid://b4vfebmynrc8f" path="res://Units/Units/Archer/Stats and Costs/archer_unit_costs.tres" id="13_akkik"]
 [ext_resource type="PackedScene" uid="uid://c736gxs3hquqa" path="res://Game/UI/control_grid_component.tscn" id="14_f5ncr"]

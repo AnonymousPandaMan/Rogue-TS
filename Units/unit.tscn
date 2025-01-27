@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Units/unit.gd" id="1_8cpma"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/state_machine.gd" id="2_14kq8"]
-[ext_resource type="Resource" uid="uid://dge84gyyi0v41" path="res://Units/Units/Archer/red_archer_unit_stats.tres" id="2_800oa"]
+[ext_resource type="Resource" uid="uid://dge84gyyi0v41" path="res://Units/Units/Archer/Stats and Costs/red_archer_unit_stats.tres" id="2_800oa"]
 [ext_resource type="Material" uid="uid://c4pb5lkhkw6la" path="res://Resources/Shaders/selected_outline.tres" id="2_f6ofu"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/idle.gd" id="3_g1y2t"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/moving.gd" id="4_ttj7d"]
@@ -113,3 +113,5 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("13_85nc5")
 expand_mode = 2
 stretch_mode = 3
+
+[connection signal="attacked" from="." to="." method="_on_attacked"]

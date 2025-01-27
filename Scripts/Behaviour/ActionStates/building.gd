@@ -23,7 +23,6 @@ func physics_update(_delta: float) -> void:
 func enter(previous_state_path: String, data := {}) -> void:
 	if data:
 		build_target = data.get("BuildTarget")
-
 		build_target.construction_power += unit.unit_stats.build_power
 		#else:
 			#finished.emit(MOVETOBUILD, {"BuildTarget" : build_target})

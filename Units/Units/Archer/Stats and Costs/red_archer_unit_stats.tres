@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dge84gyyi0v41"]
 
-[ext_resource type="Texture2D" uid="uid://d18f6mvuit21n" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/arrow_single.png" id="1_qfu4x"]
-[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="2_ov2f3"]
+[ext_resource type="Texture2D" uid="uid://d18f6mvuit21n" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/arrow_single.png" id="1_v8r4b"]
+[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="2_tronp"]
 
 [resource]
-script = ExtResource("2_ov2f3")
+script = ExtResource("2_tronp")
 unit_name = "RedArcher"
 move_speed = 450.0
 max_health = 45.0
@@ -20,9 +20,10 @@ build_power = 1.0
 build_range = 200
 harvest_power = 5
 harvest_speed = 1.0
-harvest_swings_required = 3.0
+harvest_swings_required = 3
 harvest_animation_time = 0.6
 harvest_range = 200
+aggro_range = 600
 footprint_x = 1
 footprint_y = 1
 ranged_or_melee = "Ranged"
@@ -34,5 +35,5 @@ is_building = false
 is_construction = false
 can_move = true
 allegiance = "Enemy"
-ranged_projectile_sprite = ExtResource("1_qfu4x")
+ranged_projectile_sprite = ExtResource("1_v8r4b")
 on_death = "res://Units/death_anim.tscn"

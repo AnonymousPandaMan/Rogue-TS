@@ -22,15 +22,20 @@ func _init(built_unit : BuiltUnit):
 	self.footprint_x = built_unit.unit_stats.footprint_x
 	self.footprint_y = built_unit.unit_stats.footprint_y
 	self.sprite_offset = built_unit.preview_sprite_offset
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	pass
 
-func _physics_process(delta):
+func _process(delta):
 	global_position = get_global_mouse_position() + sprite_offset
 	pass
 
 func _input(event):
 	if Input.is_action_just_released("select"):
 		confirmed_placement_location.emit(global_position)
-		queue_free()
+		stop_selection()
 	if Input.is_action_just_pressed("cancel"):
-		queue_free()
+		stop_selection()
+
+func stop_selection():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	queue_free()

@@ -4,6 +4,7 @@ class_name Unit
 
 signal navigation_refeshed()
 signal health_percent_changed(percentage)
+signal attacked(by_unit : Unit)
 
 ## All unit stats, flags and assets stored in a UnitStats resource. This asks for a UnitStats resource then duplicates it to avoid changing all stats of same unit type at once.
 @export var unit_stats_resource : UnitStats 
@@ -172,3 +173,4 @@ func do_flash(color:Color):
 		
 func toggle_unit_clipping(_bool):
 	set_collision_mask_value(1,_bool)
+		

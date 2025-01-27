@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/move_to_attack.gd" id="9_7xlgp"]
 [ext_resource type="PackedScene" uid="uid://gliog5bn3uyd" path="res://Game/producer_component.tscn" id="10_mtvfm"]
 [ext_resource type="PackedScene" uid="uid://nxf6jksafy4f" path="res://Units/Units/produced_unit.tscn" id="11_hq7y2"]
-[ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/archer_unit_stats.tres" id="12_hkjrv"]
+[ext_resource type="Resource" uid="uid://cu47tapucdnt5" path="res://Units/Units/Archer/Stats and Costs/archer_unit_stats.tres" id="12_hkjrv"]
 [ext_resource type="Resource" uid="uid://b4vfebmynrc8f" path="res://Units/Units/Archer/Stats and Costs/archer_unit_costs.tres" id="13_d0o0q"]
 [ext_resource type="Resource" uid="uid://jdbxklpq0g6c" path="res://Units/Units/Knight/knight_unit_stats.tres" id="14_qf8fv"]
 [ext_resource type="Resource" uid="uid://b1bcu6tg0cd0l" path="res://Units/Units/Knight/Stats/knight_costs.tres" id="15_jorfa"]

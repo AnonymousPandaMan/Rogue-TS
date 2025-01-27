@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bvs5n5csnq30g" path="res://Units/Buildings/building.tscn" id="1_jsxns"]
 [ext_resource type="Resource" uid="uid://sl5cag42nxs5" path="res://Units/Buildings/Stats/red_castle_stats.tres" id="2_wautw"]
-[ext_resource type="Resource" uid="uid://dge84gyyi0v41" path="res://Units/Units/Archer/red_archer_unit_stats.tres" id="3_1yjyi"]
+[ext_resource type="Resource" uid="uid://dge84gyyi0v41" path="res://Units/Units/Archer/Stats and Costs/red_archer_unit_stats.tres" id="3_1yjyi"]
 [ext_resource type="Texture2D" uid="uid://cti0k0p07oiyr" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Red.png" id="3_mgxfg"]
 [ext_resource type="Resource" uid="uid://cj7yf7cwn6gw7" path="res://Units/Units/Knight/Stats/red_knight_stats.tres" id="3_n347l"]
 

@@ -22,5 +22,7 @@ func _on_construction_start():
 	construction.global_position = global_position - construction_offset
 	for unit in assigned_units:
 		unit.state_machine._transition_to_next_state("Building", {"BuildTarget" : construction})
+	# redisplay mouse and delete this selector overlay
+	
 	queue_free()
 	

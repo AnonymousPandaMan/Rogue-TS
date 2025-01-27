@@ -22,6 +22,7 @@ func execute():
 
 	if is_in_range():
 		var final_damage = calculate_damage()
+		target.attacked.emit(attacker)
 		target.take_damage(final_damage)
 		print(attacker.name + " attacked " + target.name + " for " + str(final_damage) + " damage!")
 	else:

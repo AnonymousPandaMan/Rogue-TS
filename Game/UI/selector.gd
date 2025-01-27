@@ -20,8 +20,9 @@ func _init(target_group, range : int):
 func _ready():
 	texture = sprite_texture
 	z_index = 5
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	
-func _physics_process(delta):
+func _process(delta):
 	# Move mouse texture with mouse and when hovering over a valiod target change to the selection sprite
 	currently_selecting = true
 	var mouse_position = get_global_mouse_position()
@@ -39,6 +40,9 @@ func _physics_process(delta):
 		else:
 			texture = sprite_texture
 			global_position = get_global_mouse_position()
+	else:
+		texture = sprite_texture
+		global_position = get_global_mouse_position()
 
 func _input(event):
 	if Input.is_action_pressed("select"):
@@ -58,7 +62,11 @@ func _input(event):
 		currently_selecting = false
 		if selected_object:
 			object_selected.emit(selected_object)
-			queue_free()
+			stop_selection()
 	
 	if Input.is_action_just_pressed("cancel"):
-		queue_free()
+		stop_selection()
+		
+func stop_selection():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	queue_free()
