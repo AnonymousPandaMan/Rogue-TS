@@ -22,6 +22,7 @@ func _ready():
 	z_index = 5
 	
 func _physics_process(delta):
+	# Move mouse texture with mouse and when hovering over a valiod target change to the selection sprite
 	currently_selecting = true
 	var mouse_position = get_global_mouse_position()
 	var target_group_nodes : Array = [] 

@@ -81,6 +81,11 @@ func _ready():
 	
 	if control_grid_component:
 		control_grid_component.visible = false # control grid is hidden until needed
+		
+	## Temporary solution for progressbars
+	for child in get_children():
+		if child is ProgressBarComponent:
+			child.position = global_position + child.offset_position
 
 func select():
 	is_selected = true

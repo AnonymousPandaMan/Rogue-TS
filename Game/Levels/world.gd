@@ -69,7 +69,7 @@ func _unhandled_input(event):
 			var closest_unit = GlobalFunctions.get_closest_unit_to_location("Unit",click_location)
 			
 			if click_location.distance_to(closest_unit.global_position) >= selection_feather :
-				print("No unit close to click location to select")
+				#print("No unit close to click location to select")
 				pass
 			else:
 				units_in_selector_rect.append(closest_unit)
@@ -234,6 +234,8 @@ func update_control_grid_ui():
 						new_button.rally_button_pressed.connect(_on_rally_button_pressed)
 					if new_button is CommandButton:
 						new_button.command_button_pressed.connect(_on_command_button_pressed)
+					if new_button is BuildButton:
+						new_button.build_button_pressed.connect(_on_build_button_pressed)
 				else:
 					continue
 
@@ -293,11 +295,23 @@ func _on_rally_button_pressed(rally_point):
 			var rally_point_instance = RallyPoint.new(unit.producer_component,mouse_location)
 			
 func _on_command_button_pressed(commanded_state, target):
-	change_unit_state(commanded_state, target)
-
-func change_unit_state(commanded_state, target):
 	var selected_units = get_tree().get_nodes_in_group("Selected")
-	for unit : Unit in selected_units:
+	change_units_state(selected_units, commanded_state, target)
+
+func _on_build_button_pressed(builds, placement_location):
+	# instantiate hologram / build beacon
+	var construction = load(builds.construction_scene)
+	var hologram = BuildHologram.new(builds.preview_sprite, construction, builds.preview_sprite_offset)
+	hologram.global_position = placement_location
+	get_tree().get_first_node_in_group("Level").add_child(hologram)
+	
+	# change unit state and add units that are building to a list for the hologram
+	var selected_units = get_tree().get_nodes_in_group("Selected")
+	change_units_state(selected_units, "StartConstruction", hologram)
+
+
+func change_units_state(units ,commanded_state, target):
+	for unit : Unit in units:
 		if unit.state_machine.has_state(commanded_state):
 			if target is Vector2:
 				match commanded_state:
@@ -315,5 +329,9 @@ func change_unit_state(commanded_state, target):
 				match commanded_state:
 					"Harvesting":
 						unit.state_machine._transition_to_next_state(commanded_state,{"HarvestTarget":target})
+			elif target is BuildHologram:
+				match commanded_state:
+					"StartConstruction":
+						unit.state_machine._transition_to_next_state(commanded_state,{"ConstructionTarget":target})
 			else:
 				unit.state_machine._transition_to_next_state(commanded_state)

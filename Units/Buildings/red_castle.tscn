@@ -12,8 +12,12 @@ unit_stats_resource = ExtResource("2_wautw")
 [node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
 
-[node name="ProducerComponent" parent="." index="4"]
+[node name="ProducerComponent" parent="." index="4" node_paths=PackedStringArray("rally_point")]
 production_behaviour = 0
+rally_point = NodePath("RallyPoint")
+
+[node name="ProgressBarComponent" parent="ProducerComponent" index="0" node_paths=PackedStringArray("unit")]
+unit = NodePath("../..")
 
 [node name="Archer" parent="ProducerComponent" index="1"]
 unit_scene = "res://Units/Units/Knight/red_knight.tscn"

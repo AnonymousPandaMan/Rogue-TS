@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4kjxkmc543yw"]
+[gd_scene load_steps=8 format=3 uid="uid://d4kjxkmc543yw"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_xdgb5"]
 [ext_resource type="Script" path="res://Units/Buildings/building_construction_unit.gd" id="2_tpvqp"]
@@ -8,19 +8,10 @@
 [ext_resource type="Script" path="res://Units/unit_animation.gd" id="5_ikg7m"]
 [ext_resource type="Script" path="res://Units/Buildings/progress_bar_component.gd" id="6_b3iss"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ss26b"]
-radius = 29.0
-height = 230.0
-
 [node name="BuildingBlueCastle" node_paths=PackedStringArray("unit_animation") instance=ExtResource("1_xdgb5")]
 script = ExtResource("2_tpvqp")
 unit_stats_resource = ExtResource("3_gd5aj")
 unit_animation = NodePath("UnitAnimationComponent")
-
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(-1, -14)
-rotation = 17.2788
-shape = SubResource("CapsuleShape2D_ss26b")
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle")
@@ -52,7 +43,7 @@ has_animation = false
 position = Vector2(0, -77)
 texture = ExtResource("4_mrql0")
 
-[node name="ProgressBarComponent" type="ProgressBar" parent="." index="8"]
+[node name="ProgressBarComponent" type="ProgressBar" parent="." index="8" node_paths=PackedStringArray("unit")]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -65,3 +56,4 @@ grow_horizontal = 2
 grow_vertical = 2
 show_percentage = false
 script = ExtResource("6_b3iss")
+unit = NodePath("..")

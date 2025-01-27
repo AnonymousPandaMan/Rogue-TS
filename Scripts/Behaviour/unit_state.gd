@@ -14,6 +14,7 @@ const BUILDING = "Building"
 const HARVESTING = "Harvesting"
 const MOVETOHARVEST = "MoveToHarvest"
 const MOVETOBUILD = "MoveToBuild"
+const STARTCONSTRUCTION = "StartConstruction"
 
 var unit: Unit
 
