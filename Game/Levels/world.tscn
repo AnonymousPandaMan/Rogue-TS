@@ -178,7 +178,7 @@ unit_costs = ExtResource("13_sv70t")
 unit_costs = ExtResource("13_sv70t")
 
 [node name="RallyPoint" parent="Red Castle/ProducerComponent" index="3"]
-position = Vector2(-2293, 2240)
+position = Vector2(-1965, 1275)
 
 [node name="Background" parent="Red Castle/UnitPortrait" index="0"]
 visible = true

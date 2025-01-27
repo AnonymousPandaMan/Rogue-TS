@@ -1,6 +1,9 @@
 extends Unit
 
-var construction_power := 0.0
+var construction_power := 0.0:
+	set(value):
+		construction_power = clamp(value, 0, 100)
+
 var being_constructed = false
 
 func _ready():

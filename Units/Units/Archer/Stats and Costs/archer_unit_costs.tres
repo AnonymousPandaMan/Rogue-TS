@@ -7,4 +7,4 @@ script = ExtResource("1_1aem6")
 wood_cost = 50
 meat_cost = 50
 gold_cost = 0
-production_time = 15
+production_time = 25

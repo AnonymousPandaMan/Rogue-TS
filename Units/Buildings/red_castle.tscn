@@ -16,9 +16,6 @@ initial_state = NodePath("Idle")
 production_behaviour = 0
 rally_point = NodePath("RallyPoint")
 
-[node name="ProgressBarComponent" parent="ProducerComponent" index="0" node_paths=PackedStringArray("unit")]
-unit = NodePath("../..")
-
 [node name="Archer" parent="ProducerComponent" index="1"]
 unit_scene = "res://Units/Units/Knight/red_knight.tscn"
 unit_stats = ExtResource("3_n347l")

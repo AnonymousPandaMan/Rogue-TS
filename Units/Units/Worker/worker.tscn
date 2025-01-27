@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://buk8y4nrlklx7"]
+[gd_scene load_steps=33 format=3 uid="uid://buk8y4nrlklx7"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_nbgmn"]
 [ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/building.gd" id="2_dduj1"]
@@ -26,6 +26,19 @@
 [ext_resource type="Texture2D" uid="uid://c828fqxicqrn" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/axe.png" id="17_0x3wj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://0wsckkwn0fno" path="res://Units/Units/Worker/worker_node_blend.tres" id="17_76cfo"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_nu8pl"]
+device = -1
+keycode = 67
+unicode = 99
+
+[sub_resource type="Shortcut" id="Shortcut_1rs3p"]
+events = [SubResource("InputEventKey_nu8pl")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2jgy"]
+font_size = 18
+font_color = Color(0.0862745, 0.109804, 0.180392, 1)
+outline_size = 1
+
 [sub_resource type="InputEventKey" id="InputEventKey_itb43"]
 device = -1
 keycode = 66
@@ -33,11 +46,6 @@ unicode = 98
 
 [sub_resource type="Shortcut" id="Shortcut_8cbt7"]
 events = [SubResource("InputEventKey_itb43")]
-
-[sub_resource type="LabelSettings" id="LabelSettings_i2jgy"]
-font_size = 18
-font_color = Color(0.0862745, 0.109804, 0.180392, 1)
-outline_size = 1
 
 [sub_resource type="InputEventKey" id="InputEventKey_14ep7"]
 device = -1
@@ -94,6 +102,7 @@ script = ExtResource("4_3dc6x")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+shortcut = SubResource("Shortcut_1rs3p")
 texture_normal = ExtResource("8_jplb2")
 texture_pressed = ExtResource("9_o73n2")
 texture_hover = ExtResource("10_htnu8")
@@ -102,6 +111,28 @@ script = ExtResource("6_vuxww")
 builds = NodePath("../../BuilderComponent/Castle")
 listener_unit_group = "Worker"
 button_id = "BuildCastle"
+
+[node name="Sprite" type="Sprite2D" parent="ControlGridComponent/BuildCastle" index="0"]
+position = Vector2(27.4688, 16.375)
+scale = Vector2(0.129883, 0.129883)
+texture = ExtResource("10_18xme")
+offset = Vector2(38, 30)
+
+[node name="Label" type="Label" parent="ControlGridComponent/BuildCastle" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 6.5
+offset_right = 9.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "C"
+label_settings = SubResource("LabelSettings_i2jgy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuildingCommand" type="TextureButton" parent="ControlGridComponent" index="1" node_paths=PackedStringArray("commanded_unit")]
 layout_mode = 0
