@@ -141,9 +141,10 @@ z_index = 1
 position = Vector2(-1, 0)
 spawn_point = NodePath("../SpawnPointComponent")
 
-[node name="ProgressBarComponent" parent="ProducerComponent" index="0"]
+[node name="ProgressBarComponent" parent="ProducerComponent" index="0" node_paths=PackedStringArray("unit")]
 offset_top = -183.0
 offset_bottom = -177.0
+unit = NodePath("../..")
 
 [node name="Archer" parent="ProducerComponent" instance=ExtResource("11_hq7y2")]
 unit_scene = "res://Units/Units/Archer/unit_archer.tscn"

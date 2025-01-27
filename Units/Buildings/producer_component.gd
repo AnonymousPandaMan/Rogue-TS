@@ -45,6 +45,7 @@ func _process(delta):
 			if producing_unit_node:
 				progress_bar.visible = true
 				progress_bar.update_progress_bar(current_production_progress, producing_unit_node.unit_costs.production_time)
+				progress_bar.global_position = owner.global_position + progress_bar.offset_position
 	else:
 		is_producing = false
 		progress_bar.visible = false
