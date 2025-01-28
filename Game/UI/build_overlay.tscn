@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://fomccvi5thq3"]
+
+[ext_resource type="Script" path="res://Game/UI/build_overlay.gd" id="1_8jfhd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nyje"]
+size = Vector2(64, 64)
+
+[node name="BuildOverlay" type="Area2D"]
+collision_layer = 0
+collision_mask = 15
+script = ExtResource("1_8jfhd")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3nyje")
+debug_color = Color(0.896353, 0.0790165, 0.745067, 0.42)

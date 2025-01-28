@@ -17,7 +17,7 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	unit.move_and_slide()
 	if is_instance_valid(construction_target):
-		if unit.global_position.distance_to(construction_target.global_position) >= unit.unit_stats.build_range:
+		if unit.global_position.distance_to(construction_target.global_position - construction_target.construction_offset) >= unit.unit_stats.build_range:
 			var target_direction = (
 				unit.navigation_component.nav.get_next_path_position() - unit.global_position).normalized()
 			unit.velocity = target_direction * unit.unit_stats.move_speed
@@ -34,7 +34,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	if data:
 		construction_target = data.get("ConstructionTarget")
 		construction_target.assigned_units.append(unit)
-		unit.requested_navigation_target_position = construction_target.global_position
+		unit.requested_navigation_target_position = construction_target.global_position - construction_target.construction_offset
 		unit.unit_animation.set_condition("parameters/UnitState/conditions/move", true)
 	else:
 		printerr("No data for construction start state for " + unit.name + ". Reverting to IDLE")

@@ -3,6 +3,8 @@ extends ControlGridButton
 
 @export var builds: BuiltUnit
 
+var build_overlay_scene : PackedScene = preload("res://Game/UI/build_overlay.tscn")
+
 signal build_button_pressed(building : BuiltUnit, build_location)
 
 
@@ -11,7 +13,8 @@ func _on_pressed():
 		"Wood", builds.unit_costs.wood_cost) and GameInventory.has_enough_resources(
 			"Meat", builds.unit_costs.meat_cost) and GameInventory.has_enough_resources(
 				"Gold", builds.unit_costs.gold_cost): 
-		var build_overlay = BuildOverlay.new(builds)
+		var build_overlay = build_overlay_scene.instantiate()
+		build_overlay.start_selection(builds)
 		build_overlay.confirmed_placement_location.connect(_on_confirmed_placement_location)
 		get_tree().get_first_node_in_group("Level").add_child(build_overlay)
 		

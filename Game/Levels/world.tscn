@@ -32,7 +32,6 @@ resource_name = "Harvestables"
 scenes/1/scene = ExtResource("4_p0p6a")
 scenes/2/scene = ExtResource("6_x4idm")
 scenes/3/scene = ExtResource("6_fnmwk")
-scenes/3/display_placeholder = ExtResource("6_fnmwk")
 
 [sub_resource type="TileSet" id="TileSet_xsvqx"]
 tile_size = Vector2i(64, 64)

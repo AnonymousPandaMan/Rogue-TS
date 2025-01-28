@@ -22,7 +22,6 @@ constructed_building = "res://Units/Buildings/Castle/castle.tscn"
 progress_bar = NodePath("../../ProgressBarComponent")
 
 [node name="DebugLabel" parent="." index="2"]
-visible = true
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthBarComponent" parent="." index="3"]
