@@ -42,6 +42,7 @@ var previous_health
 
 
 func _ready():
+	# group assigns
 	if unit_stats:
 		unit_stats.health = unit_stats.max_health
 		if unit_stats.unit_name:
@@ -51,6 +52,9 @@ func _ready():
 			add_to_group("Building")
 		add_to_group(unit_stats.allegiance)
 		add_to_group("Unit")
+		add_to_group(unit_stats.ranged_or_melee)
+		add_to_group(unit_stats.unit_name)
+		add_to_group(unit_stats.armour_type)
 	
 	#Errors for missing references
 	if not state_machine:

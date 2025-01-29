@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c53ipv6iimjw2"]
+
+[ext_resource type="Texture2D" uid="uid://qo778vs1hxs7" path="res://Assets/Tiny Swords (Update 010)/Resources/Resources/G_Idle.png" id="1_gwpun"]
+[ext_resource type="Script" path="res://Resources/Items/inventory_item.gd" id="1_yc6sb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ipmh"]
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_gwpun")
+script = ExtResource("1_yc6sb")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+text = "1"
+label_settings = SubResource("LabelSettings_7ipmh")
+horizontal_alignment = 1
+vertical_alignment = 1

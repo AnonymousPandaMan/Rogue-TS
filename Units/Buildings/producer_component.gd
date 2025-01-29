@@ -118,7 +118,7 @@ func produce_first_unit_in_queue() -> void:
 		produced_unit = list_front.instantiate()
 		produced_unit.unit_stats = production_node_list.front().unit_stats
 		level_node.add_child(produced_unit)
-		
+		GameInventory.apply_all_current_items_modifications(produced_unit)
 		if rally_point:
 			produced_unit.state_machine._transition_to_next_state("AttackMove", {"AttackMoveTargetPosition" : rally_point.global_position})
 		if spawn_point:

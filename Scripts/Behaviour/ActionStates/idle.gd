@@ -31,7 +31,8 @@ func exit() -> void:
 func _on_attacked(by_unit : Unit):
 	if is_instance_valid(by_unit):
 		if unit.global_position.distance_to(by_unit.global_position) < unit.unit_stats.aggro_range * 2 and not unit.unit_stats.is_passive:
-			finished.emit(MOVETOATTACK,{"AttackTarget" : by_unit})
+			if by_unit.is_enemy(unit.unit_stats.allegiance):
+				finished.emit(MOVETOATTACK,{"AttackTarget" : by_unit})
 		else:
 			pass
 			# flee 

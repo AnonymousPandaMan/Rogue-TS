@@ -24,7 +24,8 @@ func _ready():
 
 func _process(delta):
 	ui.update_resource_labels(str(game_resources.game_resources_dictionary))
-
+	#ui.update_inventory()
+	
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("select"):
 			# Start drawing the rectangle selector
