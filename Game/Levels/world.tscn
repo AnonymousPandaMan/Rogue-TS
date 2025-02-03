@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://psx5uxaxdqaa"]
+[gd_scene load_steps=23 format=4 uid="uid://psx5uxaxdqaa"]
 
 [ext_resource type="Script" path="res://Game/Levels/world.gd" id="1_5fqmg"]
 [ext_resource type="PackedScene" uid="uid://x6r056xu7g5w" path="res://Units/Buildings/Castle/castle.tscn" id="2_wt3kn"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://6h4ckho4nwmc" path="res://Units/Units/Knight/Stats/free_unit_costs.tres" id="13_sv70t"]
 [ext_resource type="PackedScene" uid="uid://buk8y4nrlklx7" path="res://Units/Units/Worker/worker.tscn" id="15_nhf48"]
 [ext_resource type="Resource" uid="uid://cthgyo2ycdhtt" path="res://Game/Items/mushroom.tres" id="17_agiro"]
+[ext_resource type="Resource" uid="uid://0mpj7nkqfn1n" path="res://Game/Items/sword.tres" id="17_hysed"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i6rd8"]
 vertices = PackedVector2Array(-2028, 1812, -1876, 1756, -1820, 1756, -1828, 1900, -1884, 1900, -852, 2076, -732, 2076, -732, 2412, -745.82, 2412, -932, 2348, -1004, 2260, -1004, 2156, -28.0234, 852.953, -29.9688, 2414.91, -684, 2028, -748, 1812, -748, 1260, -1132, 850.281, -1132, 979, -1772, 979, -1364, 1260, -1772, 1043, -1884, 1748, -2028, 1708, -2004, 1692, -2454.43, 1772, -2455.99, 1683, -2412, 1683, -2388, 1772, -2388, 1644, -2412, 1619, -2348, 1619, -2324, 1644, -2324, 1580, -2348, 1491, -2284, 1491, -1964, 1580, -2332, 2028, -2449.95, 2028, -2453.59, 1820, -2348, 1820, -2332, 1964, -1940, 2347, -1940, 2407.12, -2284, 2405.72, -2284, 2347, -1428, 2260, -1364, 2260, -1364, 2409.46, -1516, 2408.85, -1516, 2283, -1364, 1388, -1428, 1388, -1428, 1516, -1492, 1516, -2220, 1299, -2156, 1171, -2092, 1107, -1492, 1644, -1620, 1644, -1260, 2004, -1260, 1876, -1252, 1876, -1236, 2028, -1308, 1772, -1308, 1900, -1572, 1900, -1572, 1692, -1452, 1692, -1452, 1684, -1444, 1684, -1444, 1564, -1388, 1564, -1180, 1708, -1252, 1772, -1388, 1556, -1380, 1556, -1124, 1708, -1380, 1436, -1324, 1436, -988, 1708, -1324, 1428, -1316, 1428, -796, 1708, -1316, 1308, -796, 1308, -812, 2028, -812, 1964, -876, 1964, -876, 1900, -1068, 1900, -1068, 1836, -988, 1812, -1132, 1836, -1132, 1812, -1124, 1812, -1180, 1876, -1172, 1876, -1172, 1884, -1188, 2068, -1116, 1884, -1116, 1940, -1172, 2156, -1108, 1940, -1108, 1948, -924, 1948, -924, 2004, -916, 2004, -916, 2012, -860, 2012, -860, 2068, -852, 2068, -1316, 2156, -1380, 2156, -1380, 2140, -1260, 2140, -1260, 2132, -1252, 2132, -1172, 2260, -1252, 2076, -1196, 2076, -1196, 2068, -1244, 1876, -1236, 1876, -1620, 2004, -1300, 2028, -1300, 2092, -1428, 2092, -1772, 2068, -1580, 2283, -1580, 2219, -1900, 2068, -1812, 2219, -1812, 2347, -2068, 2068, -2348, 2347, -2348, 2283, -2284, 2132, -2412, 2283, -2412, 2132, -2284, 2068, -2156, 2068, -2156, 2004, -2068, 2004, -1900, 2004, -1892, 2004, -1948, 1900, -1948, 1964, -2020, 1964, -2020, 1900, -2340, 1812, -2204, 1900, -2204, 1964, -2348, 1812, -2340, 1692, -2284, 1692, -2196, 1812, -2284, 1684, -2276, 1684, -2196, 1708, -2276, 1628, -2012, 1628, -2012, 1684, -2004, 1684, -1884, 1692, -1876, 1748, -1820, 1964, -1828, 1964, -1884, 2004, -1876, 2004, -1876, 2068, -1772, 1708, -1836, 1708, -1836, 1644, -1964, 1644, -2284, 1299, -2220, 1171, -2156, 1107, -2092, 1043, -932, 2411.24, -1316, 2348, -684, 2412.24, -1188, 1772, -1244, 1772, -1892, 1900)
@@ -72,8 +73,10 @@ script = ExtResource("6_7b22a")
 
 [node name="ItemInventory" type="GridContainer" parent="UI"]
 unique_name_in_owner = true
-offset_right = 551.0
-offset_bottom = 53.0
+offset_left = 64.0
+offset_top = 74.0
+offset_right = 615.0
+offset_bottom = 127.0
 columns = 12
 
 [node name="ResourcesLabel" type="Label" parent="UI"]
@@ -120,6 +123,11 @@ axis_stretch_vertical = 2
 unique_name_in_owner = true
 layout_mode = 0
 columns = 5
+
+[node name="SingleUnitDisplay" type="CenterContainer" parent="UI/AspectRatioContainer/Portrait|Control/ControlGridBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="PortraitGridBackground" type="NinePatchRect" parent="UI/AspectRatioContainer/Portrait|Control"]
 layout_mode = 2
@@ -185,7 +193,7 @@ unit_costs = ExtResource("13_sv70t")
 unit_costs = ExtResource("13_sv70t")
 
 [node name="RallyPoint" parent="Red Castle/ProducerComponent" index="3"]
-position = Vector2(-1965, 1275)
+position = Vector2(-1903, 1280)
 
 [node name="Background" parent="Red Castle/UnitPortrait" index="0"]
 visible = true
@@ -233,18 +241,18 @@ position = Vector2(-2192, 1395)
 item = ExtResource("6_7xh4w")
 adds_meat = 200
 
-[node name="ItemPickup7" parent="Pickups" instance=ExtResource("7_eecuj")]
-position = Vector2(-1738, 1650)
-item = ExtResource("6_7xh4w")
-adds_meat = 200
+[node name="Sword" parent="Pickups" instance=ExtResource("7_eecuj")]
+position = Vector2(-1709, 1899)
+item = ExtResource("17_hysed")
+adds_item = true
 
 [node name="Mushroom" parent="Pickups" instance=ExtResource("7_eecuj")]
-position = Vector2(-1690, 1952)
+position = Vector2(-2033, 1197)
 item = ExtResource("17_agiro")
 adds_item = true
 
 [node name="Mushroom2" parent="Pickups" instance=ExtResource("7_eecuj")]
-position = Vector2(-1534, 2072)
+position = Vector2(-865, 2139)
 item = ExtResource("17_agiro")
 adds_item = true
 

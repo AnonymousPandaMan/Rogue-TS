@@ -48,10 +48,11 @@ func get_item_dict(allegiance):
 
 func apply_all_current_items_modifications(unit : Unit):
 	#applies all current items to a unit. Only use on freshly spawned units.
-	for key in game_item_dictionary.keys():
-		var stack_size = game_item_dictionary.get(key)
-		for i in stack_size:
-			apply_item_modifications(unit, key)
+	if unit.unit_stats.allegiance == "Player":
+		for key in game_item_dictionary.keys():
+			var stack_size = game_item_dictionary.get(key)
+			for i in stack_size:
+				apply_item_modifications(unit, key)
 
 func apply_item_modifications(unit : Unit, item : Item):
 	if item is StatItem:

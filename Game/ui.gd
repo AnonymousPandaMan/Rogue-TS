@@ -19,8 +19,6 @@ func update_inventory():
 	for key in current_inventory.keys():
 		var stack_size = current_inventory.get(key)
 		add_item_to_inventory(key , stack_size)
-	
-
 
 func add_item_to_inventory(item, stack_size):
 	var item_holder = inventory_item.instantiate()
@@ -29,5 +27,5 @@ func add_item_to_inventory(item, stack_size):
 		item_holder.set_stack_size(stack_size)
 	item_inventory.add_child(item_holder)
 
-func _on_item_dictionary_changed(inventory):
+func _on_item_dictionary_changed(inventory): ## called when the game item inventory is changed
 	update_inventory()

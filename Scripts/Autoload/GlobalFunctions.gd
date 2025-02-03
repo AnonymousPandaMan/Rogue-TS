@@ -11,3 +11,6 @@ func get_closest_unit_to_location(group, location):
 			if (distance_to_this_unit < distance_to_closest_unit):
 				closest_unit = unit
 	return closest_unit
+
+func format_string(_string):
+	pass

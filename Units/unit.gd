@@ -8,8 +8,8 @@ signal attacked(by_unit : Unit)
 
 ## All unit stats, flags and assets stored in a UnitStats resource. This asks for a UnitStats resource then duplicates it to avoid changing all stats of same unit type at once.
 @export var unit_stats_resource : UnitStats 
-@onready var unit_stats : UnitStats = unit_stats_resource.duplicate()
-
+@onready var unit_stats : UnitStats = unit_stats_resource.duplicate() # the current units stats
+@onready var unit_base_stats : UnitStats = unit_stats_resource.duplicate() # the base units stats
 
 ## Exported refences to nodes here.
 @export_group("Components and Nodes")
@@ -33,12 +33,10 @@ signal attacked(by_unit : Unit)
 @onready var unit_portrait = $UnitPortrait
 @onready var collision = %Collision
 
+
 var is_selected := false
 var requested_navigation_target_position : Vector2
-
 var previous_health
-
-# variables for the state machines functionality
 
 
 func _ready():
@@ -50,12 +48,14 @@ func _ready():
 			add_to_group(unit_stats.unit_name)
 		if unit_stats.is_building == true:
 			add_to_group("Building")
-		add_to_group(unit_stats.allegiance)
+			
 		add_to_group("Unit")
+		
+		add_to_group(unit_stats.allegiance)
 		add_to_group(unit_stats.ranged_or_melee)
 		add_to_group(unit_stats.unit_name)
 		add_to_group(unit_stats.armour_type)
-	
+		
 	#Errors for missing references
 	if not state_machine:
 		printerr("StateMachine not found for " + name)

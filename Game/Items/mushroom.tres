@@ -5,12 +5,15 @@
 
 [resource]
 script = ExtResource("1_ckyml")
-affected_unit_classes = "Ranged"
+affected_unit_classes = "Unit"
+percentage_or_flat = "Percentage"
 stat_changed = 1
-stat_change_amount = 2.0
+stat_change_amount = 10.0
 stat2_changed = 3
-stat2_change_amount = 1.0
+stat2_change_amount = 0.0
 stat3_changed = 0
 stat3_change_amount = 0.0
-item_name = "Mushroom"
+item_name = "Odd Mushroom"
 sprite = ExtResource("2_jrljy")
+item_description = "Increases [attack_speed] of ALL UNITS by %s of its [base][attack_speed]."
+item_flavour = "A red mushroom that gets its crimson colour from the battlefields it commonly inhabits."

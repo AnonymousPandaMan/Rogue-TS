@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="StatItem" load_steps=3 format=3 uid="uid://0mpj7nkqfn1n"]
+
+[ext_resource type="Script" path="res://Resources/Items/stat_item.gd" id="1_tpqbg"]
+[ext_resource type="Texture2D" uid="uid://dsqdek2acn1im" path="res://Assets/Items/rustysword.png" id="2_8p1ff"]
+
+[resource]
+script = ExtResource("1_tpqbg")
+affected_unit_classes = "Melee"
+percentage_or_flat = "Flat Increase"
+stat_changed = 2
+stat_change_amount = 2.0
+stat2_changed = 0
+stat2_change_amount = 0.0
+stat3_changed = 0
+stat3_change_amount = 0.0
+item_name = "Rusty Sword"
+sprite = ExtResource("2_8p1ff")
+item_description = "Increases [attack_damage] of MELEE UNITS by %s."
+item_flavour = "Long lost sword, belonging to just another nameless warrior."

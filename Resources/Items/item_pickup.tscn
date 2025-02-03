@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://pnxv4vnimohn"]
+[gd_scene load_steps=5 format=3 uid="uid://pnxv4vnimohn"]
 
 [ext_resource type="Script" path="res://Resources/Items/item_pickup.gd" id="1_jbone"]
 [ext_resource type="Resource" uid="uid://m6iuic2ru6o5" path="res://Resources/Items/gold.tres" id="2_w7e3k"]
+[ext_resource type="Texture2D" uid="uid://qo778vs1hxs7" path="res://Assets/Tiny Swords (Update 010)/Resources/Resources/G_Idle.png" id="3_dmdjl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_idblq"]
 radius = 50.0
@@ -18,5 +19,6 @@ pickup_area = NodePath("PickupArea")
 shape = SubResource("CircleShape2D_idblq")
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_dmdjl")
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
