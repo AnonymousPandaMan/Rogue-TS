@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1lu1lrlqi0jt"]
+
+[ext_resource type="Texture2D" uid="uid://cwyto50e1h3po" path="res://Assets/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Blue/Barrel_Blue.png" id="1_c64cv"]
+[ext_resource type="Script" path="res://Resources/Items/game_chest.gd" id="1_ipkui"]
+[ext_resource type="Resource" uid="uid://d07dpuj1rhrmv" path="res://Game/Items/default_chest_list.tres" id="2_sm8ul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8chgu"]
+radius = 80.0
+
+[node name="GameChest" type="Node2D"]
+script = ExtResource("1_ipkui")
+item_list = ExtResource("2_sm8ul")
+item_selections = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_c64cv")
+hframes = 6
+vframes = 6
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8chgu")
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+always_on_top = true
+allow_search = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_popup_menu_id_pressed"]

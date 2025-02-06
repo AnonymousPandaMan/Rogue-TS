@@ -4,6 +4,8 @@ extends Item
 @export var affected_unit_classes : String ##Comma separated list of affected unit class groups.
 @export_enum("Percentage","Flat Increase") var percentage_or_flat : String
 
+#@export var is_triggered : bool
+
 enum stats_list {HEALTH, ATTACK_SPEED, ATTACK_DAMAGE, MOVE_SPEED, ATTACK_RANGE, HARVEST_POWER, HARVEST_SPEED}
 @export var stat_changed : stats_list
 @export var stat_change_amount : float = 0

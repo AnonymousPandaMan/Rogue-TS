@@ -3,6 +3,8 @@ extends Resource
 
 @export var item_name : String = ""
 @export var sprite : Texture2D = AtlasTexture.new()
+enum rarity {COMMON,RARE,LEGENDARY,CORRUPTED}
+@export var item_rarity = rarity.COMMON
 @export_multiline var item_description : String = "This is an item description. Replace me with an item description. BBCode enabled"
 @export_multiline var item_flavour : String = "This is an item flavour. Replace me with the item's flavour text. Automatic italics and BBCode enabled"
 
