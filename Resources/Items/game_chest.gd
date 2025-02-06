@@ -33,7 +33,7 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		popup_menu.visible = true
-		
+		popup_menu.position = get_global_transform_with_canvas().get_origin()
 	pass # Replace with function body.
 
 

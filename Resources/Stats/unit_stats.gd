@@ -36,7 +36,7 @@ var health := max_health:
 @export var harvest_range := 200
 
 @export_group("Misc Stats")
-@export var aggro_range := 500 ##Aggro range when IDLE
+@export var aggro_range := 100 ##Aggro range when IDLE. Added onto attack range.
 @export_range(0,5) var footprint_x := 1 ##Horizontal footprint of build area if building, otherwise area that the unit occupies to block building.
 @export_range(0,5) var footprint_y := 1 ##Vertical footprint of build area if building, otherwise area that the unit occupies to block building.
 

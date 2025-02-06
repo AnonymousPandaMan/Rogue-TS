@@ -18,7 +18,7 @@ func physics_update(_delta: float) -> void:
 	for enemy in enemy_array:
 		attack_move_target_unit = unit.unit_finder_component.get_closest_unit(enemy)
 		if attack_move_target_unit:
-			var target_range = unit.unit_stats.attack_range + 200
+			var target_range = unit.unit_stats.attack_range + unit.unit_stats.aggro_range
 			if attack_move_target_unit.position.distance_to(unit.position) < target_range:
 				finished.emit(MOVETOATTACK,{"AttackMoveTargetPosition" : attack_move_target_position,"AttackTarget" : attack_move_target_unit})
 	if unit.position.distance_to(attack_move_target_position) >= 10:

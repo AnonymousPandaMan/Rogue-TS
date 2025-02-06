@@ -23,7 +23,8 @@ vframes = 6
 shape = SubResource("CircleShape2D_8chgu")
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
-always_on_top = true
+mode = 1
+transient_to_focused = true
 allow_search = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
