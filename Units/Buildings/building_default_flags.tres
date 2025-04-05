@@ -1,20 +1,37 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://cbrc6x5i15l7l"]
 
-[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_mbtk2"]
+[ext_resource type="Script" uid="uid://b6ym682pamvoh" path="res://Resources/Stats/unit_stats.gd" id="1_mbtk2"]
 
 [resource]
 script = ExtResource("1_mbtk2")
 unit_name = ""
 move_speed = 500.0
 max_health = 100.0
-health = 100.0
 health_regen = 10.0
 armour = 1.0
 attack_damage = 10.0
 attack_speed = 1.66667
+attack_animation_time = 0.8
 attack_range = 200.0
+ranged_projectile_speed = 500.0
+ranged_projectile_size_modifier = 1.0
+build_power = 1.0
+build_range = 200
+harvest_power = 5
+harvest_speed = 1.0
+harvest_swings_required = 3
+harvest_animation_time = 0.6
+harvest_range = 200
+aggro_range = 100
+footprint_x = 1
+footprint_y = 1
+ranged_or_melee = ""
+armour_type = ""
+is_passive = false
 is_selectable = true
 is_controllable = true
 is_building = false
+is_construction = false
 can_move = true
 allegiance = "Ally"
+on_death = "res://Units/death_anim.tscn"

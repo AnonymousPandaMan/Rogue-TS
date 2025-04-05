@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://d4kjxkmc543yw"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_xdgb5"]
-[ext_resource type="Script" path="res://Units/Buildings/building_construction_unit.gd" id="2_tpvqp"]
+[ext_resource type="Script" uid="uid://dq45cvdnmmj1m" path="res://Units/Buildings/building_construction_unit.gd" id="2_tpvqp"]
 [ext_resource type="Resource" uid="uid://bsrshp2uyhy8x" path="res://Units/Buildings/Castle/building_blue_castle.tres" id="3_gd5aj"]
-[ext_resource type="Script" path="res://Scripts/Behaviour/ActionStates/constructing.gd" id="4_ig7b1"]
+[ext_resource type="Script" uid="uid://bv283300tuye" path="res://Scripts/Behaviour/ActionStates/constructing.gd" id="4_ig7b1"]
 [ext_resource type="Texture2D" uid="uid://e3qwpn282gbb" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Construction.png" id="4_mrql0"]
-[ext_resource type="Script" path="res://Units/unit_animation.gd" id="5_ikg7m"]
-[ext_resource type="Script" path="res://Units/Buildings/progress_bar_component.gd" id="6_b3iss"]
+[ext_resource type="Script" uid="uid://cebjdddayi4gb" path="res://Units/unit_animation.gd" id="5_ikg7m"]
+[ext_resource type="Script" uid="uid://dta6c58u6bkfw" path="res://Units/Buildings/progress_bar_component.gd" id="6_b3iss"]
 
 [node name="BuildingBlueCastle" node_paths=PackedStringArray("unit_animation") instance=ExtResource("1_xdgb5")]
 script = ExtResource("2_tpvqp")

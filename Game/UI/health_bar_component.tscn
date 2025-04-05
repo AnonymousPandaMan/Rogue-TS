@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://em0c5qa3tyw0" path="res://Assets/UI/Pixel Health Pack/Under.tres" id="1_dv58c"]
 [ext_resource type="Texture2D" uid="uid://dxcetii4b2irh" path="res://Assets/UI/Pixel Health Pack/over.tres" id="2_dbt4g"]
 [ext_resource type="Texture2D" uid="uid://b8f2l41fuhamg" path="res://Assets/UI/Pixel Health Pack/progress.tres" id="3_8qinn"]
-[ext_resource type="Script" path="res://Game/UI/health_bar_component.gd" id="4_8x784"]
+[ext_resource type="Script" uid="uid://dngu00n2l0rmy" path="res://Game/UI/health_bar_component.gd" id="4_8x784"]
 
 [node name="HealthBarComponent" type="TextureProgressBar"]
 visible = false

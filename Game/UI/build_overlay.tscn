@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://fomccvi5thq3"]
 
-[ext_resource type="Script" path="res://Game/UI/build_overlay.gd" id="1_8jfhd"]
+[ext_resource type="Script" uid="uid://bfhanvfe5hfoh" path="res://Game/UI/build_overlay.gd" id="1_8jfhd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3nyje"]
 size = Vector2(64, 64)

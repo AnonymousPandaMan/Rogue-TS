@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://b1xnnmkij7u0v"]
 
-[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="1_gi0wt"]
+[ext_resource type="Script" uid="uid://b6ym682pamvoh" path="res://Resources/Stats/unit_stats.gd" id="1_gi0wt"]
 [ext_resource type="Texture2D" uid="uid://dktbbpm2vt8f6" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Blue/pawn_blue_portrait.png" id="2_edvck"]
 
 [resource]

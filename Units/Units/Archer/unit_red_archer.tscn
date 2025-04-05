@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://jrtbbjksqh87"]
 
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_isn06"]
-[ext_resource type="Script" path="res://Units/unit_animation.gd" id="2_qqevv"]
+[ext_resource type="Script" uid="uid://cebjdddayi4gb" path="res://Units/unit_animation.gd" id="2_qqevv"]
 [ext_resource type="Texture2D" uid="uid://drd14i0nqtmhy" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Red/Archer_Red.png" id="2_wyjwq"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://fyxg2re3v00t" path="res://Units/Units/unit_animation_tree.tres" id="4_2x33e"]
 
@@ -358,19 +358,19 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mnx12"]
 _data = {
-"RESET": SubResource("Animation_uxhd4"),
-"attack_down": SubResource("Animation_xmko3"),
-"attack_down_left": SubResource("Animation_26ynd"),
-"attack_down_right": SubResource("Animation_nwfdj"),
-"attack_left": SubResource("Animation_xnrod"),
-"attack_right": SubResource("Animation_fb11i"),
-"attack_up": SubResource("Animation_rooor"),
-"attack_up_left": SubResource("Animation_3bhf1"),
-"attack_up_right": SubResource("Animation_gqc1o"),
-"idle_left": SubResource("Animation_82vnb"),
-"idle_right": SubResource("Animation_wfi5s"),
-"move_left": SubResource("Animation_asdu0"),
-"move_right": SubResource("Animation_kdso0")
+&"RESET": SubResource("Animation_uxhd4"),
+&"attack_down": SubResource("Animation_xmko3"),
+&"attack_down_left": SubResource("Animation_26ynd"),
+&"attack_down_right": SubResource("Animation_nwfdj"),
+&"attack_left": SubResource("Animation_xnrod"),
+&"attack_right": SubResource("Animation_fb11i"),
+&"attack_up": SubResource("Animation_rooor"),
+&"attack_up_left": SubResource("Animation_3bhf1"),
+&"attack_up_right": SubResource("Animation_gqc1o"),
+&"idle_left": SubResource("Animation_82vnb"),
+&"idle_right": SubResource("Animation_wfi5s"),
+&"move_left": SubResource("Animation_asdu0"),
+&"move_right": SubResource("Animation_kdso0")
 }
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ks2m"]

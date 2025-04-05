@@ -261,13 +261,13 @@ tracks/1/keys = {
 
 [resource]
 _data = {
-"RESET": SubResource("Animation_by3rg"),
-"attack_down": SubResource("Animation_tfm0e"),
-"attack_left": SubResource("Animation_apt33"),
-"attack_right": SubResource("Animation_6ifn2"),
-"attack_up": SubResource("Animation_45xex"),
-"idle_left": SubResource("Animation_wtklb"),
-"idle_right": SubResource("Animation_yl2ct"),
-"move_left": SubResource("Animation_bgjbr"),
-"move_right": SubResource("Animation_ra2e1")
+&"RESET": SubResource("Animation_by3rg"),
+&"attack_down": SubResource("Animation_tfm0e"),
+&"attack_left": SubResource("Animation_apt33"),
+&"attack_right": SubResource("Animation_6ifn2"),
+&"attack_up": SubResource("Animation_45xex"),
+&"idle_left": SubResource("Animation_wtklb"),
+&"idle_right": SubResource("Animation_yl2ct"),
+&"move_left": SubResource("Animation_bgjbr"),
+&"move_right": SubResource("Animation_ra2e1")
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://gliog5bn3uyd"]
 
-[ext_resource type="Script" path="res://Units/Buildings/producer_component.gd" id="1_qgh6x"]
+[ext_resource type="Script" uid="uid://ck0eoosqxaygw" path="res://Units/Buildings/producer_component.gd" id="1_qgh6x"]
 [ext_resource type="PackedScene" uid="uid://dboa0ndxs2qjb" path="res://Game/UI/progress_bar_component.tscn" id="2_3x3eq"]
 
 [node name="ProducerComponent" type="Node2D" node_paths=PackedStringArray("progress_bar")]

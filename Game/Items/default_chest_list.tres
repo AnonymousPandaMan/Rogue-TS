@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://cthgyo2ycdhtt" path="res://Game/Items/mushroom.tres" id="1_itsdg"]
 [ext_resource type="Resource" uid="uid://0mpj7nkqfn1n" path="res://Game/Items/sword.tres" id="2_tgfeg"]
-[ext_resource type="Script" path="res://Resources/Items/game_item_list.gd" id="3_a14mm"]
+[ext_resource type="Script" uid="uid://grwc6jjsn4q3" path="res://Resources/Items/game_item_list.gd" id="3_a14mm"]
 
 [resource]
 script = ExtResource("3_a14mm")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatItem" load_steps=3 format=3 uid="uid://cthgyo2ycdhtt"]
 
-[ext_resource type="Script" path="res://Resources/Items/stat_item.gd" id="1_ckyml"]
+[ext_resource type="Script" uid="uid://clp47n00jlf8v" path="res://Resources/Items/stat_item.gd" id="1_ckyml"]
 [ext_resource type="Texture2D" uid="uid://lt156etsaxwj" path="res://Assets/Tiny Swords (Update 010)/Deco/03.png" id="2_jrljy"]
 
 [resource]
@@ -15,5 +15,6 @@ stat3_changed = 0
 stat3_change_amount = 0.0
 item_name = "Odd Mushroom"
 sprite = ExtResource("2_jrljy")
+item_rarity = 0
 item_description = "Increases [attack_speed] of ALL UNITS by %s of its [base][attack_speed]."
 item_flavour = "A red mushroom that gets its crimson colour from the battlefields it commonly inhabits."

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cp1a0s3dxh3tr" path="res://Units/unit.tscn" id="1_p15u1"]
 [ext_resource type="Resource" uid="uid://jdbxklpq0g6c" path="res://Units/Units/Knight/knight_unit_stats.tres" id="2_767ma"]
 [ext_resource type="Texture2D" uid="uid://dkuem2o3whwct" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="3_asj23"]
-[ext_resource type="Script" path="res://Units/unit_animation.gd" id="3_jhiom"]
+[ext_resource type="Script" uid="uid://cebjdddayi4gb" path="res://Units/unit_animation.gd" id="3_jhiom"]
 [ext_resource type="AnimationLibrary" uid="uid://1cbbhc18rj20" path="res://Units/Units/Knight/knight_animation_library.tres" id="5_opkiq"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://crhdau2ej3w1m" path="res://Units/Units/Knight/knight_animation_blend.tres" id="6_egld6"]
 
@@ -26,7 +26,7 @@ vframes = 8
 [node name="UnitAnimation" type="AnimationPlayer" parent="UnitAnimation" index="1"]
 root_node = NodePath("../..")
 libraries = {
-"": ExtResource("5_opkiq")
+&"": ExtResource("5_opkiq")
 }
 
 [node name="UnitAnimationTree" type="AnimationTree" parent="UnitAnimation" index="2"]

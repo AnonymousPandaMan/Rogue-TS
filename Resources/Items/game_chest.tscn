@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1lu1lrlqi0jt"]
 
 [ext_resource type="Texture2D" uid="uid://cwyto50e1h3po" path="res://Assets/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Blue/Barrel_Blue.png" id="1_c64cv"]
-[ext_resource type="Script" path="res://Resources/Items/game_chest.gd" id="1_ipkui"]
+[ext_resource type="Script" uid="uid://chmk1g48lsk3u" path="res://Resources/Items/game_chest.gd" id="1_ipkui"]
 [ext_resource type="Resource" uid="uid://d07dpuj1rhrmv" path="res://Game/Items/default_chest_list.tres" id="2_sm8ul"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8chgu"]

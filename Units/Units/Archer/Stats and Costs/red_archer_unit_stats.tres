@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dge84gyyi0v41"]
 
 [ext_resource type="Texture2D" uid="uid://d18f6mvuit21n" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/arrow_single.png" id="1_v8r4b"]
-[ext_resource type="Script" path="res://Resources/Stats/unit_stats.gd" id="2_tronp"]
+[ext_resource type="Script" uid="uid://b6ym682pamvoh" path="res://Resources/Stats/unit_stats.gd" id="2_tronp"]
 
 [resource]
 script = ExtResource("2_tronp")

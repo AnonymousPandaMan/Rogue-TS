@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dame5dqfprbte"]
 
-[ext_resource type="Script" path="res://Units/unit_animation.gd" id="1_kq51d"]
+[ext_resource type="Script" uid="uid://cebjdddayi4gb" path="res://Units/unit_animation.gd" id="1_kq51d"]
 [ext_resource type="Texture2D" uid="uid://bxbm218lkrs7j" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png" id="1_nm1kl"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://fyxg2re3v00t" path="res://Units/Units/unit_animation_tree.tres" id="3_bxu71"]
 
@@ -357,19 +357,19 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mnx12"]
 _data = {
-"RESET": SubResource("Animation_uxhd4"),
-"attack_down": SubResource("Animation_xmko3"),
-"attack_down_left": SubResource("Animation_26ynd"),
-"attack_down_right": SubResource("Animation_nwfdj"),
-"attack_left": SubResource("Animation_xnrod"),
-"attack_right": SubResource("Animation_fb11i"),
-"attack_up": SubResource("Animation_rooor"),
-"attack_up_left": SubResource("Animation_3bhf1"),
-"attack_up_right": SubResource("Animation_gqc1o"),
-"idle_left": SubResource("Animation_82vnb"),
-"idle_right": SubResource("Animation_wfi5s"),
-"move_left": SubResource("Animation_asdu0"),
-"move_right": SubResource("Animation_kdso0")
+&"RESET": SubResource("Animation_uxhd4"),
+&"attack_down": SubResource("Animation_xmko3"),
+&"attack_down_left": SubResource("Animation_26ynd"),
+&"attack_down_right": SubResource("Animation_nwfdj"),
+&"attack_left": SubResource("Animation_xnrod"),
+&"attack_right": SubResource("Animation_fb11i"),
+&"attack_up": SubResource("Animation_rooor"),
+&"attack_up_left": SubResource("Animation_3bhf1"),
+&"attack_up_right": SubResource("Animation_gqc1o"),
+&"idle_left": SubResource("Animation_82vnb"),
+&"idle_right": SubResource("Animation_wfi5s"),
+&"move_left": SubResource("Animation_asdu0"),
+&"move_right": SubResource("Animation_kdso0")
 }
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4ks2m"]
@@ -398,7 +398,7 @@ vframes = 7
 [node name="UnitAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_mnx12")
+&"": SubResource("AnimationLibrary_mnx12")
 }
 
 [node name="UnitAnimationTree" type="AnimationTree" parent="."]
